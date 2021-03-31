@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.*;
 
 public class EscreverMétricasParaExcel {
 	
@@ -63,13 +64,32 @@ public class EscreverMétricasParaExcel {
 	public void escreverNomeDoFicheiro() {
 		String nomeProjeto = this.classes.remove(0);
 		//dar o nome ao Excel
+		//extrair o nome das classes
+		//extrair o nome dos métodos
+	}
+	
+	public void NOM_class() throws FileNotFoundException {
+		for (String caminhoClasse : this.classes) {			
+			File ficheiroClasse = new File(caminhoClasse);	
+			Scanner lerFicheiroClasse = new Scanner(ficheiroClasse);	
+			while (lerFicheiroClasse.hasNextLine()) {
+				String linha = lerFicheiroClasse.nextLine();
+				Pattern pattern = Pattern.compile("delimitação de método"); //delimitar inicio do metodo
+			    Matcher matcher = pattern.matcher(linha);
+			    boolean matchFound = matcher.find();
+			    if(matchFound) {
+			    	this.NOM_class++;
+			    }
+			}
+			this.NOM_class=0;
+			lerFicheiroClasse.close();
+		}
 	}
 	
 	public void LOC_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);	
 			Scanner lerFicheiroClasse = new Scanner(ficheiroClasse);	
-			//extrair o nome da classe e colocá-lo corretamente no Excel
 			while (lerFicheiroClasse.hasNextLine()) {		
 				this.LOC_class++;							
 				lerFicheiroClasse.nextLine();				
@@ -80,6 +100,11 @@ public class EscreverMétricasParaExcel {
 		}
 
 	}
+	
+	
+	
+	
+	//Testar
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel();
