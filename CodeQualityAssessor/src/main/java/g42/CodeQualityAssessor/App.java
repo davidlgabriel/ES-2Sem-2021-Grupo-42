@@ -14,14 +14,17 @@ public class App
 	}
 
 	public double memoryRecall(){
+		if (true) {
+
+		}
 		return memory;
 	}
-	
+
 	public double memoryReca(){
 		String s ="void main";
 		String s2 ="main";
 		return memory;
-		
+
 	}
 }
 

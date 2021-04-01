@@ -72,18 +72,7 @@ public class EscreverMétricasParaExcel {
 		//extrair o nome dos métodos
 	}
 	
-	/*public static void main(String[] args) throws Exception {
-	    String wordToSearch = "the";
-	    String data = "the their father them therefore then";
-	    int count = 0;
-	    for (int index = data.indexOf(wordToSearch); 
-	             index != -1; 
-	             index = data.indexOf(wordToSearch, index + 1)) {
-	        count++;
-	    }
-
-	    System.out.println(count);
-	}*/
+	
 	
 	private static class MethodCollector extends VoidVisitorAdapter<List<String>> {
 
@@ -101,6 +90,7 @@ public class EscreverMétricasParaExcel {
 			collector.add(md.getNameAsString());
 		}
 	}
+	
 	
 	public void NOM_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
@@ -153,7 +143,41 @@ public class EscreverMétricasParaExcel {
 			}
 		}
 	}
-	
+	/*public static void main(String[] args) throws Exception {
+    String wordToSearch = "the";
+    String data = "the their father them therefore then";
+    int count = 0;
+    for (int index = data.indexOf(wordToSearch); 
+             index != -1; 
+             index = data.indexOf(wordToSearch, index + 1)) {
+        count++;
+    }
+
+    System.out.println(count);
+}*/
+	public void CYCLO_method() throws FileNotFoundException {
+		for (String caminhoClasse : this.classes) {			
+			File ficheiroClasse = new File(caminhoClasse);		
+			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
+			List<String> methods = new ArrayList<>();
+			VoidVisitor<List<String>> methodCollector = new MethodCollector();
+			methodCollector.visit(f, methods);
+			String [] vectorS = null;
+			for (String s : methods) {
+				if (!s.contains("void main")) {
+					vectorS = s.split(" ");
+					for(int i=0; i<vectorS.length; i++) {
+						if(vectorS[i].contains("for") || vectorS[i].contains("while") || vectorS[i].contains("if") || vectorS[i].contains("case")) {
+							this.CYCLO_method++;
+						}
+					}
+				}
+				System.out.println(this.CYCLO_method);
+				this.CYCLO_method =0;
+				vectorS = null;
+			}
+		}
+	}
 	
 	//Testar
 
@@ -175,6 +199,7 @@ public class EscreverMétricasParaExcel {
 		a.LOC_class();
 		a.NOM_class();
 		a.LOC_method();
+		a.CYCLO_method();
 	}
 	
 
