@@ -3,8 +3,6 @@ package g42.CodeQualityAssessor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,6 +14,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class EscreverMétricasParaExcel {
 	
+	
 	//Atributos
 	
 	private ArrayList<String> classes;
@@ -25,6 +24,7 @@ public class EscreverMétricasParaExcel {
 	private int WMC_class;
 	private int LOC_method;
 	private int CYCLO_method;
+	
 	
 	//Construtor
 	
@@ -37,6 +37,7 @@ public class EscreverMétricasParaExcel {
 		this.CYCLO_method=0;
 	}
 
+	
 	//Getters
 	
 	public ArrayList<String> getClasses() {
@@ -63,6 +64,7 @@ public class EscreverMétricasParaExcel {
 		return CYCLO_method;
 	}
 	
+	
 	//Métodos
 	
 	public void escreverNomeDoFicheiro() {
@@ -73,6 +75,10 @@ public class EscreverMétricasParaExcel {
 	}
 	
 	
+	public void escreverNoExcel(int x, int y, int res) {
+		
+	}
+	
 	
 	private static class MethodCollector extends VoidVisitorAdapter<List<String>> {
 
@@ -82,6 +88,8 @@ public class EscreverMétricasParaExcel {
 			collector.add(md.toString());
 		}
 	}
+	
+	
 	private static class MethodNameCollector extends VoidVisitorAdapter<List<String>> {
 
 		@Override
@@ -105,9 +113,11 @@ public class EscreverMétricasParaExcel {
 				}
 			}
 			//System.out.println(this.NOM_class);
+			//Escrever no excel
 			this.NOM_class=0;
 		}
 	}
+	
 	
 	public void LOC_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
@@ -118,11 +128,32 @@ public class EscreverMétricasParaExcel {
 				lerFicheiroClasse.nextLine();				
 			}
 			//System.out.println(this.LOC_class);
+			//Escrever no excel
 			this.LOC_class=1;
 			lerFicheiroClasse.close();
 		}
 
 	}
+	
+	
+	public void WMC_class() throws FileNotFoundException {
+		for (String caminhoClasse : this.classes) {			
+			File ficheiroClasse = new File(caminhoClasse);		
+			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
+			List<String> methods = new ArrayList<>();
+			VoidVisitor<List<String>> methodCollector = new MethodCollector();
+			methodCollector.visit(f, methods);
+			for (String s : methods) {
+				if (!s.contains("public void main")) {
+					this.WMC_class = this.WMC_class + contarComplexidadeDeMetodo(s);
+				}
+			}
+			//System.out.println(this.WMC_class);
+			//Escrever no excel
+			this.WMC_class=0;
+		}
+	}
+	
 	
 	public void LOC_method() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
@@ -133,28 +164,32 @@ public class EscreverMétricasParaExcel {
 			methodCollector.visit(f, methods);
 			String [] vectorS =null;
 			for (String s : methods) {
-				if (!s.contains("void main")) {
+				if (!s.contains("public void main")) {
 					vectorS = s.split("\n");
 					this.LOC_method = vectorS.length;
 				}
 				//System.out.println(this.LOC_method);
+				//Escrever no excel
 				this.LOC_method =0;
 				vectorS = null;
 			}
 		}
 	}
-	/*public static void main(String[] args) throws Exception {
-    String wordToSearch = "the";
-    String data = "the their father them therefore then";
-    int count = 0;
-    for (int index = data.indexOf(wordToSearch); 
-             index != -1; 
-             index = data.indexOf(wordToSearch, index + 1)) {
-        count++;
-    }
+	
+	
+	private int contarComplexidadeDeMetodo(String s) {
+		int result=0;
+		String [] vectorS = null;
+		vectorS = s.split(" ");
+		for(int i=0; i<vectorS.length; i++) {
+			if(vectorS[i].contains("for") || vectorS[i].contains("while") || vectorS[i].contains("if") || vectorS[i].contains("case")) {
+				result++;
+			}
+		}
+		return result;
+	}
 
-    System.out.println(count);
-}*/
+	
 	public void CYCLO_method() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);		
@@ -162,44 +197,33 @@ public class EscreverMétricasParaExcel {
 			List<String> methods = new ArrayList<>();
 			VoidVisitor<List<String>> methodCollector = new MethodCollector();
 			methodCollector.visit(f, methods);
-			String [] vectorS = null;
 			for (String s : methods) {
-				if (!s.contains("void main")) {
-					vectorS = s.split(" ");
-					for(int i=0; i<vectorS.length; i++) {
-						if(vectorS[i].contains("for") || vectorS[i].contains("while") || vectorS[i].contains("if") || vectorS[i].contains("case")) {
-							this.CYCLO_method++;
-						}
-					}
+				if (!s.contains("public void main")) {
+					this.CYCLO_method=contarComplexidadeDeMetodo(s);
 				}
-				System.out.println(this.CYCLO_method);
-				this.CYCLO_method =0;
-				vectorS = null;
+				//System.out.println(this.CYCLO_method);
+				//Escrever no excel
+				this.CYCLO_method=0;
 			}
 		}
 	}
 	
+	
+	
 	//Testar
 
 	public static void main(String[] args) throws FileNotFoundException {
-		/*String cu = "C:\\Users\\David Gabriel\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
-		CompilationUnit cu1 = StaticJavaParser.parse(new File(cu));
-		List<String> methodNames = new ArrayList<>();
-		VoidVisitor<List<String>> methodNameCollector = new MethodNameCollector();
-		methodNameCollector.visit(cu1, methodNames);
-		System.out.println(methodNames);*/
-		//methodNames.forEach(n -> System.out.println("Method Name Collected: " + n));
-
-		
 		
 		ArrayList<String> lista = new ArrayList<String>();
-		String s = "C:\\Users\\David Gabriel\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
+		String s = "C:\\Users\\dacv2\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
 		lista.add(s);
 		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
 		a.LOC_class();
 		a.NOM_class();
 		a.LOC_method();
 		a.CYCLO_method();
+		a.WMC_class();
+		
 	}
 	
 
