@@ -60,206 +60,275 @@ public class Interface extends JDialog {
 	private JTextField textField_3;
 	
 	public Interface() {
-		setBounds(100, 100, 1192, 558);
-		SpringLayout springLayout = new SpringLayout();
-		getContentPane().setLayout(springLayout);
-		
-		JComboBox comboBox = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 28, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -903, SpringLayout.EAST, getContentPane());
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setForeground(Color.BLACK);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"IS BETWEEN", "IS EQUAL "}));
-		getContentPane().add(comboBox);
+		setBounds(100, 100, 1215, 558);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{19, 20, 20, 111, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 20, 10, 30, 70, 22, 34, 31, 75, 0};
+		gridBagLayout.rowHeights = new int[]{24, 34, 24, 30, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("IF");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1, 30, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1, 10, SpringLayout.WEST, getContentPane());
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 12));
-		getContentPane().add(lblNewLabel_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("AND");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1, 34, SpringLayout.NORTH, getContentPane());
-		lblNewLabel_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1);
-		
-		textField_2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1, 16, SpringLayout.EAST, textField_2);
-		springLayout.putConstraint(SpringLayout.NORTH, textField_2, 0, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, textField_2, 20, SpringLayout.EAST, comboBox);
-		textField_2.setColumns(10);
-		getContentPane().add(textField_2);
-		
-		JComboBox comboBox_2_2 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.SOUTH, textField_2, 0, SpringLayout.SOUTH, comboBox_2_2);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_2, -1, SpringLayout.NORTH, comboBox);
-		comboBox_2_2.setForeground(Color.RED);
-		comboBox_2_2.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_2);
-		
-		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("THAN");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1, 620, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_2, -18, SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_1_1_1_1_1_1, 0, SpringLayout.SOUTH, comboBox_2_2);
-		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("is_Long_Method");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_1_1, 0, SpringLayout.NORTH, lblNewLabel_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1_1, 18, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_1);
-		lblNewLabel_1_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1_1_2 = new JLabel("IS");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_2, 2, SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_2, 24, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_1_1);
-		lblNewLabel_1_1_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_2);
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 16));
+		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1.gridx = 1;
+		gbc_lblNewLabel_1_1.gridy = 1;
+		getContentPane().add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 19, SpringLayout.EAST, comboBox_2);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2, 28, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2, 18, SpringLayout.EAST, lblNewLabel_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2, -1013, SpringLayout.EAST, getContentPane());
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"LOC_method", "CYCLO_method"}));
 		comboBox_2.setForeground(Color.BLACK);
 		comboBox_2.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2);
+		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
+		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2.gridx = 3;
+		gbc_comboBox_2.gridy = 1;
+		getContentPane().add(comboBox_2, gbc_comboBox_2);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setForeground(Color.BLACK);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="}));
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.gridx = 5;
+		gbc_comboBox.gridy = 1;
+		getContentPane().add(comboBox, gbc_comboBox);
 		
 		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_2, 24, SpringLayout.EAST, textField);
-		springLayout.putConstraint(SpringLayout.SOUTH, textField, 22, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, textField, 12, SpringLayout.EAST, lblNewLabel_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, textField, -679, SpringLayout.EAST, getContentPane());
 		textField.setColumns(10);
-		getContentPane().add(textField);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("IF");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1, 61, SpringLayout.SOUTH, lblNewLabel_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1, 0, SpringLayout.WEST, lblNewLabel_1_1);
-		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.BOLD, 12));
-		getContentPane().add(lblNewLabel_1_1_1);
-		
-		JComboBox comboBox_2_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_1, 54, SpringLayout.SOUTH, comboBox_2);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_1, 6, SpringLayout.EAST, lblNewLabel_1_1_1);
-		comboBox_2_1.setModel(new DefaultComboBoxModel(new String[] {"NOM_class", "LOC_class", "WMC_class"}));
-		comboBox_2_1.setForeground(Color.BLACK);
-		comboBox_2_1.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_1);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_1, 308, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_1, -15, SpringLayout.WEST, comboBox_1);
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_1, -4, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		comboBox_1.setForeground(Color.BLACK);
-		comboBox_1.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_1);
-		
-		textField_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField_1, 413, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_1, -14, SpringLayout.WEST, textField_1);
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, -3, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		textField_1.setColumns(10);
-		getContentPane().add(textField_1);
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = 7;
+		gbc_textField.gridy = 1;
+		getContentPane().add(textField, gbc_textField);
 		
 		JLabel lblNewLabel_1_1_1_1_1_3 = new JLabel("AND");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_3, 12, SpringLayout.EAST, textField_1);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_3, 0, SpringLayout.NORTH, lblNewLabel_1_1_1);
 		lblNewLabel_1_1_1_1_1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1_1_1_1_3.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_3);
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_3 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_3.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_1_1_1_1_1_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_3.gridx = 8;
+		gbc_lblNewLabel_1_1_1_1_1_3.gridy = 1;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_3, gbc_lblNewLabel_1_1_1_1_1_3);
 		
-		textField_3 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_3, -3, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, textField_3, 6, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_3);
-		textField_3.setColumns(10);
-		getContentPane().add(textField_3);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_2.gridx = 9;
+		gbc_textField_2.gridy = 1;
+		getContentPane().add(textField_2, gbc_textField_2);
 		
-		JLabel lblNewLabel_1_1_1_1_1_1_2 = new JLabel("THAN");
-		springLayout.putConstraint(SpringLayout.EAST, textField_3, -121, SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1_2);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_1_2, 0, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		lblNewLabel_1_1_1_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_1_2);
+		JComboBox comboBox_2_2 = new JComboBox();
+		comboBox_2_2.setModel(new DefaultComboBoxModel(new String[] {"", "AND", "OR"}));
+		comboBox_2_2.setForeground(Color.BLACK);
+		comboBox_2_2.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_2_2 = new GridBagConstraints();
+		gbc_comboBox_2_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_2.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2_2.gridx = 11;
+		gbc_comboBox_2_2.gridy = 1;
+		getContentPane().add(comboBox_2_2, gbc_comboBox_2_2);
 		
-		JLabel lblNewLabel_1_1_1_1_1_1_1_1 = new JLabel("is_God_Class");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1_1_1, 775, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1_1_1_1_1_1_2, -14, SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_1_1_1, -2, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		lblNewLabel_1_1_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_1_1_1);
+		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("THAN");
+		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1_1_1_1_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_1.gridx = 13;
+		gbc_lblNewLabel_1_1_1_1_1_1.gridy = 1;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1_1_2_1 = new JLabel("IS");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1_1_1_1_1_2_1, 907, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1_1_1_1_1_1_1_1, -22, SpringLayout.WEST, lblNewLabel_1_1_1_1_1_2_1);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1_1_1_1_1_2_1, 0, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		lblNewLabel_1_1_1_1_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_2_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		getContentPane().add(lblNewLabel_1_1_1_1_1_2_1);
+		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("is_Long_Method");
+		lblNewLabel_1_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1_1_1_1_1_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_1_1.gridx = 15;
+		gbc_lblNewLabel_1_1_1_1_1_1_1.gridy = 1;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1_1_1);
+		
+		JLabel lblNewLabel_1_1_1_1_1_2 = new JLabel("IS");
+		lblNewLabel_1_1_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_2 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_2.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_1_1_1_1_1_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_2.gridx = 17;
+		gbc_lblNewLabel_1_1_1_1_1_2.gridy = 1;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_2, gbc_lblNewLabel_1_1_1_1_1_2);
 		
 		JComboBox comboBox_2_2_2_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_2_2_1, 0, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_2_2_1, 16, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_2);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_2_2_2_1, 0, SpringLayout.SOUTH, lblNewLabel_1_1_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_2_2_1, -275, SpringLayout.EAST, getContentPane());
-		comboBox_2_2_2_1.setForeground(Color.RED);
+		comboBox_2_2_2_1.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
+		comboBox_2_2_2_1.setForeground(Color.BLACK);
 		comboBox_2_2_2_1.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_2_2_1);
+		GridBagConstraints gbc_comboBox_2_2_2_1 = new GridBagConstraints();
+		gbc_comboBox_2_2_2_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_2_2_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2_2_2_1.gridx = 19;
+		gbc_comboBox_2_2_2_1.gridy = 1;
+		getContentPane().add(comboBox_2_2_2_1, gbc_comboBox_2_2_2_1);
 		
-		JComboBox comboBox_2_2_2_1_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_2_2_1_1, -4, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_2_2_1_1, -10, SpringLayout.EAST, getContentPane());
-		comboBox_2_2_2_1_1.setForeground(Color.RED);
-		comboBox_2_2_2_1_1.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_2_2_1_1);
-		
-		JButton btnNewButton = new JButton("New button");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, lblNewLabel_1_1_1_1_1_1_1);
+		JButton btnNewButton = new JButton("New Rule");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 45, SpringLayout.EAST, comboBox_2_2_2_1);
-		getContentPane().add(btnNewButton);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 21;
+		gbc_btnNewButton.gridy = 1;
+		getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_3, 0, SpringLayout.NORTH, comboBox);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_3, 37, SpringLayout.EAST, btnNewButton);
-		springLayout.putConstraint(SpringLayout.SOUTH, comboBox_3, 0, SpringLayout.SOUTH, lblNewLabel_1_1_1_1_1_1_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_3, -36, SpringLayout.EAST, getContentPane());
-		getContentPane().add(comboBox_3);
+		JComboBox comboBox_2_2_2_1_1 = new JComboBox();
+		comboBox_2_2_2_1_1.setForeground(Color.BLACK);
+		comboBox_2_2_2_1_1.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_2_2_2_1_1 = new GridBagConstraints();
+		gbc_comboBox_2_2_2_1_1.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox_2_2_2_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_2_2_1_1.gridx = 23;
+		gbc_comboBox_2_2_2_1_1.gridy = 1;
+		getContentPane().add(comboBox_2_2_2_1_1, gbc_comboBox_2_2_2_1_1);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("IF");
+		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.BOLD, 16));
+		GridBagConstraints gbc_lblNewLabel_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1.gridx = 1;
+		gbc_lblNewLabel_1_1_1.gridy = 4;
+		getContentPane().add(lblNewLabel_1_1_1, gbc_lblNewLabel_1_1_1);
+		
+		JComboBox comboBox_2_1 = new JComboBox();
+		comboBox_2_1.setModel(new DefaultComboBoxModel(new String[] {"NOM_class", "LOC_class", "WMC_class"}));
+		comboBox_2_1.setForeground(Color.BLACK);
+		comboBox_2_1.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_2_1 = new GridBagConstraints();
+		gbc_comboBox_2_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2_1.gridx = 3;
+		gbc_comboBox_2_1.gridy = 4;
+		getContentPane().add(comboBox_2_1, gbc_comboBox_2_1);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="}));
+		comboBox_1.setForeground(Color.BLACK);
+		comboBox_1.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_1.gridx = 5;
+		gbc_comboBox_1.gridy = 4;
+		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.gridx = 7;
+		gbc_textField_1.gridy = 4;
+		getContentPane().add(textField_1, gbc_textField_1);
+		
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("AND");
+		lblNewLabel_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1.fill = GridBagConstraints.VERTICAL;
+		gbc_lblNewLabel_1_1_1_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1.gridx = 8;
+		gbc_lblNewLabel_1_1_1_1_1.gridy = 4;
+		getContentPane().add(lblNewLabel_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
+		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_3.gridx = 9;
+		gbc_textField_3.gridy = 4;
+		getContentPane().add(textField_3, gbc_textField_3);
 		
 		JComboBox comboBox_2_2_1 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_2_1, 100, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_2_1, 24, SpringLayout.EAST, textField_3);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_2_1, -16, SpringLayout.WEST, lblNewLabel_1_1_1_1_1_1_2);
-		comboBox_2_2_1.setForeground(Color.RED);
+		comboBox_2_2_1.setModel(new DefaultComboBoxModel(new String[] {"", "AND", "OR"}));
+		comboBox_2_2_1.setForeground(Color.BLACK);
 		comboBox_2_2_1.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_2_1);
+		GridBagConstraints gbc_comboBox_2_2_1 = new GridBagConstraints();
+		gbc_comboBox_2_2_1.anchor = GridBagConstraints.NORTH;
+		gbc_comboBox_2_2_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_2_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2_2_1.gridx = 11;
+		gbc_comboBox_2_2_1.gridy = 4;
+		getContentPane().add(comboBox_2_2_1, gbc_comboBox_2_2_1);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_2_2_1_1, 6, SpringLayout.EAST, btnNewButton_1);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_1, -4, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton_1, 85, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_2_1);
-		getContentPane().add(btnNewButton_1);
+		JLabel lblNewLabel_1_1_1_1_1_1_2 = new JLabel("THAN");
+		lblNewLabel_1_1_1_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_1_2 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_1_2.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_1_1_1_1_1_1_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_1_2.gridx = 13;
+		gbc_lblNewLabel_1_1_1_1_1_1_2.gridy = 4;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_1_2, gbc_lblNewLabel_1_1_1_1_1_1_2);
+		
+		JLabel lblNewLabel_1_1_1_1_1_1_1_1 = new JLabel("is_God_Class");
+		lblNewLabel_1_1_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_1_1_1.setFont(new Font("Arial", Font.BOLD, 14));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_1_1_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_1_1_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1_1_1_1_1_1_1_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_1_1_1.gridx = 15;
+		gbc_lblNewLabel_1_1_1_1_1_1_1_1.gridy = 4;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1_1_1_1);
+		
+		JLabel lblNewLabel_1_1_1_1_1_2_1 = new JLabel("IS");
+		lblNewLabel_1_1_1_1_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_2_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_2_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1_1_1_1_1_2_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1_1_1_1_1_2_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1_1_1_1_1_2_1.gridx = 17;
+		gbc_lblNewLabel_1_1_1_1_1_2_1.gridy = 4;
+		getContentPane().add(lblNewLabel_1_1_1_1_1_2_1, gbc_lblNewLabel_1_1_1_1_1_2_1);
 		
 		JComboBox comboBox_2_2_2_1_2 = new JComboBox();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox_2_2_2_1_2, -4, SpringLayout.NORTH, lblNewLabel_1_1_1);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox_2_2_2_1_2, 16, SpringLayout.EAST, lblNewLabel_1_1_1_1_1_2_1);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox_2_2_2_1_2, -6, SpringLayout.WEST, btnNewButton_1);
-		comboBox_2_2_2_1_2.setForeground(Color.RED);
+		comboBox_2_2_2_1_2.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
+		comboBox_2_2_2_1_2.setForeground(Color.BLACK);
 		comboBox_2_2_2_1_2.setBackground(Color.WHITE);
-		getContentPane().add(comboBox_2_2_2_1_2);
+		GridBagConstraints gbc_comboBox_2_2_2_1_2 = new GridBagConstraints();
+		gbc_comboBox_2_2_2_1_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2_2_2_1_2.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2_2_2_1_2.gridx = 19;
+		gbc_comboBox_2_2_2_1_2.gridy = 4;
+		getContentPane().add(comboBox_2_2_2_1_2, gbc_comboBox_2_2_2_1_2);
+		
+		JButton btnNewButton_1 = new JButton("New Rule");
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.gridx = 21;
+		gbc_btnNewButton_1.gridy = 4;
+		getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setBackground(Color.WHITE);
+		GridBagConstraints gbc_comboBox_3 = new GridBagConstraints();
+		gbc_comboBox_3.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_3.gridx = 23;
+		gbc_comboBox_3.gridy = 4;
+		getContentPane().add(comboBox_3, gbc_comboBox_3);
 	}	
 	
 	private void percorrer(){
