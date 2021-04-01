@@ -59,6 +59,7 @@ public class Interface extends JDialog {
 	private JTextField textField_1;
 	private JTextField textField_3;
 	
+	
 	public Interface() {
 		setBounds(100, 100, 1215, 558);
 		GridBagLayout gridBagLayout = new GridBagLayout();
