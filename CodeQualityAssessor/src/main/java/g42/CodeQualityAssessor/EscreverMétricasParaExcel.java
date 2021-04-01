@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
 
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+
 public class EscreverMétricasParaExcel {
 	
 	//Atributos
@@ -105,10 +108,13 @@ public class EscreverMétricasParaExcel {
 	
 	
 	//Testar
-	
+	private static final String FILE_PATH = "C:\\Users\\David Gabriel\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
+
 	public static void main(String[] args) throws FileNotFoundException {
-		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel();
-		a.LOC_class();
+		
+		CompilationUnit cu = StaticJavaParser.parse(new File(FILE_PATH));
+		//EscreverMétricasParaExcel a = new EscreverMétricasParaExcel();
+		//a.LOC_class();
 	}
 	
 
