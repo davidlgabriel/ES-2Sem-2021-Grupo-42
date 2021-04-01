@@ -3,11 +3,14 @@ package g42.CodeQualityAssessor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.regex.*;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.visitor.VoidVisitor;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class EscreverMétricasParaExcel {
 	
@@ -23,14 +26,10 @@ public class EscreverMétricasParaExcel {
 	
 	//Construtor
 	
-	public EscreverMétricasParaExcel() {
-		this.LOC_class=0;
-	}
-	
 	public EscreverMétricasParaExcel(ArrayList<String> classes) {
 		this.classes=classes;
 		this.NOM_class=0;
-		this.LOC_class=0;
+		this.LOC_class=1;
 		this.WMC_class=0;
 		this.LOC_method=0;
 		this.CYCLO_method=0;
@@ -71,21 +70,27 @@ public class EscreverMétricasParaExcel {
 		//extrair o nome dos métodos
 	}
 	
+	private static class MethodNameCollector extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(MethodDeclaration md, List<String> collector) {
+			super.visit(md, collector);
+			collector.add(md.getNameAsString());
+		}
+	}
+	
 	public void NOM_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);	
-			Scanner lerFicheiroClasse = new Scanner(ficheiroClasse);	
-			while (lerFicheiroClasse.hasNextLine()) {
-				String linha = lerFicheiroClasse.nextLine();
-				Pattern pattern = Pattern.compile("delimitação de método"); //delimitar inicio do metodo
-			    Matcher matcher = pattern.matcher(linha);
-			    boolean matchFound = matcher.find();
-			    if(matchFound) {
-			    	this.NOM_class++;
-			    }
+			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
+			List<String> methodNames = new ArrayList<>();
+			VoidVisitor<List<String>> methodNameCollector = new MethodNameCollector();
+			methodNameCollector.visit(f, methodNames);
+			for(String s : methodNames) {
+				this.NOM_class++;
 			}
+			System.out.println(this.NOM_class);
 			this.NOM_class=0;
-			lerFicheiroClasse.close();
 		}
 	}
 	
@@ -97,8 +102,8 @@ public class EscreverMétricasParaExcel {
 				this.LOC_class++;							
 				lerFicheiroClasse.nextLine();				
 			}
-			//escrever em Excel que esta classe tem este número de linhas (fazê-lo nas células corretas).
-			this.LOC_class=0;
+			System.out.println(this.LOC_class);
+			this.LOC_class=1;
 			lerFicheiroClasse.close();
 		}
 
@@ -106,15 +111,16 @@ public class EscreverMétricasParaExcel {
 	
 	
 	
-	
 	//Testar
-	private static final String FILE_PATH = "C:\\Users\\David Gabriel\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		CompilationUnit cu = StaticJavaParser.parse(new File(FILE_PATH));
-		//EscreverMétricasParaExcel a = new EscreverMétricasParaExcel();
-		//a.LOC_class();
+		ArrayList<String> lista = new ArrayList<String>();
+		String s = "C:\\Users\\dacv2\\git\\ES-2Sem-2021-Grupo-42\\CodeQualityAssessor\\src\\main\\java\\g42\\CodeQualityAssessor\\App.java";
+		lista.add(s);
+		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
+		a.LOC_class();
+		a.NOM_class();
 	}
 	
 
