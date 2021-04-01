@@ -87,7 +87,9 @@ public class EscreverMétricasParaExcel {
 			VoidVisitor<List<String>> methodNameCollector = new MethodNameCollector();
 			methodNameCollector.visit(f, methodNames);
 			for(String s : methodNames) {
-				this.NOM_class++;
+				if(!s.equals("main")) {
+					this.NOM_class++;
+				}
 			}
 			System.out.println(this.NOM_class);
 			this.NOM_class=0;
