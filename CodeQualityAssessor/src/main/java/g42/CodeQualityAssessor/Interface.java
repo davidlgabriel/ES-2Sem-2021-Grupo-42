@@ -62,19 +62,26 @@ public class Interface extends JDialog {
 	private JTextField textField_5;
 	
 	private JLabel label5;
+	private JLabel label9;
 	
 	private JComboBox firstOfSecond_LM;
 	private JComboBox LM_And_Or;
 	private JComboBox firstOfFirst_LM;
 	private JComboBox secondOfFirst_LM;
 	private JComboBox secondOfSecond_LM;
+	private JComboBox GC_And_Or;
+	private JComboBox firstOfSecond_GC;
+	private JComboBox secondOfSecond_GC;
+	private JComboBox GC_And_Or_1;
+	private JTextField textField_6;
+	private JTextField textField_7;
 	
 	
 	public Interface() {
 		setBounds(100, 100, 1215, 603);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 20, 10, 30, 70, 22, 34, 31, 75, 0};
-		gridBagLayout.rowHeights = new int[]{24, 35, 35, 30, 35, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{24, 35, 35, 30, 35, 35, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
@@ -323,15 +330,15 @@ public class Interface extends JDialog {
 		gbc_textField_1.gridy = 4;
 		getContentPane().add(textField_1, gbc_textField_1);
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("AND");
-		lblNewLabel_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1_1_1_1.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_1_1_1_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1_1_1_1.gridx = 8;
-		gbc_lblNewLabel_1_1_1_1_1.gridy = 4;
-		getContentPane().add(lblNewLabel_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1);
+		JLabel label6 = new JLabel("AND");
+		label6.setHorizontalAlignment(SwingConstants.CENTER);
+		label6.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_label6 = new GridBagConstraints();
+		gbc_label6.fill = GridBagConstraints.VERTICAL;
+		gbc_label6.insets = new Insets(0, 0, 5, 5);
+		gbc_label6.gridx = 8;
+		gbc_label6.gridy = 4;
+		getContentPane().add(label6, gbc_label6);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
@@ -342,27 +349,45 @@ public class Interface extends JDialog {
 		gbc_textField_3.gridy = 4;
 		getContentPane().add(textField_3, gbc_textField_3);
 		
-		JComboBox GC_And_Or = new JComboBox();
+		GC_And_Or = new JComboBox();
+		GC_And_Or.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GC_And_Or.getSelectedItem().equals("")) {
+					firstOfSecond_GC.setVisible(false);
+					secondOfSecond_GC.setVisible(false);
+					textField_6.setVisible(false);
+					label9.setVisible(false);
+					textField_7.setVisible(false);
+					GC_And_Or_1.setVisible(false);
+				} else {
+					firstOfSecond_GC.setVisible(true);
+					secondOfSecond_GC.setVisible(true);
+					textField_6.setVisible(true);
+					label9.setVisible(true);
+					textField_7.setVisible(true);
+					GC_And_Or_1.setVisible(true);
+				}
+			}
+		});
 		GC_And_Or.setModel(new DefaultComboBoxModel(new String[] {"", "AND", "OR"}));
 		GC_And_Or.setForeground(Color.BLACK);
 		GC_And_Or.setBackground(Color.WHITE);
 		GridBagConstraints gbc_GC_And_Or = new GridBagConstraints();
-		gbc_GC_And_Or.anchor = GridBagConstraints.NORTH;
 		gbc_GC_And_Or.fill = GridBagConstraints.HORIZONTAL;
 		gbc_GC_And_Or.insets = new Insets(0, 0, 5, 5);
 		gbc_GC_And_Or.gridx = 11;
 		gbc_GC_And_Or.gridy = 4;
 		getContentPane().add(GC_And_Or, gbc_GC_And_Or);
 		
-		JLabel lblNewLabel_1_1_1_1_1_1_2 = new JLabel("THAN");
-		lblNewLabel_1_1_1_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_1_2 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1_1_1_1_1_2.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1_1_1_1_1_1_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1_1_1_1_1_2.gridx = 13;
-		gbc_lblNewLabel_1_1_1_1_1_1_2.gridy = 4;
-		getContentPane().add(lblNewLabel_1_1_1_1_1_1_2, gbc_lblNewLabel_1_1_1_1_1_1_2);
+		JLabel label7 = new JLabel("THAN");
+		label7.setHorizontalAlignment(SwingConstants.CENTER);
+		label7.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_label7 = new GridBagConstraints();
+		gbc_label7.anchor = GridBagConstraints.WEST;
+		gbc_label7.insets = new Insets(0, 0, 5, 5);
+		gbc_label7.gridx = 13;
+		gbc_label7.gridy = 4;
+		getContentPane().add(label7, gbc_label7);
 		
 		JLabel lblNewLabel_1_1_1_1_1_1_1_1 = new JLabel("is_God_Class");
 		lblNewLabel_1_1_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -374,15 +399,15 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel_1_1_1_1_1_1_1_1.gridy = 4;
 		getContentPane().add(lblNewLabel_1_1_1_1_1_1_1_1, gbc_lblNewLabel_1_1_1_1_1_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1_1_2_1 = new JLabel("IS");
-		lblNewLabel_1_1_1_1_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_2_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_1_1_1_1_1_2_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1_1_1_1_2_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_1_1_1_1_1_2_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1_1_1_1_2_1.gridx = 17;
-		gbc_lblNewLabel_1_1_1_1_1_2_1.gridy = 4;
-		getContentPane().add(lblNewLabel_1_1_1_1_1_2_1, gbc_lblNewLabel_1_1_1_1_1_2_1);
+		JLabel label8 = new JLabel("IS");
+		label8.setHorizontalAlignment(SwingConstants.CENTER);
+		label8.setFont(new Font("Arial", Font.PLAIN, 12));
+		GridBagConstraints gbc_label8 = new GridBagConstraints();
+		gbc_label8.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label8.insets = new Insets(0, 0, 5, 5);
+		gbc_label8.gridx = 17;
+		gbc_label8.gridy = 4;
+		getContentPane().add(label8, gbc_label8);
 		
 		JComboBox comboBox_2_2_2_1_2 = new JComboBox();
 		comboBox_2_2_2_1_2.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
@@ -411,6 +436,74 @@ public class Interface extends JDialog {
 		gbc_comboBox_3.gridx = 23;
 		gbc_comboBox_3.gridy = 4;
 		getContentPane().add(comboBox_3, gbc_comboBox_3);
+		
+		//GC Second 1
+		firstOfSecond_GC = new JComboBox(new String[] {"NOM_class", "LOC_class", "WMC_class"});
+		firstOfSecond_GC.setForeground(Color.BLACK);
+		firstOfSecond_GC.setBackground(Color.WHITE);
+		firstOfSecond_GC.setVisible(false);
+		GridBagConstraints gbc_firstOfSecond_GC = new GridBagConstraints();
+		gbc_firstOfSecond_GC.insets = new Insets(0, 0, 5, 5);
+		gbc_firstOfSecond_GC.fill = GridBagConstraints.HORIZONTAL;
+		gbc_firstOfSecond_GC.gridx = 3;
+		gbc_firstOfSecond_GC.gridy = 5;
+		getContentPane().add(firstOfSecond_GC, gbc_firstOfSecond_GC);
+		
+		//GC Second 2
+		secondOfSecond_GC = new JComboBox(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="});
+		secondOfSecond_GC.setForeground(Color.BLACK);
+		secondOfSecond_GC.setBackground(Color.WHITE);
+		secondOfSecond_GC.setVisible(false);
+		GridBagConstraints gbc_secondOfSecond_GC = new GridBagConstraints();
+		gbc_secondOfSecond_GC.insets = new Insets(0, 0, 5, 5);
+		gbc_secondOfSecond_GC.fill = GridBagConstraints.HORIZONTAL;
+		gbc_secondOfSecond_GC.gridx = 5;
+		gbc_secondOfSecond_GC.gridy = 5;
+		getContentPane().add(secondOfSecond_GC, gbc_secondOfSecond_GC);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setVisible(false);
+		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
+		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_6.gridx = 7;
+		gbc_textField_6.gridy = 5;
+		getContentPane().add(textField_6, gbc_textField_6);
+		
+		label9 = new JLabel("AND");
+		label9.setHorizontalAlignment(SwingConstants.CENTER);
+		label9.setFont(new Font("Arial", Font.PLAIN, 12));
+		label9.setVisible(false);
+		GridBagConstraints gbc_label9 = new GridBagConstraints();
+		gbc_label9.fill = GridBagConstraints.HORIZONTAL;
+		gbc_label9.insets = new Insets(0, 0, 5, 5);
+		gbc_label9.gridx = 8;
+		gbc_label9.gridy = 5;
+		getContentPane().add(label9, gbc_label9);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setVisible(false);
+		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
+		gbc_textField_7.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_7.gridx = 9;
+		gbc_textField_7.gridy = 5;
+		getContentPane().add(textField_7, gbc_textField_7);
+		
+		//GC Second 3
+		GC_And_Or_1 = new JComboBox();
+		GC_And_Or_1.setModel(new DefaultComboBoxModel(new String[] {"", "AND", "OR"}));
+		GC_And_Or_1.setForeground(Color.BLACK);
+		GC_And_Or_1.setBackground(Color.WHITE);
+		GC_And_Or_1.setVisible(false);
+		GridBagConstraints gbc_GC_And_Or_1 = new GridBagConstraints();
+		gbc_GC_And_Or_1.insets = new Insets(0, 0, 5, 5);
+		gbc_GC_And_Or_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_GC_And_Or_1.gridx = 11;
+		gbc_GC_And_Or_1.gridy = 5;
+		getContentPane().add(GC_And_Or_1, gbc_GC_And_Or_1);
 	}	
 	
 	private void percorrer(){
