@@ -22,6 +22,12 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Interface extends JDialog {
 
@@ -73,14 +79,19 @@ public class Interface extends JDialog {
 	private JComboBox firstOfThird_GC;
 	private JComboBox secondOfThird_GC;
 	private JComboBox secondOfFirst_GC;
+	private JTextField textFieldNome_LM;
+	private JButton CreateButton_LM;
+	private JButton SaveButton_LM;
+	private JComboBox comboBox;
+	private JLabel labelNome_LM;
 	
 	
 	public Interface() {
 		setBounds(100, 100, 1215, 603);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 20, 10, 30, 70, 22, 104, 31, 75, 0};
+		gridBagLayout.columnWidths = new int[]{19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 18, 37, 100, 70, 22, 80, 31, 75, 0};
 		gridBagLayout.rowHeights = new int[]{24, 35, 35, 30, 35, 35, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
@@ -169,6 +180,61 @@ public class Interface extends JDialog {
 		firstOfSecond_LM.setForeground(Color.BLACK);
 		firstOfSecond_LM.setBackground(Color.WHITE);
 		firstOfSecond_LM.setVisible(false);
+		
+		JComboBox isTrueFalse_LM = new JComboBox();
+		isTrueFalse_LM.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
+		isTrueFalse_LM.setForeground(Color.BLACK);
+		isTrueFalse_LM.setBackground(Color.WHITE);
+		GridBagConstraints gbc_isTrueFalse_LM = new GridBagConstraints();
+		gbc_isTrueFalse_LM.fill = GridBagConstraints.HORIZONTAL;
+		gbc_isTrueFalse_LM.insets = new Insets(0, 0, 5, 5);
+		gbc_isTrueFalse_LM.gridx = 18;
+		gbc_isTrueFalse_LM.gridy = 1;
+		getContentPane().add(isTrueFalse_LM, gbc_isTrueFalse_LM);
+		
+		SaveButton_LM = new JButton("Save");
+		SaveButton_LM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && !textField1_LM.getText().equals("") && !textField2_LM.getText().equals("")) {
+					labelNome_LM.setVisible(true);
+					textFieldNome_LM.setVisible(true);
+					CreateButton_LM.setVisible(true);
+					SaveButton_LM.setEnabled(false);
+				}
+			}
+		});
+		GridBagConstraints gbc_SaveButton_LM = new GridBagConstraints();
+		gbc_SaveButton_LM.insets = new Insets(0, 0, 5, 5);
+		gbc_SaveButton_LM.gridx = 19;
+		gbc_SaveButton_LM.gridy = 1;
+		getContentPane().add(SaveButton_LM, gbc_SaveButton_LM);
+		
+		CreateButton_LM = new JButton("Create New Rule");
+		CreateButton_LM.setEnabled(false);
+		CreateButton_LM.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				comboBox.addItem(textFieldNome_LM.getText());
+				textFieldNome_LM.setText("");
+				SaveButton_LM.setEnabled(true);
+				secondOfFirst_LM.setSelectedItem("IS BETWEEN");
+				secondOfSecond_LM.setSelectedItem("IS BETWEEN");
+				LM_And_Or.setSelectedItem("");
+				textField1_LM.setText("");
+				textField2_LM.setText("");
+				textField3_LM.setText("");
+				textField4_LM.setText("");
+				textFieldNome_LM.setVisible(false);
+				CreateButton_LM.setVisible(false);
+				labelNome_LM.setVisible(false);
+				
+			}
+		});
+		CreateButton_LM.setVisible(false);
+		GridBagConstraints gbc_CreateButton_LM = new GridBagConstraints();
+		gbc_CreateButton_LM.insets = new Insets(0, 0, 5, 5);
+		gbc_CreateButton_LM.gridx = 21;
+		gbc_CreateButton_LM.gridy = 1;
+		getContentPane().add(CreateButton_LM, gbc_CreateButton_LM);
 		GridBagConstraints gbc_firstOfSecond_LM = new GridBagConstraints();
 		gbc_firstOfSecond_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_firstOfSecond_LM.fill = GridBagConstraints.HORIZONTAL;
@@ -237,29 +303,6 @@ public class Interface extends JDialog {
 		gbc_label4_LM.gridy = 1;
 		getContentPane().add(label4_LM, gbc_label4_LM);
 		
-		JComboBox isTrueFalse_LM = new JComboBox();
-		isTrueFalse_LM.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
-		isTrueFalse_LM.setForeground(Color.BLACK);
-		isTrueFalse_LM.setBackground(Color.WHITE);
-		GridBagConstraints gbc_isTrueFalse_LM = new GridBagConstraints();
-		gbc_isTrueFalse_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_isTrueFalse_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_isTrueFalse_LM.gridx = 19;
-		gbc_isTrueFalse_LM.gridy = 1;
-		getContentPane().add(isTrueFalse_LM, gbc_isTrueFalse_LM);
-		
-		JButton buttonLM = new JButton("Create rule");
-		buttonLM.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GridBagConstraints gbc_buttonLM = new GridBagConstraints();
-		gbc_buttonLM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_buttonLM.insets = new Insets(0, 0, 5, 5);
-		gbc_buttonLM.gridx = 21;
-		gbc_buttonLM.gridy = 1;
-		getContentPane().add(buttonLM, gbc_buttonLM);
-		
 		//LM Second 2
 		secondOfSecond_LM = new JComboBox(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="});
 		secondOfSecond_LM.addActionListener(new ActionListener() {
@@ -312,6 +355,44 @@ public class Interface extends JDialog {
 		gbc_textField4_LM.gridx = 9;
 		gbc_textField4_LM.gridy = 2;
 		getContentPane().add(textField4_LM, gbc_textField4_LM);
+		
+		textFieldNome_LM = new JTextField();
+		textFieldNome_LM.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(!textFieldNome_LM.getText().equals("") && e.getKeyCode() != 32) {
+					CreateButton_LM.setEnabled(true);
+				} else { 
+					CreateButton_LM.setEnabled(false);
+				}
+			}
+		});
+
+		textFieldNome_LM.setVisible(false);
+		
+		labelNome_LM = new JLabel("Nome :");
+		labelNome_LM.setVisible(false);
+		GridBagConstraints gbc_labelNome_LM = new GridBagConstraints();
+		gbc_labelNome_LM.anchor = GridBagConstraints.EAST;
+		gbc_labelNome_LM.insets = new Insets(0, 0, 5, 5);
+		gbc_labelNome_LM.gridx = 18;
+		gbc_labelNome_LM.gridy = 2;
+		getContentPane().add(labelNome_LM, gbc_labelNome_LM);
+		GridBagConstraints gbc_textFieldNome_LM = new GridBagConstraints();
+		gbc_textFieldNome_LM.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNome_LM.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNome_LM.gridx = 19;
+		gbc_textFieldNome_LM.gridy = 2;
+		getContentPane().add(textFieldNome_LM, gbc_textFieldNome_LM);
+		textFieldNome_LM.setColumns(10);
+		
+		comboBox = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 21;
+		gbc_comboBox.gridy = 2;
+		getContentPane().add(comboBox, gbc_comboBox);
 		
 		JLabel if_GC = new JLabel("IF");
 		if_GC.setHorizontalAlignment(SwingConstants.CENTER);
