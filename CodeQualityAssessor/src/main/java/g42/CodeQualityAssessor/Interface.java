@@ -59,6 +59,7 @@ public class Interface extends JDialog {
 	private JLabel label5_LM;
 	private JLabel label5_GC;
 	private JLabel label6_GC;
+	private JLabel label1_GC;
 	
 	private JComboBox firstOfSecond_LM;
 	private JComboBox LM_And_Or;
@@ -71,6 +72,7 @@ public class Interface extends JDialog {
 	private JComboBox second_GC_And_Or;
 	private JComboBox firstOfThird_GC;
 	private JComboBox secondOfThird_GC;
+	private JComboBox secondOfFirst_GC;
 	
 	
 	public Interface() {
@@ -191,6 +193,7 @@ public class Interface extends JDialog {
 					textField3_LM.setVisible(true);
 					label5_LM.setVisible(true);
 					textField4_LM.setVisible(true);
+					secondOfSecond_LM.setSelectedItem("IS BETWEEN");
 					
 				}
 			}
@@ -319,8 +322,7 @@ public class Interface extends JDialog {
 		gbc_if_GC.gridy = 4;
 		getContentPane().add(if_GC, gbc_if_GC);
 		
-		JComboBox firstOfFirst_GC = new JComboBox();
-		firstOfFirst_GC.setModel(new DefaultComboBoxModel(new String[] {"NOM_class", "LOC_class", "WMC_class"}));
+		JComboBox firstOfFirst_GC = new JComboBox(new String[] {"NOM_class", "LOC_class", "WMC_class"});
 		firstOfFirst_GC.setForeground(Color.BLACK);
 		firstOfFirst_GC.setBackground(Color.WHITE);
 		GridBagConstraints gbc_firstOfFirst_GC = new GridBagConstraints();
@@ -330,8 +332,18 @@ public class Interface extends JDialog {
 		gbc_firstOfFirst_GC.gridy = 4;
 		getContentPane().add(firstOfFirst_GC, gbc_firstOfFirst_GC);
 		
-		JComboBox secondOfFirst_GC = new JComboBox();
-		secondOfFirst_GC.setModel(new DefaultComboBoxModel(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="}));
+		secondOfFirst_GC = new JComboBox(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="});
+		secondOfFirst_GC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(secondOfFirst_GC.getSelectedItem().equals("IS BETWEEN")) {
+					label1_GC.setVisible(true);
+					textField2_GC.setVisible(true);
+				} else {
+					label1_GC.setVisible(false);
+					textField2_GC.setVisible(false);
+				}
+			}
+		});
 		secondOfFirst_GC.setForeground(Color.BLACK);
 		secondOfFirst_GC.setBackground(Color.WHITE);
 		GridBagConstraints gbc_secondOfFirst_GC = new GridBagConstraints();
@@ -350,7 +362,7 @@ public class Interface extends JDialog {
 		gbc_textField1_GC.gridy = 4;
 		getContentPane().add(textField1_GC, gbc_textField1_GC);
 		
-		JLabel label1_GC = new JLabel("AND");
+		label1_GC = new JLabel("AND");
 		label1_GC.setHorizontalAlignment(SwingConstants.CENTER);
 		label1_GC.setFont(new Font("Arial", Font.PLAIN, 12));
 		GridBagConstraints gbc_label1_GC = new GridBagConstraints();
@@ -386,6 +398,7 @@ public class Interface extends JDialog {
 					label5_GC.setVisible(true);
 					textField4_GC.setVisible(true);
 					second_GC_And_Or.setVisible(true);
+					secondOfSecond_GC.setSelectedItem("IS BETWEEN");
 				}
 			}
 		});
@@ -460,6 +473,17 @@ public class Interface extends JDialog {
 		
 		//GC Second 2
 		secondOfSecond_GC = new JComboBox(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="});
+		secondOfSecond_GC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(secondOfSecond_GC.getSelectedItem().equals("IS BETWEEN")) {
+					label5_GC.setVisible(true);
+					textField4_GC.setVisible(true);
+				} else {
+					label5_GC.setVisible(false);
+					textField4_GC.setVisible(false);
+				}
+			}
+		});
 		secondOfSecond_GC.setForeground(Color.BLACK);
 		secondOfSecond_GC.setBackground(Color.WHITE);
 		secondOfSecond_GC.setVisible(false);
@@ -517,6 +541,7 @@ public class Interface extends JDialog {
 					textField5_GC.setVisible(true);
 					label6_GC.setVisible(true);
 					textField6_GC.setVisible(true);
+					secondOfThird_GC.setSelectedItem("IS BETWEEN");
 				}
 			}
 		});
@@ -542,6 +567,17 @@ public class Interface extends JDialog {
 		getContentPane().add(firstOfThird_GC, gbc_firstOfThird_GC);
 		
 		secondOfThird_GC = new JComboBox(new String[] {"IS BETWEEN", "=", ">", "<", ">=", "<="});
+		secondOfThird_GC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(secondOfThird_GC.getSelectedItem().equals("IS BETWEEN")) {
+					label6_GC.setVisible(true);
+					textField6_GC.setVisible(true);
+				} else {
+					label6_GC.setVisible(false);
+					textField6_GC.setVisible(false);
+				}
+			}
+		});
 		secondOfThird_GC.setForeground(Color.BLACK);
 		secondOfThird_GC.setBackground(Color.WHITE);
 		secondOfThird_GC.setVisible(false);
