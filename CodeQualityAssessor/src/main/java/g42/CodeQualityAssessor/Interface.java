@@ -111,6 +111,7 @@ public class Interface extends JDialog {
 				//firstOfSecond_LM.selec
 				for(int x=0; x < firstOfSecond_LM.getItemCount(); x++) {
 					if(firstOfFirst_LM.getSelectedItem() == firstOfSecond_LM.getItemAt(x)) {
+						//MUDAR
 						firstOfSecond_LM.removeItemAt(x);
 					}
 				}
