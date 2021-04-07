@@ -79,6 +79,7 @@ public class Interface extends JDialog {
 	private JComboBox firstOfThird_GC;
 	private JComboBox secondOfThird_GC;
 	private JComboBox secondOfFirst_GC;
+	private JComboBox isTrueFalse_LM;
 	private JTextField textFieldNome_LM;
 	private JButton CreateButton_LM;
 	private JButton SaveButton_LM;
@@ -106,17 +107,7 @@ public class Interface extends JDialog {
 		
 		//LM First 1
 		firstOfFirst_LM = new JComboBox(new String[] {"LOC_method", "CYCLO_method"});
-		firstOfFirst_LM.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//firstOfSecond_LM.selec
-				for(int x=0; x < firstOfSecond_LM.getItemCount(); x++) {
-					if(firstOfFirst_LM.getSelectedItem() == firstOfSecond_LM.getItemAt(x)) {
-						//MUDAR
-						firstOfSecond_LM.removeItemAt(x);
-					}
-				}
-			}
-		});
+		firstOfFirst_LM.setModel(new DefaultComboBoxModel(new String[] {"LOC_method", "CYCLO_method"}));
 		firstOfFirst_LM.setForeground(Color.BLACK);
 		firstOfFirst_LM.setBackground(Color.WHITE);
 		GridBagConstraints gbc_firstOfFirst_LM = new GridBagConstraints();
@@ -178,12 +169,11 @@ public class Interface extends JDialog {
 		
 		//LM SECOND 1
 		firstOfSecond_LM = new JComboBox(new String[] {"LOC_method", "CYCLO_method"});		
+		firstOfSecond_LM.setModel(new DefaultComboBoxModel(new String[] {"LOC_method", "CYCLO_method"}));
 		firstOfSecond_LM.setForeground(Color.BLACK);
 		firstOfSecond_LM.setBackground(Color.WHITE);
 		firstOfSecond_LM.setVisible(false);
-		
-		JComboBox isTrueFalse_LM = new JComboBox();
-		isTrueFalse_LM.setModel(new DefaultComboBoxModel(new String[] {"TRUE", "FALSE"}));
+		isTrueFalse_LM = new JComboBox(new String[] {"TRUE", "FALSE"});
 		isTrueFalse_LM.setForeground(Color.BLACK);
 		isTrueFalse_LM.setBackground(Color.WHITE);
 		GridBagConstraints gbc_isTrueFalse_LM = new GridBagConstraints();
@@ -193,7 +183,7 @@ public class Interface extends JDialog {
 		gbc_isTrueFalse_LM.gridy = 1;
 		getContentPane().add(isTrueFalse_LM, gbc_isTrueFalse_LM);
 		
-		SaveButton_LM = new JButton("Save");
+		SaveButton_LM = new JButton("Confirm");
 		SaveButton_LM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && !textField1_LM.getText().equals("") && !textField2_LM.getText().equals(""))
@@ -201,10 +191,12 @@ public class Interface extends JDialog {
 					if(LM_And_Or.getSelectedItem().equals("AND") || LM_And_Or.getSelectedItem().equals("OR")) {
 						if((secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN") && !textField3_LM.getText().equals("") && !textField4_LM.getText().equals(""))
 								|| (!secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN") && !textField3_LM.getText().equals(""))) {
-							makeVizible();
+							makeVisible();
+							makeEnable(false);
 						}
 					} else {
-						makeVizible();
+						makeVisible();
+						makeEnable(false);
 					}
 				}
 			}
@@ -222,6 +214,7 @@ public class Interface extends JDialog {
 				comboBox.addItem(textFieldNome_LM.getText());
 				textFieldNome_LM.setText("");
 				SaveButton_LM.setEnabled(true);
+				CreateButton_LM.setEnabled(false);
 				secondOfFirst_LM.setSelectedItem("IS BETWEEN");
 				secondOfSecond_LM.setSelectedItem("IS BETWEEN");
 				LM_And_Or.setSelectedItem("");
@@ -229,13 +222,10 @@ public class Interface extends JDialog {
 				textField2_LM.setText("");
 				textField3_LM.setText("");
 				textField4_LM.setText("");
-				textFieldNome_LM.setVisible(false);
-				CreateButton_LM.setVisible(false);
-				labelNome_LM.setVisible(false);
-				
+				makeEnable(true);
 			}
 		});
-		CreateButton_LM.setVisible(false);
+		CreateButton_LM.setVisible(true);
 		GridBagConstraints gbc_CreateButton_LM = new GridBagConstraints();
 		gbc_CreateButton_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_CreateButton_LM.gridx = 21;
@@ -363,6 +353,7 @@ public class Interface extends JDialog {
 		getContentPane().add(textField4_LM, gbc_textField4_LM);
 		
 		textFieldNome_LM = new JTextField();
+		textFieldNome_LM.setEnabled(false);
 		textFieldNome_LM.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -374,10 +365,7 @@ public class Interface extends JDialog {
 			}
 		});
 
-		textFieldNome_LM.setVisible(false);
-		
 		labelNome_LM = new JLabel("Nome :");
-		labelNome_LM.setVisible(false);
 		GridBagConstraints gbc_labelNome_LM = new GridBagConstraints();
 		gbc_labelNome_LM.anchor = GridBagConstraints.EAST;
 		gbc_labelNome_LM.insets = new Insets(0, 0, 5, 5);
@@ -705,11 +693,22 @@ public class Interface extends JDialog {
 		textField6_GC.setColumns(10);
 	}	
 	
-	private void makeVizible() {
-		labelNome_LM.setVisible(true);
-		textFieldNome_LM.setVisible(true);
-		CreateButton_LM.setVisible(true);
+	private void makeVisible() {
 		SaveButton_LM.setEnabled(false);
+		textFieldNome_LM.setEnabled(true);
+	}
+	
+	private void makeEnable(boolean b) {
+		firstOfFirst_LM.setEnabled(b);
+		secondOfFirst_LM.setEnabled(b);
+		firstOfSecond_LM.setEnabled(b);
+		secondOfSecond_LM.setEnabled(b);
+		textField1_LM.setEnabled(b);
+		textField2_LM.setEnabled(b);
+		textField3_LM.setEnabled(b);
+		textField4_LM.setEnabled(b);
+		LM_And_Or.setEnabled(b);
+		isTrueFalse_LM.setEnabled(b);
 	}
 	
 	private void percorrer(){
