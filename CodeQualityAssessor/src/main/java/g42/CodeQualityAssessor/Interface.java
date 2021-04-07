@@ -195,11 +195,16 @@ public class Interface extends JDialog {
 		SaveButton_LM = new JButton("Save");
 		SaveButton_LM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && !textField1_LM.getText().equals("") && !textField2_LM.getText().equals("")) {
-					labelNome_LM.setVisible(true);
-					textFieldNome_LM.setVisible(true);
-					CreateButton_LM.setVisible(true);
-					SaveButton_LM.setEnabled(false);
+				if((secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && !textField1_LM.getText().equals("") && !textField2_LM.getText().equals(""))
+						|| (!secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && !textField1_LM.getText().equals(""))) {
+					if(LM_And_Or.getSelectedItem().equals("AND") || LM_And_Or.getSelectedItem().equals("OR")) {
+						if((secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN") && !textField3_LM.getText().equals("") && !textField4_LM.getText().equals(""))
+								|| (!secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN") && !textField3_LM.getText().equals(""))) {
+							makeVizible();
+						}
+					} else {
+						makeVizible();
+					}
 				}
 			}
 		});
@@ -698,6 +703,13 @@ public class Interface extends JDialog {
 		getContentPane().add(textField6_GC, gbc_textField6_GC);
 		textField6_GC.setColumns(10);
 	}	
+	
+	private void makeVizible() {
+		labelNome_LM.setVisible(true);
+		textFieldNome_LM.setVisible(true);
+		CreateButton_LM.setVisible(true);
+		SaveButton_LM.setEnabled(false);
+	}
 	
 	private void percorrer(){
 		String[] aux = selectedFile.getAbsolutePath().replace("\\","/").split("/");
