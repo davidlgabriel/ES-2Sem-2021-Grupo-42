@@ -1,10 +1,12 @@
-package g42.CodeQualityAssessor;
+package testar;
+
+import java.util.Iterator;
 
 /**
  * Hello world!
  *
  */
-public class App
+public class App2
 {
 	double memory;
 	public static void main ( String[] args )
@@ -23,6 +25,17 @@ public class App
 	public double memoryReca(){
 		String s ="void main";
 		String s2 ="main";
+		return memory;
+
+	}
+	public double memorReca(){
+		String s ="void main";
+		String s2 ="main";
+		if (true) {
+			for (int i = 0; i < 10; i++) {
+
+			}
+		}
 		return memory;
 
 	}
