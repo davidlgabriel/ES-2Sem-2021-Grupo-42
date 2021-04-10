@@ -128,6 +128,16 @@ public class EscreverMétricasParaExcel {
 	//Métodos
 
 	public void escreverNomeDoFicheiro() throws FileNotFoundException, IOException {
+		NOM_class();
+		LOC_class();
+		WMC_class();
+		LOC_method();
+		CYCLO_method();
+		
+		retirarNomePackages();
+		retirarNomeClasses();
+		retirarNomeMethod();
+		
 		Workbook xlsxWorkbook = new XSSFWorkbook();
 
 
@@ -420,15 +430,6 @@ public class EscreverMétricasParaExcel {
 		lista.add(app);
 		lista.add(app2);
 		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
-		a.NOM_class();
-		a.LOC_class();
-		a.WMC_class();
-		a.LOC_method();
-		a.CYCLO_method();
-		
-		a.retirarNomePackages();
-		a.retirarNomeClasses();
-		a.retirarNomeMethod();
 
 		System.out.println(a.getLOC_class_array());
 		System.out.println(a.repeticoes_NOM);
