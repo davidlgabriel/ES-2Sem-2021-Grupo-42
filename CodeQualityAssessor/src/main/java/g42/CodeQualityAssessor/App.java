@@ -6,6 +6,9 @@ package g42.CodeQualityAssessor;
  */
 public class App 
 {
+	public App() {
+		// TODO Auto-generated constructor stub
+	}
 	double memory;
 	public static void main( String[] args )
 	{
