@@ -13,8 +13,11 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -54,6 +57,7 @@ public class Interface extends JDialog {
 	
 	private File selectedFile = null;
 	private ArrayList<String> caminhoFicheiros= new ArrayList<>();
+	private EscreverMétricasParaExcel excel = null;
 	private JTextField textField_2;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -71,12 +75,12 @@ public class Interface extends JDialog {
 	
 	
 	public Interface() {
-		setBounds(100, 100, 1215, 603);
+		setBounds(100, 100, 1500, 603);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 20, 10, 30, 70, 22, 34, 31, 75, 0};
-		gridBagLayout.rowHeights = new int[]{24, 35, 35, 30, 35, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{24, 35, 35, 30, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("IF");
@@ -411,6 +415,119 @@ public class Interface extends JDialog {
 		gbc_comboBox_3.gridx = 23;
 		gbc_comboBox_3.gridy = 4;
 		getContentPane().add(comboBox_3, gbc_comboBox_3);
+		
+		JLabel lblNewLabel = new JLabel("Diretório");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 3;
+		gbc_lblNewLabel.gridy = 7;
+		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Número de Packages:");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 3;
+		gbc_lblNewLabel_1.gridy = 15;
+		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("0");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 5;
+		gbc_lblNewLabel_2.gridy = 15;
+		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Número de classes:");
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 3;
+		gbc_lblNewLabel_3.gridy = 16;
+		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("0");
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 5;
+		gbc_lblNewLabel_4.gridy = 16;
+		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Número de métodos:");
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_5.gridx = 3;
+		gbc_lblNewLabel_5.gridy = 17;
+		getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("0");
+		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_6.gridx = 5;
+		gbc_lblNewLabel_6.gridy = 17;
+		getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Número de linhas de código:");
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_7.gridx = 3;
+		gbc_lblNewLabel_7.gridy = 18;
+		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("0");
+		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+		gbc_lblNewLabel_8.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_8.gridx = 5;
+		gbc_lblNewLabel_8.gridy = 18;
+		getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser diretorio = new JFileChooser();
+				diretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				
+				int returnValue = diretorio.showOpenDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+				selectedFile = diretorio.getSelectedFile();
+				lblNewLabel.setText(selectedFile.getAbsolutePath());
+				
+				percorrer();
+				}
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.gridx = 7;
+		gbc_btnNewButton_2.gridy = 7;
+		getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				excel = new EscreverMétricasParaExcel(caminhoFicheiros);
+				try {
+					excel.escreverNomeDoFicheiro();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Set <String> packages = new HashSet<>(excel.getnomePackages());
+				Set <String> classes = new HashSet<>(excel.getnomeClasses());
+				lblNewLabel_2.setText(Integer.toString(packages.size()));
+				lblNewLabel_4.setText(Integer.toString(classes.size()));
+				ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
+				lblNewLabel_6.setText(Integer.toString(LOC_métodos.size()));
+				int soma = 0;
+				for(int aux: LOC_métodos)
+					soma+=aux;
+				lblNewLabel_8.setText(Integer.toString(soma));
+			}
+		});
+		
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_3.gridx = 9;
+		gbc_btnNewButton_3.gridy = 7;
+		getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
 	}	
 	
 	private void percorrer(){
