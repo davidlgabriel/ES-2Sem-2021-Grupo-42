@@ -511,9 +511,8 @@ public class Interface extends JDialog {
 					e1.printStackTrace();
 				}
 				Set <String> packages = new HashSet<>(excel.getnomePackages());
-				Set <String> classes = new HashSet<>(excel.getnomeClasses());
 				lblNewLabel_2.setText(Integer.toString(packages.size()));
-				lblNewLabel_4.setText(Integer.toString(classes.size()));
+				lblNewLabel_4.setText(Integer.toString(excel.getNumberClasses()));
 				ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
 				lblNewLabel_6.setText(Integer.toString(LOC_métodos.size()));
 				int soma = 0;

@@ -19,11 +19,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import com.github.javaparser.symbolsolver.javaparsermodel.declarations.JavaParserClassDeclaration;
 
 public class EscreverMétricasParaExcel {
 
@@ -47,6 +50,7 @@ public class EscreverMétricasParaExcel {
 	private int LOC_method;
 	private int CYCLO_method;
 	private String projeto_name;
+	private int numberClasses;
 
 
 	//Construtor
@@ -69,19 +73,27 @@ public class EscreverMétricasParaExcel {
 		this.WMC_class=0;
 		this.LOC_method=0;
 		this.CYCLO_method=0;
+		this.numberClasses=0;
 	}
 
 
 	//Getters
+	
+	
 
 	public ArrayList<String> getnomePackages() {
 		return nomePackages;
 	}
-	
+
+	public int getNumberClasses() {
+		return numberClasses;
+	}
+
+
 	public ArrayList<String> getnomeClasses() {
 		return nomeClasses;
 	}
-	
+
 	public ArrayList<Integer> getLOC_class_array() {
 		return LOC_class_array;
 	}
@@ -134,11 +146,11 @@ public class EscreverMétricasParaExcel {
 		WMC_class();
 		LOC_method();
 		CYCLO_method();
-		
+
 		retirarNomePackages();
 		retirarNomeClasses();
 		retirarNomeMethod();
-		
+
 		Workbook xlsxWorkbook = new XSSFWorkbook();
 
 
@@ -176,15 +188,9 @@ public class EscreverMétricasParaExcel {
 
 		xlsxWorkbook.write(new FileOutputStream( this.projeto_name + ".xlsx" ));
 		System.out.println("Excel criado com sucesso!!");
-		//dar o nome ao Excel
-		//extrair o nome das classes
-		//extrair o nome dos métodos
+		
 	}
 
-
-	//	public void escreverNoExcel(int x, int y, int res) {
-	//		
-	//	}
 
 	private static class ConstructorCollector extends VoidVisitorAdapter<List<String>> {
 
@@ -221,7 +227,7 @@ public class EscreverMétricasParaExcel {
 			collector.add(md.getNameAsString());
 		}
 	}
-	
+
 	private static class NamePackage extends VoidVisitorAdapter<List<String>> {
 
 		@Override
@@ -247,39 +253,32 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 	public void retirarNomeMethod() throws FileNotFoundException {
-		
+
 		for (String caminhoClasse : this.classes) {		
 			File ficheiroClasse = new File(caminhoClasse);	
 			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
 			List<String> MethodName = new ArrayList<>();
 			VoidVisitor<List<String>> MethodNameVisitor = new NameMethod();
 			MethodNameVisitor.visit(f, MethodName);
-			
+
 			List<String> ConstructorName = new ArrayList<>();
 			VoidVisitor<List<String>> ConstrutorNameVisitor = new NameConstructor();
 			ConstrutorNameVisitor.visit(f, ConstructorName);
-			
+
 			for (String string : MethodName) {
 				ConstructorName.add(string);
 			}
-			
-			for (String string : ConstructorName) {
-				if(!string.contains("main")) {
-					System.out.println(string);
-					String [] vetor = string.split("\\(");
-					String parametrosMethod = vetor[1];
-					String firstMethod = vetor[0];
-					String [] nameMethod = firstMethod.split(" ");
-					String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
-					
-					this.nomeMethods.add(Method);
 
-				}
+			for (String string : ConstructorName) {
+				String [] vetor = string.split("\\(");
+				String parametrosMethod = vetor[1];
+				String firstMethod = vetor[0];
+				String [] nameMethod = firstMethod.split(" ");
+				String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
+
+				this.nomeMethods.add(Method);
 			}
-			
-			
-			
-			
+
 		}
 	}
 
@@ -295,10 +294,10 @@ public class EscreverMétricasParaExcel {
 				this.nomePackages.add(PackageName.get(0));
 			}
 			rep++;
-			
+
 		}
 	}
-	
+
 	public void NOM_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {		
 			File ficheiroClasse = new File(caminhoClasse);	
@@ -306,26 +305,23 @@ public class EscreverMétricasParaExcel {
 			List<String> methodNames = new ArrayList<>();
 			VoidVisitor<List<String>> methodNameCollector = new MethodNameCollector();
 			methodNameCollector.visit(f, methodNames);
-			
+
 			List<String> constructorNames = new ArrayList<>();
 			VoidVisitor<List<String>> constructorNameCollector = new ConstructorNameCollector();
 			constructorNameCollector.visit(f, constructorNames);
 			for (String string : methodNames) {
 				constructorNames.add(string);
 			}
-			
+
 			for (String string : constructorNames) {
-				if(!string.equals("main")) {
-					this.NOM_class++;
-				}
+				this.NOM_class++;
 			}
-			//System.out.println(this.NOM_class);
+			
 			this.repeticoes_NOM.add(this.NOM_class);
 			for (int i = 0; i < this.NOM_class; i++) {
 				this.NOM_class_array.add(this.NOM_class);
 			}
 
-			//Escrever no excel
 			this.NOM_class=0;
 		}
 	}
@@ -340,13 +336,11 @@ public class EscreverMétricasParaExcel {
 				this.LOC_class++;							
 				lerFicheiroClasse.nextLine();				
 			}
-			//System.out.println(this.LOC_class);
 
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
 				this.LOC_class_array.add(this.LOC_class);
 			}
 
-			//Escrever no excel
 			this.LOC_class=1;
 			rep++;
 			lerFicheiroClasse.close();
@@ -363,26 +357,22 @@ public class EscreverMétricasParaExcel {
 			List<String> methods = new ArrayList<>();
 			VoidVisitor<List<String>> methodCollector = new MethodCollector();
 			methodCollector.visit(f, methods);
-			
+
 			List<String> constructors = new ArrayList<>();
 			VoidVisitor<List<String>> constructorCollector = new ConstructorCollector();
 			constructorCollector.visit(f, constructors);
-		
+
 			for (String string : methods) {
 				constructors.add(string);
 			}
-			
+
 			for (String string : constructors) {
-				if (!string.contains("public static void main")) {
-					this.WMC_class = this.WMC_class + contarComplexidadeDeMetodo(string);
-				}
+				this.WMC_class = this.WMC_class + contarComplexidadeDeMetodo(string);
 			}
-			//System.out.println(this.WMC_class);
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
 				this.WMC_class_array.add(this.WMC_class);
 			}
 
-			//Escrever no excel
 			rep++;
 			this.WMC_class=0;
 		}
@@ -396,25 +386,21 @@ public class EscreverMétricasParaExcel {
 			List<String> methods = new ArrayList<>();
 			VoidVisitor<List<String>> methodCollector = new MethodCollector();
 			methodCollector.visit(f, methods);
-			
+
 			List<String> constructors = new ArrayList<>();
 			VoidVisitor<List<String>> constructorCollector = new ConstructorCollector();
 			constructorCollector.visit(f, constructors);
-		
+
 			for (String string : methods) {
 				constructors.add(string);
 			}
-			
+
 			for (String string : constructors) {
 				String [] vectorS =null;
-				if (!string.contains("public static void main")) {
-					vectorS = string.split("\n");
-					this.LOC_method = vectorS.length;
-					this.LOC_method_array.add(this.LOC_method);
-				}
-				//System.out.println(this.LOC_method);
+				vectorS = string.split("\n");
+				this.LOC_method = vectorS.length;
+				this.LOC_method_array.add(this.LOC_method);
 
-				//Escrever no excel
 				this.LOC_method =0;
 			}
 		}
@@ -441,46 +427,48 @@ public class EscreverMétricasParaExcel {
 			List<String> methods = new ArrayList<>();
 			VoidVisitor<List<String>> methodCollector = new MethodCollector();
 			methodCollector.visit(f, methods);
-			
+
 			List<String> constructors = new ArrayList<>();
 			VoidVisitor<List<String>> constructorCollector = new ConstructorCollector();
 			constructorCollector.visit(f, constructors);
-		
+
 			for (String string : methods) {
 				constructors.add(string);
 			}
-			
+
 			for (String string : constructors) {
-				if (!string.contains("public static void main")) {
-					this.CYCLO_method=contarComplexidadeDeMetodo(string);
-					this.CYCLO_method_array.add(this.CYCLO_method);
-				}
-				//System.out.println(this.CYCLO_method);
-				//Escrever no excel
+				this.CYCLO_method=contarComplexidadeDeMetodo(string);
+				this.CYCLO_method_array.add(this.CYCLO_method);
 				this.CYCLO_method=0;
 			}
 		}
 	}
 
 
-	
-	
-	
-	public void retirarNomeClasses() {
+	public static class ClassNameCollector extends VoidVisitorAdapter<List<String>>{
+	    @Override
+	    public void visit(ClassOrInterfaceDeclaration n, List<String> collector) {
+	        super.visit(n, collector);
+	        collector.add(n.getNameAsString());
+	    }
+	}
+
+
+	public void retirarNomeClasses() throws FileNotFoundException {
+		
 		int rep =0;
-		String nomeClasse = null;
-		for (String caminhoClasse : this.classes) {				
-			String[] vetor = caminhoClasse.split("/");
-			String classe = vetor[vetor.length-1];
-			String[] vetor2 = classe.split("\\."); //se coloca-se só o ponto dava erro por causa do Regex
-			nomeClasse=vetor2[0];							
-			
+		for (String caminhoClasse : this.classes) {											
+			List<String> className = new ArrayList<>();
+		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
+		    VoidVisitor<List<String>> classNameVisitor = new ClassNameCollector();
+		    classNameVisitor.visit(cu,className);
+		    
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.nomeClasses.add(nomeClasse);
+				this.nomeClasses.add(className.get(0));
 			}
 			rep++;
 		}
-
+		this.numberClasses=rep;
 	}
 
 
