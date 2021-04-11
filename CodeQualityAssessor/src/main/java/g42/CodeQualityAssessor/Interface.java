@@ -479,7 +479,7 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel_8.gridy = 18;
 		getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
 		
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("Escolher diretório");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser diretorio = new JFileChooser();
@@ -500,7 +500,7 @@ public class Interface extends JDialog {
 		gbc_btnNewButton_2.gridy = 7;
 		getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("New button");
+		JButton btnNewButton_3 = new JButton("Criar Excel");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				excel = new EscreverMétricasParaExcel(caminhoFicheiros);

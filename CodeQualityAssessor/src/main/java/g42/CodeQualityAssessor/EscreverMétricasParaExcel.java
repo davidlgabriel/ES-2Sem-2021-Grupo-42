@@ -266,7 +266,8 @@ public class EscreverMétricasParaExcel {
 	}
 	
 	public void NOM_class() throws FileNotFoundException {
-		for (String caminhoClasse : this.classes) {			
+		for (String caminhoClasse : this.classes) {		
+			System.out.println(caminhoClasse);
 			File ficheiroClasse = new File(caminhoClasse);	
 			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
 			List<String> methodNames = new ArrayList<>();
@@ -278,7 +279,7 @@ public class EscreverMétricasParaExcel {
 					this.NOM_class++;
 				}
 			}
-			System.out.println(this.NOM_class);
+			//System.out.println(this.NOM_class);
 			this.repeticoes_NOM.add(this.NOM_class);
 			for (int i = 0; i < this.NOM_class; i++) {
 				this.NOM_class_array.add(this.NOM_class);
