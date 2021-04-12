@@ -510,6 +510,11 @@ public class Interface extends JDialog {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+//				System.out.println(excel.getnomePackages().size());
+//				System.out.println(excel.getNumberClasses());
+//				System.out.println(excel.getnomeClasses().size());
+				System.out.println(excel.getLOC_class_array().size());
+				
 				Set <String> packages = new HashSet<>(excel.getnomePackages());
 				lblNewLabel_2.setText(Integer.toString(packages.size()));
 				lblNewLabel_4.setText(Integer.toString(excel.getNumberClasses()));
@@ -529,7 +534,7 @@ public class Interface extends JDialog {
 		getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
 	}	
 	
-	private void percorrer(){
+	public void percorrer(){
 		String[] aux = selectedFile.getAbsolutePath().replace("\\","/").split("/");
 		caminhoFicheiros.add(aux[aux.length-1]);
 		for(File f: selectedFile.listFiles()){
@@ -566,4 +571,17 @@ public class Interface extends JDialog {
 	public ArrayList<String> getCaminhoFicheiros(){
 		return caminhoFicheiros;
 	}
+
+	public File getSelectedFile() {
+		return selectedFile;
+	}
+
+	public void setSelectedFile(File selectedFile) {
+		this.selectedFile = selectedFile;
+	}
+
+	public void setCaminhoFicheiros(ArrayList<String> caminhoFicheiros) {
+		this.caminhoFicheiros = caminhoFicheiros;
+	}
+	
 }

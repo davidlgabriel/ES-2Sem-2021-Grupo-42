@@ -30,7 +30,6 @@ import com.github.javaparser.symbolsolver.javaparsermodel.declarations.JavaParse
 
 public class EscreverMétricasParaExcel {
 
-
 	//Atributos
 
 	private ArrayList<String> classes;
@@ -51,7 +50,6 @@ public class EscreverMétricasParaExcel {
 	private int CYCLO_method;
 	private String projeto_name;
 	private int numberClasses;
-
 
 	//Construtor
 
@@ -113,27 +111,27 @@ public class EscreverMétricasParaExcel {
 	public ArrayList<Integer> getNOM_class_array(){
 		return NOM_class_array;
 	}
-	public ArrayList<String> getClasses() {
+	private ArrayList<String> getClasses() {
 		return classes;
 	}
 
-	public int getNOM_class() {
+	private int getNOM_class() {
 		return NOM_class;
 	}
 
-	public int getLOC_class() {
+	private int getLOC_class() {
 		return LOC_class;
 	}
 
-	public int getWMC_class() {
+	private int getWMC_class() {
 		return WMC_class;
 	}
 
-	public int getLOC_method() {
+	private int getLOC_method() {
 		return LOC_method;
 	}
 
-	public int getCYCLO_method() {
+	private int getCYCLO_method() {
 		return CYCLO_method;
 	}
 
@@ -475,15 +473,16 @@ public class EscreverMétricasParaExcel {
 
 	//Testar
 
-	public static void main(String[] args) throws IOException {
-
-		ArrayList<String> lista = new ArrayList<String>();
-		String s = "ficheiro_excel";
-		String app = "C:/Users/David Gabriel/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-		lista.add(s);
-		lista.add(app);
-		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
-		a.escreverNomeDoFicheiro();
-
-	}
+//	public static void main(String[] args) throws IOException {
+//
+//		ArrayList<String> lista = new ArrayList<String>();
+//		String s = "ficheiro_excel";
+//		String app = "C:/Users/David Gabriel/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
+//		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
+//		lista.add(s);
+//		lista.add(app);
+//		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
+//		a.escreverNomeDoFicheiro();
+//
+//	}
 }
