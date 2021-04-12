@@ -510,10 +510,6 @@ public class Interface extends JDialog {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//				System.out.println(excel.getnomePackages().size());
-//				System.out.println(excel.getNumberClasses());
-//				System.out.println(excel.getnomeClasses().size());
-				System.out.println(excel.getLOC_class_array().size());
 				
 				Set <String> packages = new HashSet<>(excel.getnomePackages());
 				lblNewLabel_2.setText(Integer.toString(packages.size()));

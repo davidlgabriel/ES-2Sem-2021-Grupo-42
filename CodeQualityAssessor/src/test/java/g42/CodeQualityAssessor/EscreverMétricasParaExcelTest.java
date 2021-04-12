@@ -11,7 +11,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 class EscreverMétricasParaExcelTest {
 
@@ -25,9 +27,10 @@ class EscreverMétricasParaExcelTest {
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
 		objeto = new EscreverMétricasParaExcel(array);
+		objeto.escreverNomeDoFicheiro();
 	}
-	
 
+	
 	@Test
 	final void testGetnomePackages() {
 		assertEquals(245, objeto.getnomePackages().size());
@@ -40,7 +43,7 @@ class EscreverMétricasParaExcelTest {
 
 	@Test
 	final void testGetnomeClasses() {
-		assertEquals(42, objeto.getnomeClasses().size());
+		assertEquals(245, objeto.getnomeClasses().size());
 	}
 
 	@Test
@@ -66,11 +69,6 @@ class EscreverMétricasParaExcelTest {
 	@Test
 	final void testGetNOM_class_array() {
 		assertEquals(245, objeto.getNOM_class_array().size());
-	}
-
-	@Test
-	final void testEscreverNomeDoFicheiro() throws FileNotFoundException, IOException {
-		objeto.escreverNomeDoFicheiro();
 	}
 
 

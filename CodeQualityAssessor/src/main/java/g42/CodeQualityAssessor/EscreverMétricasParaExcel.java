@@ -250,6 +250,7 @@ public class EscreverMétricasParaExcel {
 			collector.add(md.getDeclarationAsString());
 		}
 	}
+	
 	public void retirarNomeMethod() throws FileNotFoundException {
 
 		for (String caminhoClasse : this.classes) {		
@@ -323,16 +324,32 @@ public class EscreverMétricasParaExcel {
 			this.NOM_class=0;
 		}
 	}
+	
+	
+	private static class ClassCollector extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(ClassOrInterfaceDeclaration md, List<String> collector) {
+			super.visit(md, collector);
+			collector.add(md.toString());
+		}
+	}
 
 
 	public void LOC_class() throws FileNotFoundException {
 		int rep =0; 
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);	
-			Scanner lerFicheiroClasse = new Scanner(ficheiroClasse);	
-			while (lerFicheiroClasse.hasNextLine()) {		
-				this.LOC_class++;							
-				lerFicheiroClasse.nextLine();				
+			CompilationUnit f = StaticJavaParser.parse(ficheiroClasse);
+			List<String> classCollector = new ArrayList<>();
+			VoidVisitor<List<String>> ClassCollector = new ClassCollector();
+			ClassCollector.visit(f, classCollector);
+			
+			for (String string : classCollector) {
+				String [] vectorS =null;
+				vectorS = string.split("\n");
+				this.LOC_class = vectorS.length;
+				
 			}
 
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
@@ -341,7 +358,6 @@ public class EscreverMétricasParaExcel {
 
 			this.LOC_class=1;
 			rep++;
-			lerFicheiroClasse.close();
 		}
 
 	}
@@ -410,10 +426,11 @@ public class EscreverMétricasParaExcel {
 		String [] vectorS = null;
 		vectorS = s.split(" ");
 		for(int i=0; i<vectorS.length; i++) {
-			if(vectorS[i].contains("for") || vectorS[i].contains("while") || vectorS[i].contains("if") || vectorS[i].contains("case")) {
+			if(vectorS[i].contains("for") || vectorS[i].contains("while") || vectorS[i].contains("if") || vectorS[i].contains("case") || vectorS[i].contains("default")) {
 				result++;
 			}
 		}
+		result++;
 		return result;
 	}
 
@@ -473,16 +490,16 @@ public class EscreverMétricasParaExcel {
 
 	//Testar
 
-//	public static void main(String[] args) throws IOException {
-//
-//		ArrayList<String> lista = new ArrayList<String>();
-//		String s = "ficheiro_excel";
+	public static void main(String[] args) throws IOException {
+
+		ArrayList<String> lista = new ArrayList<String>();
+		String s = "ficheiro_excel";
 //		String app = "C:/Users/David Gabriel/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-//		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-//		lista.add(s);
-//		lista.add(app);
-//		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
-//		a.escreverNomeDoFicheiro();
-//
-//	}
+		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
+		lista.add(s);
+		lista.add(app);
+		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
+		a.escreverNomeDoFicheiro();
+
+	}
 }
