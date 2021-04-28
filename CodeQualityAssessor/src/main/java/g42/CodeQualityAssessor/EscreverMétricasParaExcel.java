@@ -83,6 +83,11 @@ public class EscreverMétricasParaExcel {
 		return nomePackages;
 	}
 
+	public String getProjeto_name() {
+		return projeto_name;
+	}
+
+
 	public int getNumberClasses() {
 		return numberClasses;
 	}

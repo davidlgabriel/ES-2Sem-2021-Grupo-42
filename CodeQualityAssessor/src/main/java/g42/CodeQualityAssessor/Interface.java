@@ -4,11 +4,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 import javax.swing.JFileChooser;
 import java.awt.GridLayout;
@@ -45,6 +48,8 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JInternalFrame;
 import java.awt.Dimension;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class Interface extends JDialog {
 
@@ -113,16 +118,18 @@ public class Interface extends JDialog {
 	private JComboBox comboBox2;
 	private JLabel lblNewLabel_6;
 	private JLabel lblNewLabel_8;
+	private JTable table;
+	private JScrollPane scrollPane;
 	
 	public Interface() {
-		setBounds(100, 100, 1386, 566);
+		setBounds(100, 100, 1297, 750);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 18, 37,
-				100, 70, 22, 80, 0 };
-		gridBagLayout.rowHeights = new int[] { 35, 35, 30, 35, 35, 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gridBagLayout.columnWidths = new int[] { 20, 110, 4, 50, 40, 50, 75, 32, 11, 37,
+				100, 70, 80, 0 };
+		gridBagLayout.rowHeights = new int[] { 35, 35, 35, 35, 0, 28, 0, 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
 		getContentPane().setLayout(gridBagLayout);
 
 		JLabel if_LM = new JLabel("IF");
@@ -130,7 +137,7 @@ public class Interface extends JDialog {
 		if_LM.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_if_LM = new GridBagConstraints();
 		gbc_if_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_if_LM.gridx = 1;
+		gbc_if_LM.gridx = 0;
 		gbc_if_LM.gridy = 0;
 		getContentPane().add(if_LM, gbc_if_LM);
 
@@ -142,7 +149,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_firstOfFirst_LM = new GridBagConstraints();
 		gbc_firstOfFirst_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_firstOfFirst_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_firstOfFirst_LM.gridx = 3;
+		gbc_firstOfFirst_LM.gridx = 1;
 		gbc_firstOfFirst_LM.gridy = 0;
 		getContentPane().add(firstOfFirst_LM, gbc_firstOfFirst_LM);
 
@@ -164,7 +171,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_secondOfFirst_LM = new GridBagConstraints();
 		gbc_secondOfFirst_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_secondOfFirst_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_secondOfFirst_LM.gridx = 5;
+		gbc_secondOfFirst_LM.gridx = 2;
 		gbc_secondOfFirst_LM.gridy = 0;
 		getContentPane().add(secondOfFirst_LM, gbc_secondOfFirst_LM);
 
@@ -173,7 +180,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField1_LM = new GridBagConstraints();
 		gbc_textField1_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField1_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_textField1_LM.gridx = 7;
+		gbc_textField1_LM.gridx = 3;
 		gbc_textField1_LM.gridy = 0;
 		getContentPane().add(textField1_LM, gbc_textField1_LM);
 
@@ -183,7 +190,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label1_LM = new GridBagConstraints();
 		gbc_label1_LM.fill = GridBagConstraints.BOTH;
 		gbc_label1_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_label1_LM.gridx = 8;
+		gbc_label1_LM.gridx = 4;
 		gbc_label1_LM.gridy = 0;
 		getContentPane().add(label1_LM, gbc_label1_LM);
 
@@ -192,7 +199,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField2_LM = new GridBagConstraints();
 		gbc_textField2_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField2_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_textField2_LM.gridx = 9;
+		gbc_textField2_LM.gridx = 5;
 		gbc_textField2_LM.gridy = 0;
 		getContentPane().add(textField2_LM, gbc_textField2_LM);
 
@@ -208,7 +215,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_isTrueFalse_LM = new GridBagConstraints();
 		gbc_isTrueFalse_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_isTrueFalse_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_isTrueFalse_LM.gridx = 18;
+		gbc_isTrueFalse_LM.gridx = 10;
 		gbc_isTrueFalse_LM.gridy = 0;
 		getContentPane().add(isTrueFalse_LM, gbc_isTrueFalse_LM);
 
@@ -236,7 +243,7 @@ public class Interface extends JDialog {
 		});
 		GridBagConstraints gbc_SaveButton_LM = new GridBagConstraints();
 		gbc_SaveButton_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_SaveButton_LM.gridx = 19;
+		gbc_SaveButton_LM.gridx = 11;
 		gbc_SaveButton_LM.gridy = 0;
 		getContentPane().add(SaveButton_LM, gbc_SaveButton_LM);
 
@@ -263,13 +270,13 @@ public class Interface extends JDialog {
 		CreateButton_LM.setVisible(true);
 		GridBagConstraints gbc_CreateButton_LM = new GridBagConstraints();
 		gbc_CreateButton_LM.insets = new Insets(0, 0, 5, 0);
-		gbc_CreateButton_LM.gridx = 21;
+		gbc_CreateButton_LM.gridx = 12;
 		gbc_CreateButton_LM.gridy = 0;
 		getContentPane().add(CreateButton_LM, gbc_CreateButton_LM);
 		GridBagConstraints gbc_firstOfSecond_LM = new GridBagConstraints();
 		gbc_firstOfSecond_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_firstOfSecond_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_firstOfSecond_LM.gridx = 3;
+		gbc_firstOfSecond_LM.gridx = 1;
 		gbc_firstOfSecond_LM.gridy = 1;
 		getContentPane().add(firstOfSecond_LM, gbc_firstOfSecond_LM);
 
@@ -300,7 +307,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_LM_And_Or = new GridBagConstraints();
 		gbc_LM_And_Or.fill = GridBagConstraints.HORIZONTAL;
 		gbc_LM_And_Or.insets = new Insets(0, 0, 5, 5);
-		gbc_LM_And_Or.gridx = 11;
+		gbc_LM_And_Or.gridx = 6;
 		gbc_LM_And_Or.gridy = 0;
 		getContentPane().add(LM_And_Or, gbc_LM_And_Or);
 
@@ -310,7 +317,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label2_LM = new GridBagConstraints();
 		gbc_label2_LM.anchor = GridBagConstraints.WEST;
 		gbc_label2_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_label2_LM.gridx = 13;
+		gbc_label2_LM.gridx = 7;
 		gbc_label2_LM.gridy = 0;
 		getContentPane().add(label2_LM, gbc_label2_LM);
 
@@ -320,7 +327,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label3_LM = new GridBagConstraints();
 		gbc_label3_LM.fill = GridBagConstraints.HORIZONTAL;
 		gbc_label3_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_label3_LM.gridx = 15;
+		gbc_label3_LM.gridx = 8;
 		gbc_label3_LM.gridy = 0;
 		getContentPane().add(label3_LM, gbc_label3_LM);
 
@@ -330,7 +337,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label4_LM = new GridBagConstraints();
 		gbc_label4_LM.fill = GridBagConstraints.BOTH;
 		gbc_label4_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_label4_LM.gridx = 17;
+		gbc_label4_LM.gridx = 9;
 		gbc_label4_LM.gridy = 0;
 		getContentPane().add(label4_LM, gbc_label4_LM);
 
@@ -353,7 +360,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_secondOfSecond_LM = new GridBagConstraints();
 		gbc_secondOfSecond_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_secondOfSecond_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_secondOfSecond_LM.gridx = 5;
+		gbc_secondOfSecond_LM.gridx = 2;
 		gbc_secondOfSecond_LM.gridy = 1;
 		getContentPane().add(secondOfSecond_LM, gbc_secondOfSecond_LM);
 
@@ -363,7 +370,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField3_LM = new GridBagConstraints();
 		gbc_textField3_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_textField3_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField3_LM.gridx = 7;
+		gbc_textField3_LM.gridx = 3;
 		gbc_textField3_LM.gridy = 1;
 		getContentPane().add(textField3_LM, gbc_textField3_LM);
 
@@ -373,7 +380,7 @@ public class Interface extends JDialog {
 		label5_LM.setVisible(false);
 		GridBagConstraints gbc_label5_LM = new GridBagConstraints();
 		gbc_label5_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_label5_LM.gridx = 8;
+		gbc_label5_LM.gridx = 4;
 		gbc_label5_LM.gridy = 1;
 		getContentPane().add(label5_LM, gbc_label5_LM);
 
@@ -383,7 +390,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField4_LM = new GridBagConstraints();
 		gbc_textField4_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_textField4_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField4_LM.gridx = 9;
+		gbc_textField4_LM.gridx = 5;
 		gbc_textField4_LM.gridy = 1;
 		getContentPane().add(textField4_LM, gbc_textField4_LM);
 
@@ -404,13 +411,13 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_labelNome_LM = new GridBagConstraints();
 		gbc_labelNome_LM.anchor = GridBagConstraints.EAST;
 		gbc_labelNome_LM.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNome_LM.gridx = 18;
+		gbc_labelNome_LM.gridx = 10;
 		gbc_labelNome_LM.gridy = 1;
 		getContentPane().add(labelNome_LM, gbc_labelNome_LM);
 		GridBagConstraints gbc_textFieldNome_LM = new GridBagConstraints();
 		gbc_textFieldNome_LM.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldNome_LM.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldNome_LM.gridx = 19;
+		gbc_textFieldNome_LM.gridx = 11;
 		gbc_textFieldNome_LM.gridy = 1;
 		getContentPane().add(textFieldNome_LM, gbc_textFieldNome_LM);
 		textFieldNome_LM.setColumns(10);
@@ -419,7 +426,7 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 21;
+		gbc_comboBox.gridx = 12;
 		gbc_comboBox.gridy = 1;
 		getContentPane().add(comboBox, gbc_comboBox);
 
@@ -428,8 +435,8 @@ public class Interface extends JDialog {
 		if_GC.setFont(new Font("Arial", Font.BOLD, 16));
 		GridBagConstraints gbc_if_GC = new GridBagConstraints();
 		gbc_if_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_if_GC.gridx = 1;
-		gbc_if_GC.gridy = 3;
+		gbc_if_GC.gridx = 0;
+		gbc_if_GC.gridy = 2;
 		getContentPane().add(if_GC, gbc_if_GC);
 
 		firstOfFirst_GC = new JComboBox(new String[] { "NOM_class", "LOC_class", "WMC_class" });
@@ -438,8 +445,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_firstOfFirst_GC = new GridBagConstraints();
 		gbc_firstOfFirst_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_firstOfFirst_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_firstOfFirst_GC.gridx = 3;
-		gbc_firstOfFirst_GC.gridy = 3;
+		gbc_firstOfFirst_GC.gridx = 1;
+		gbc_firstOfFirst_GC.gridy = 2;
 		getContentPane().add(firstOfFirst_GC, gbc_firstOfFirst_GC);
 
 		secondOfFirst_GC = new JComboBox(new String[] { "IS BETWEEN", "=", ">", "<", ">=", "<=" });
@@ -459,8 +466,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_secondOfFirst_GC = new GridBagConstraints();
 		gbc_secondOfFirst_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_secondOfFirst_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_secondOfFirst_GC.gridx = 5;
-		gbc_secondOfFirst_GC.gridy = 3;
+		gbc_secondOfFirst_GC.gridx = 2;
+		gbc_secondOfFirst_GC.gridy = 2;
 		getContentPane().add(secondOfFirst_GC, gbc_secondOfFirst_GC);
 
 		textField1_GC = new JTextField();
@@ -468,8 +475,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField1_GC = new GridBagConstraints();
 		gbc_textField1_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField1_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_textField1_GC.gridx = 7;
-		gbc_textField1_GC.gridy = 3;
+		gbc_textField1_GC.gridx = 3;
+		gbc_textField1_GC.gridy = 2;
 		getContentPane().add(textField1_GC, gbc_textField1_GC);
 
 		label1_GC = new JLabel("AND");
@@ -478,8 +485,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label1_GC = new GridBagConstraints();
 		gbc_label1_GC.fill = GridBagConstraints.VERTICAL;
 		gbc_label1_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label1_GC.gridx = 8;
-		gbc_label1_GC.gridy = 3;
+		gbc_label1_GC.gridx = 4;
+		gbc_label1_GC.gridy = 2;
 		getContentPane().add(label1_GC, gbc_label1_GC);
 
 		textField2_GC = new JTextField();
@@ -487,8 +494,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField2_GC = new GridBagConstraints();
 		gbc_textField2_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField2_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_textField2_GC.gridx = 9;
-		gbc_textField2_GC.gridy = 3;
+		gbc_textField2_GC.gridx = 5;
+		gbc_textField2_GC.gridy = 2;
 		getContentPane().add(textField2_GC, gbc_textField2_GC);
 
 		GC_And_Or = new JComboBox(new String[] { "", "AND", "OR" });
@@ -517,8 +524,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_GC_And_Or = new GridBagConstraints();
 		gbc_GC_And_Or.fill = GridBagConstraints.HORIZONTAL;
 		gbc_GC_And_Or.insets = new Insets(0, 0, 5, 5);
-		gbc_GC_And_Or.gridx = 11;
-		gbc_GC_And_Or.gridy = 3;
+		gbc_GC_And_Or.gridx = 6;
+		gbc_GC_And_Or.gridy = 2;
 		getContentPane().add(GC_And_Or, gbc_GC_And_Or);
 
 		JLabel label2_GC = new JLabel("THAN");
@@ -527,8 +534,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label2_GC = new GridBagConstraints();
 		gbc_label2_GC.anchor = GridBagConstraints.WEST;
 		gbc_label2_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label2_GC.gridx = 13;
-		gbc_label2_GC.gridy = 3;
+		gbc_label2_GC.gridx = 7;
+		gbc_label2_GC.gridy = 2;
 		getContentPane().add(label2_GC, gbc_label2_GC);
 
 		JLabel label3_GC = new JLabel("is_God_Class");
@@ -537,8 +544,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label3_GC = new GridBagConstraints();
 		gbc_label3_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_label3_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label3_GC.gridx = 15;
-		gbc_label3_GC.gridy = 3;
+		gbc_label3_GC.gridx = 8;
+		gbc_label3_GC.gridy = 2;
 		getContentPane().add(label3_GC, gbc_label3_GC);
 
 		JLabel label4_GC = new JLabel("IS");
@@ -547,8 +554,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label4_GC = new GridBagConstraints();
 		gbc_label4_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_label4_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label4_GC.gridx = 17;
-		gbc_label4_GC.gridy = 3;
+		gbc_label4_GC.gridx = 9;
+		gbc_label4_GC.gridy = 2;
 		getContentPane().add(label4_GC, gbc_label4_GC);
 
 		isTrueFalse_GC = new JComboBox(new String[] { "TRUE", "FALSE" });
@@ -557,8 +564,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_isTrueFalse_GC = new GridBagConstraints();
 		gbc_isTrueFalse_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_isTrueFalse_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_isTrueFalse_GC.gridx = 18;
-		gbc_isTrueFalse_GC.gridy = 3;
+		gbc_isTrueFalse_GC.gridx = 10;
+		gbc_isTrueFalse_GC.gridy = 2;
 		getContentPane().add(isTrueFalse_GC, gbc_isTrueFalse_GC);
 
 		SaveButton_GC = new JButton("Confirm");
@@ -596,8 +603,8 @@ public class Interface extends JDialog {
 		});
 		GridBagConstraints gbc_SaveButton_GC = new GridBagConstraints();
 		gbc_SaveButton_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_SaveButton_GC.gridx = 19;
-		gbc_SaveButton_GC.gridy = 3;
+		gbc_SaveButton_GC.gridx = 11;
+		gbc_SaveButton_GC.gridy = 2;
 		getContentPane().add(SaveButton_GC, gbc_SaveButton_GC);
 
 		// GC Second 1
@@ -632,14 +639,14 @@ public class Interface extends JDialog {
 		});
 		GridBagConstraints gbc_CreateButton2 = new GridBagConstraints();
 		gbc_CreateButton2.insets = new Insets(0, 0, 5, 0);
-		gbc_CreateButton2.gridx = 21;
-		gbc_CreateButton2.gridy = 3;
+		gbc_CreateButton2.gridx = 12;
+		gbc_CreateButton2.gridy = 2;
 		getContentPane().add(CreateButton2, gbc_CreateButton2);
 		GridBagConstraints gbc_firstOfSecond_GC = new GridBagConstraints();
 		gbc_firstOfSecond_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_firstOfSecond_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_firstOfSecond_GC.gridx = 3;
-		gbc_firstOfSecond_GC.gridy = 4;
+		gbc_firstOfSecond_GC.gridx = 1;
+		gbc_firstOfSecond_GC.gridy = 3;
 		getContentPane().add(firstOfSecond_GC, gbc_firstOfSecond_GC);
 
 		// GC Second 2
@@ -661,8 +668,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_secondOfSecond_GC = new GridBagConstraints();
 		gbc_secondOfSecond_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_secondOfSecond_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_secondOfSecond_GC.gridx = 5;
-		gbc_secondOfSecond_GC.gridy = 4;
+		gbc_secondOfSecond_GC.gridx = 2;
+		gbc_secondOfSecond_GC.gridy = 3;
 		getContentPane().add(secondOfSecond_GC, gbc_secondOfSecond_GC);
 
 		textField3_GC = new JTextField();
@@ -671,8 +678,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField3_GC = new GridBagConstraints();
 		gbc_textField3_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_textField3_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField3_GC.gridx = 7;
-		gbc_textField3_GC.gridy = 4;
+		gbc_textField3_GC.gridx = 3;
+		gbc_textField3_GC.gridy = 3;
 		getContentPane().add(textField3_GC, gbc_textField3_GC);
 
 		label5_GC = new JLabel("AND");
@@ -682,8 +689,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_label5_GC = new GridBagConstraints();
 		gbc_label5_GC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_label5_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label5_GC.gridx = 8;
-		gbc_label5_GC.gridy = 4;
+		gbc_label5_GC.gridx = 4;
+		gbc_label5_GC.gridy = 3;
 		getContentPane().add(label5_GC, gbc_label5_GC);
 
 		textField4_GC = new JTextField();
@@ -692,8 +699,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField4_GC = new GridBagConstraints();
 		gbc_textField4_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_textField4_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField4_GC.gridx = 9;
-		gbc_textField4_GC.gridy = 4;
+		gbc_textField4_GC.gridx = 5;
+		gbc_textField4_GC.gridy = 3;
 		getContentPane().add(textField4_GC, gbc_textField4_GC);
 
 		// GC Second 3
@@ -723,8 +730,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_second_GC_And_Or = new GridBagConstraints();
 		gbc_second_GC_And_Or.insets = new Insets(0, 0, 5, 5);
 		gbc_second_GC_And_Or.fill = GridBagConstraints.HORIZONTAL;
-		gbc_second_GC_And_Or.gridx = 11;
-		gbc_second_GC_And_Or.gridy = 4;
+		gbc_second_GC_And_Or.gridx = 6;
+		gbc_second_GC_And_Or.gridy = 3;
 		getContentPane().add(second_GC_And_Or, gbc_second_GC_And_Or);
 
 		firstOfThird_GC = new JComboBox(new String[] { "NOM_class", "LOC_class", "WMC_class" });
@@ -736,8 +743,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_labelNome2 = new GridBagConstraints();
 		gbc_labelNome2.anchor = GridBagConstraints.EAST;
 		gbc_labelNome2.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNome2.gridx = 18;
-		gbc_labelNome2.gridy = 4;
+		gbc_labelNome2.gridx = 10;
+		gbc_labelNome2.gridy = 3;
 		getContentPane().add(labelNome2, gbc_labelNome2);
 
 		textFieldNome2 = new JTextField();
@@ -756,22 +763,22 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textFieldNome2 = new GridBagConstraints();
 		gbc_textFieldNome2.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldNome2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textFieldNome2.gridx = 19;
-		gbc_textFieldNome2.gridy = 4;
+		gbc_textFieldNome2.gridx = 11;
+		gbc_textFieldNome2.gridy = 3;
 		getContentPane().add(textFieldNome2, gbc_textFieldNome2);
 
 		comboBox2 = new JComboBox();
 		GridBagConstraints gbc_comboBox2 = new GridBagConstraints();
 		gbc_comboBox2.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox2.gridx = 21;
-		gbc_comboBox2.gridy = 4;
+		gbc_comboBox2.gridx = 12;
+		gbc_comboBox2.gridy = 3;
 		getContentPane().add(comboBox2, gbc_comboBox2);
 		GridBagConstraints gbc_firstOfThird_GC = new GridBagConstraints();
 		gbc_firstOfThird_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_firstOfThird_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_firstOfThird_GC.gridx = 3;
-		gbc_firstOfThird_GC.gridy = 5;
+		gbc_firstOfThird_GC.gridx = 1;
+		gbc_firstOfThird_GC.gridy = 4;
 		getContentPane().add(firstOfThird_GC, gbc_firstOfThird_GC);
 
 		secondOfThird_GC = new JComboBox(new String[] { "IS BETWEEN", "=", ">", "<", ">=", "<=" });
@@ -792,8 +799,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_secondOfThird_GC = new GridBagConstraints();
 		gbc_secondOfThird_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_secondOfThird_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_secondOfThird_GC.gridx = 5;
-		gbc_secondOfThird_GC.gridy = 5;
+		gbc_secondOfThird_GC.gridx = 2;
+		gbc_secondOfThird_GC.gridy = 4;
 		getContentPane().add(secondOfThird_GC, gbc_secondOfThird_GC);
 
 		textField5_GC = new JTextField();
@@ -801,8 +808,8 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField5_GC = new GridBagConstraints();
 		gbc_textField5_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_textField5_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField5_GC.gridx = 7;
-		gbc_textField5_GC.gridy = 5;
+		gbc_textField5_GC.gridx = 3;
+		gbc_textField5_GC.gridy = 4;
 		getContentPane().add(textField5_GC, gbc_textField5_GC);
 		textField5_GC.setColumns(10);
 
@@ -811,8 +818,8 @@ public class Interface extends JDialog {
 		label6_GC.setVisible(false);
 		GridBagConstraints gbc_label6_GC = new GridBagConstraints();
 		gbc_label6_GC.insets = new Insets(0, 0, 5, 5);
-		gbc_label6_GC.gridx = 8;
-		gbc_label6_GC.gridy = 5;
+		gbc_label6_GC.gridx = 4;
+		gbc_label6_GC.gridy = 4;
 		getContentPane().add(label6_GC, gbc_label6_GC);
 
 		textField6_GC = new JTextField();
@@ -820,15 +827,15 @@ public class Interface extends JDialog {
 		GridBagConstraints gbc_textField6_GC = new GridBagConstraints();
 		gbc_textField6_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_textField6_GC.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField6_GC.gridx = 9;
-		gbc_textField6_GC.gridy = 5;
+		gbc_textField6_GC.gridx = 5;
+		gbc_textField6_GC.gridy = 4;
 		getContentPane().add(textField6_GC, gbc_textField6_GC);
 		textField6_GC.setColumns(10);
 		JLabel lblNewLabel = new JLabel("Diretório");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 3;
-		gbc_lblNewLabel.gridy = 8;
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 5;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
 		JButton btnNewButton_2 = new JButton("Escolher diretório");
@@ -848,9 +855,11 @@ public class Interface extends JDialog {
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 7;
-		gbc_btnNewButton_2.gridy = 8;
+		gbc_btnNewButton_2.gridx = 3;
+		gbc_btnNewButton_2.gridy = 5;
 		getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		
 		
 		JButton btnNewButton_3 = new JButton("Criar Excel");
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -871,70 +880,95 @@ public class Interface extends JDialog {
 				for(int aux: LOC_métodos)
 					soma+=aux;
 				lblNewLabel_8.setText(Integer.toString(soma));
+				
+				DefaultTableModel defaultValues = new DefaultTableModel(getValues(), new String[] {
+						"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
+				
+				scrollPane = new JScrollPane();
+				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+				gbc_scrollPane.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane.gridwidth = 11;
+				gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+				gbc_scrollPane.gridx = 1;
+				gbc_scrollPane.gridy = 10;
+				getContentPane().add(scrollPane, gbc_scrollPane);
+				
+				table = new JTable(defaultValues);
+				JTableHeader header = table.getTableHeader();
+				header.setReorderingAllowed(false);
+				header.setBackground(Color.LIGHT_GRAY);
+				scrollPane.setViewportView(table);
+				
+				
+				
 			}
 		});
 		
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_3.gridx = 9;
-		gbc_btnNewButton_3.gridy = 8;
+		gbc_btnNewButton_3.gridx = 5;
+		gbc_btnNewButton_3.gridy = 5;
 		getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
 		
 		lblNewLabel_2 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 5;
-		gbc_lblNewLabel_2.gridy = 9;
+		gbc_lblNewLabel_2.gridx = 2;
+		gbc_lblNewLabel_2.gridy = 6;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Número de Packages:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 3;
-		gbc_lblNewLabel_1.gridy = 9;
+		gbc_lblNewLabel_1.gridx = 1;
+		gbc_lblNewLabel_1.gridy = 6;
 		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		lblNewLabel_4 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridx = 5;
-		gbc_lblNewLabel_4.gridy = 10;
+		gbc_lblNewLabel_4.gridx = 2;
+		gbc_lblNewLabel_4.gridy = 7;
 		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JLabel lblNewLabel_3 = new JLabel("Número de classes:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 3;
-		gbc_lblNewLabel_3.gridy = 10;
+		gbc_lblNewLabel_3.gridx = 1;
+		gbc_lblNewLabel_3.gridy = 7;
 		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		lblNewLabel_6 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_6.gridx = 5;
-		gbc_lblNewLabel_6.gridy = 11;
+		gbc_lblNewLabel_6.gridx = 2;
+		gbc_lblNewLabel_6.gridy = 8;
 		getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		JLabel lblNewLabel_5 = new JLabel("Número de métodos:");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 3;
-		gbc_lblNewLabel_5.gridy = 11;
+		gbc_lblNewLabel_5.gridx = 1;
+		gbc_lblNewLabel_5.gridy = 8;
 		getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		lblNewLabel_8 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
 		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_8.gridx = 5;
-		gbc_lblNewLabel_8.gridy = 12;
+		gbc_lblNewLabel_8.gridx = 2;
+		gbc_lblNewLabel_8.gridy = 9;
 		getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
 		
 		JLabel lblNewLabel_7 = new JLabel("Número de linhas de código:");
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 3;
-		gbc_lblNewLabel_7.gridy = 12;
+		gbc_lblNewLabel_7.gridx = 1;
+		gbc_lblNewLabel_7.gridy = 9;
 		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		
+		
+		
 	}
 	
 	private void makeVisibleLM() {
@@ -1030,6 +1064,28 @@ public class Interface extends JDialog {
 
 	public void setSelectedFile(File selectedFile) {
 		this.selectedFile = selectedFile;
+	}
+	
+	private Object[][] getValues(){
+		Ficheiro f = new Ficheiro(excel.getProjeto_name()+".xlsx");
+		int height = f.getLista().size();
+		Object[][] matrix = new Object[height][11];
+		for (int i = 0; i < height; i++){
+			Linha row = f.getLista().get(i);
+			matrix[i][0] = row.getMethodID();
+			matrix[i][1] = row.getPackageNome();
+			matrix[i][2] = row.getClassNome();
+			matrix[i][3] = row.getMethodNome();
+			matrix[i][4] = row.getNOM_Class();
+			matrix[i][5] = row.getLOC_Class();
+			matrix[i][6] = row.getWMC_Class();
+			matrix[i][7] = row.isIs_God_Class();
+			matrix[i][8] = row.getLOC_Method();
+			matrix[i][9] = row.getCyclo_Method();
+			matrix[i][10] = row.isIs_Long_Method();
+		}
+		System.out.println(matrix);
+		return matrix;
 	}
 	
 }
