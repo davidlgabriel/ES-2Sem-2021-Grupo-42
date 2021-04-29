@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -45,6 +46,8 @@ import javax.swing.JSlider;
 import javax.swing.JScrollBar;
 import java.awt.Color;
 import java.awt.Component;
+
+import javax.script.ScriptException;
 import javax.swing.Box;
 import javax.swing.JInternalFrame;
 import java.awt.Dimension;
@@ -70,8 +73,9 @@ public class Interface extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	
+
 	private EscreverMétricasParaExcel excel = null;
+	private VerificacaoCodeSmells verificarCS = null;
 	private File selectedFile = null;
 	private ArrayList<String> caminhoFicheiros = new ArrayList<>();
 	private JTextField textField2_LM;
@@ -120,7 +124,8 @@ public class Interface extends JDialog {
 	private JLabel lblNewLabel_8;
 	private JTable table;
 	private JScrollPane scrollPane;
-	
+	private JButton btnNewButton;
+
 	public Interface() {
 		setBounds(100, 100, 1297, 750);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -588,7 +593,7 @@ public class Interface extends JDialog {
 									makeVisibleGC();
 									makeEnableGC(false);
 								}
-								
+
 							} else {
 								makeVisibleGC();
 								makeEnableGC(false);
@@ -714,7 +719,7 @@ public class Interface extends JDialog {
 					label6_GC.setVisible(false);
 					textField6_GC.setVisible(false);
 				} else {
-					
+
 					firstOfThird_GC.setVisible(true);
 					secondOfThird_GC.setVisible(true);
 					textField5_GC.setVisible(true);
@@ -837,19 +842,19 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel.gridx = 1;
 		gbc_lblNewLabel.gridy = 5;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		JButton btnNewButton_2 = new JButton("Escolher diretório");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser diretorio = new JFileChooser();
 				diretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				
+
 				int returnValue = diretorio.showOpenDialog(null);
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
-				selectedFile = diretorio.getSelectedFile();
-				lblNewLabel.setText(selectedFile.getAbsolutePath());
-				
-				percorrer();
+					selectedFile = diretorio.getSelectedFile();
+					lblNewLabel.setText(selectedFile.getAbsolutePath());
+
+					percorrer();
 				}
 			}
 		});
@@ -858,9 +863,9 @@ public class Interface extends JDialog {
 		gbc_btnNewButton_2.gridx = 3;
 		gbc_btnNewButton_2.gridy = 5;
 		getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
-		
-		
-		
+
+
+
 		JButton btnNewButton_3 = new JButton("Criar Excel");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -880,10 +885,10 @@ public class Interface extends JDialog {
 				for(int aux: LOC_métodos)
 					soma+=aux;
 				lblNewLabel_8.setText(Integer.toString(soma));
-				
+
 				DefaultTableModel defaultValues = new DefaultTableModel(getValues(), new String[] {
 						"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
-				
+
 				scrollPane = new JScrollPane();
 				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 				gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -892,85 +897,121 @@ public class Interface extends JDialog {
 				gbc_scrollPane.gridx = 1;
 				gbc_scrollPane.gridy = 10;
 				getContentPane().add(scrollPane, gbc_scrollPane);
-				
+
 				table = new JTable(defaultValues);
 				JTableHeader header = table.getTableHeader();
 				header.setReorderingAllowed(false);
 				header.setBackground(Color.LIGHT_GRAY);
 				scrollPane.setViewportView(table);
-				
-				
-				
+
+
+
 			}
 		});
-		
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_3.gridx = 5;
 		gbc_btnNewButton_3.gridy = 5;
 		getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
-		
+
+
+
+		btnNewButton = new JButton("Aplicar Regras");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Regra regra1 = new Regra("regra1", "LOC_method>50 && CYCLO_method>10", true, 0);
+				Regra regra2 = new Regra("regra2", "WMC_class>50 || NOM_class>10", false, 1);
+				try {
+//					verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), null, null);  //ESTES VALORES A NULL É PARA SE COLOCAREM AS REGRAS SELECIONADAS
+					verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), regra1, regra2);
+				} catch (EncryptedDocumentException | IOException | ScriptException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				DefaultTableModel defaultValues = new DefaultTableModel(getValues(), new String[] {
+						"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
+
+				table = new JTable(defaultValues);
+				JTableHeader header = table.getTableHeader();
+				header.setReorderingAllowed(false);
+				header.setBackground(Color.LIGHT_GRAY);
+				scrollPane.setViewportView(table);
+
+
+
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 8;
+		gbc_btnNewButton.gridy = 5;
+		getContentPane().add(btnNewButton, gbc_btnNewButton);
+
+
+
+
 		lblNewLabel_2 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 2;
 		gbc_lblNewLabel_2.gridy = 6;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Número de Packages:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
 		gbc_lblNewLabel_1.gridy = 6;
 		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		lblNewLabel_4 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 2;
 		gbc_lblNewLabel_4.gridy = 7;
 		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Número de classes:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 1;
 		gbc_lblNewLabel_3.gridy = 7;
 		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
+
 		lblNewLabel_6 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 2;
 		gbc_lblNewLabel_6.gridy = 8;
 		getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Número de métodos:");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 1;
 		gbc_lblNewLabel_5.gridy = 8;
 		getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
-		
+
 		lblNewLabel_8 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
 		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_8.gridx = 2;
 		gbc_lblNewLabel_8.gridy = 9;
 		getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Número de linhas de código:");
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_7.gridx = 1;
 		gbc_lblNewLabel_7.gridy = 9;
 		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
-		
-		
-		
-		
+
+
+
+
 	}
-	
+
 	private void makeVisibleLM() {
 		SaveButton_LM.setEnabled(false);
 		textFieldNome_LM.setEnabled(true);
@@ -1011,14 +1052,14 @@ public class Interface extends JDialog {
 		second_GC_And_Or.setEnabled(b);
 		isTrueFalse_GC.setEnabled(b);
 	}
-	
+
 	private void criarExcel(String nome) throws FileNotFoundException, IOException {
 		Workbook xlsxWorkbook = new XSSFWorkbook();
 		Sheet sheet1 = xlsxWorkbook.createSheet(nome);
 		CellStyle style = xlsxWorkbook.createCellStyle();
 		xlsxWorkbook.write(new FileOutputStream( nome + ".xlsx" ));
 	}
-	
+
 	public void percorrer(){
 		caminhoFicheiros = new ArrayList<String>();
 		String[] aux = selectedFile.getAbsolutePath().replace("\\","/").split("/");
@@ -1031,7 +1072,7 @@ public class Interface extends JDialog {
 			}
 		}
 	}
-	
+
 	private void percorrerDiretorio(File f){
 		for(File ficheiro: f.listFiles()){
 			String s = f.getAbsolutePath().replace("\\","/");
@@ -1047,7 +1088,7 @@ public class Interface extends JDialog {
 			}	
 		}
 	}
-	
+
 	private void percorrerFicheiro(File f){
 		if(f.getAbsolutePath().endsWith(".java")){
 			caminhoFicheiros.add(f.getAbsolutePath());
@@ -1057,7 +1098,7 @@ public class Interface extends JDialog {
 	public ArrayList<String> getCaminhoFicheiros(){
 		return caminhoFicheiros;
 	}
-	
+
 	public File getSelectedFile() {
 		return selectedFile;
 	}
@@ -1065,7 +1106,7 @@ public class Interface extends JDialog {
 	public void setSelectedFile(File selectedFile) {
 		this.selectedFile = selectedFile;
 	}
-	
+
 	private Object[][] getValues(){
 		Ficheiro f = new Ficheiro(excel.getProjeto_name()+".xlsx");
 		int height = f.getLista().size();
@@ -1087,5 +1128,5 @@ public class Interface extends JDialog {
 		System.out.println(matrix);
 		return matrix;
 	}
-	
+
 }

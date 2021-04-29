@@ -484,7 +484,7 @@ public class EscreverMétricasParaExcel {
 		    classNameVisitor.visit(cu,className);
 		    
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.nomeClasses.add(className.get(0));
+				this.nomeClasses.add(className.get(className.size()-1));
 			}
 			rep++;
 		}
