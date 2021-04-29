@@ -30,6 +30,7 @@ import com.github.javaparser.symbolsolver.javaparsermodel.declarations.JavaParse
 
 public class EscreverMétricasParaExcel {
 
+	
 	//Atributos
 
 	private ArrayList<String> classes;
@@ -484,7 +485,11 @@ public class EscreverMétricasParaExcel {
 		    classNameVisitor.visit(cu,className);
 		    
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.nomeClasses.add(className.get(className.size()-1));
+				String s = className.get(className.size()-1);
+				for(int j=className.size()-2; j>=0; j--) {
+					s = s + "." + className.get(j);
+				}
+				this.nomeClasses.add(s);
 			}
 			rep++;
 		}
@@ -495,16 +500,16 @@ public class EscreverMétricasParaExcel {
 
 	//Testar
 
-	public static void main(String[] args) throws IOException {
-
-		ArrayList<String> lista = new ArrayList<String>();
-		String s = "ficheiro_excel";
+//	public static void main(String[] args) throws IOException {
+//
+//		ArrayList<String> lista = new ArrayList<String>();
+//		String s = "ficheiro_excel";
 //		String app = "C:/Users/David Gabriel/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-		lista.add(s);
-		lista.add(app);
-		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
-		a.escreverNomeDoFicheiro();
-
-	}
+//		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
+//		lista.add(s);
+//		lista.add(app);
+//		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
+//		a.escreverNomeDoFicheiro();
+//
+//	}
 }

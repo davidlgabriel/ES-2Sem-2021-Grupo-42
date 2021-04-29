@@ -17,7 +17,7 @@ public class LerFicheiro {
 	
 	private XSSFSheet sheet;
 	
-	private List<Linha> lista = new ArrayList<Linha>();
+	private List<Linha> lista;
 	
 	public LerFicheiro(String nomeFicheiro){
 		try {
@@ -54,12 +54,12 @@ public class LerFicheiro {
 
 	
 	public List<Linha> lerTodasLinhas(){
+		lista = new ArrayList<Linha>();
 		int ultimaLinha = sheet.getLastRowNum();
 		for(int i = 1; i<=ultimaLinha; i++){
 			Linha linha= lerLinha(i);
 			lista.add(linha);
 		}
-	
 		return lista;
 	}
 
