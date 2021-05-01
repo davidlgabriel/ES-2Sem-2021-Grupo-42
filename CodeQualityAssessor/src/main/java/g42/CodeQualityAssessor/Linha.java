@@ -10,7 +10,7 @@ public class Linha {
 	private int NOM_Class;
 	private int LOC_Class;
 	private int WMC_Class;
-	private boolean is_God_Class ;
+	private boolean is_God_Class;
 	private int LOC_Method;
 	private int Cyclo_Method; 
 	private boolean is_Long_Method;
@@ -82,7 +82,4 @@ public class Linha {
 	}
 	
 	
-
-
-
 }

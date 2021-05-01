@@ -871,7 +871,7 @@ public class Interface extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				excel = new EscreverMétricasParaExcel(caminhoFicheiros);
 				try {
-					excel.escreverNomeDoFicheiro();
+					excel.escreverNoFicheiro();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1125,7 +1125,6 @@ public class Interface extends JDialog {
 			matrix[i][9] = row.getCyclo_Method();
 			matrix[i][10] = row.isIs_Long_Method();
 		}
-		System.out.println(matrix);
 		return matrix;
 	}
 

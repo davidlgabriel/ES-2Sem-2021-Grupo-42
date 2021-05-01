@@ -21,14 +21,12 @@ class LinhaTest {
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
 		objeto = new EscreverMétricasParaExcel(array);
-		objeto.escreverNomeDoFicheiro();
+		objeto.escreverNoFicheiro();
 		ler = new LerFicheiro(objeto.getProjeto_name()+".xlsx");
 	}
 
 	@Test
 	final void testGetMethodID() {
-		System.out.println(ler.lerLinha(1).toString());
-		System.out.println(ler.lerTodasLinhas().get(0));
 		assertEquals(1, ler.lerTodasLinhas().get(0).getMethodID());
 	}
 	

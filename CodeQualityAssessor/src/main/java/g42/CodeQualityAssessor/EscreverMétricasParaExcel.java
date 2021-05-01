@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.instrument.ClassDefinition;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,11 +20,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.body.AnnotationDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.github.javaparser.ast.expr.ClassExpr;
+import com.github.javaparser.ast.stmt.LocalClassDeclarationStmt;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.symbolsolver.javaparsermodel.declarations.JavaParserClassDeclaration;
@@ -52,6 +56,7 @@ public class EscreverMétricasParaExcel {
 	private String projeto_name;
 	private int numberClasses;
 
+	
 	//Construtor
 
 	public EscreverMétricasParaExcel(ArrayList<String> classes) {
@@ -144,7 +149,10 @@ public class EscreverMétricasParaExcel {
 
 	//Métodos
 
-	public void escreverNomeDoFicheiro() throws FileNotFoundException, IOException {
+	public void escreverNoFicheiro() throws FileNotFoundException, IOException {
+		
+//		testar();
+		
 		NOM_class();
 		LOC_class();
 		WMC_class();
@@ -194,64 +202,23 @@ public class EscreverMétricasParaExcel {
 		System.out.println("Excel criado com sucesso!!");
 		
 	}
+	
 
-
-	private static class ConstructorCollector extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(ConstructorDeclaration md, List<String> collector) {
-			super.visit(md, collector);
-			collector.add(md.toString());
-		}
-	}
-
-	private static class MethodCollector extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(MethodDeclaration md, List<String> collector) {
-			super.visit(md, collector);
-			collector.add(md.toString());
-		}
-	}
-
-	private static class ConstructorNameCollector extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(ConstructorDeclaration md, List<String> collector) {
-			super.visit(md,collector);
-			collector.add(md.getNameAsString());
-		}
-	}
-
-	private static class MethodNameCollector extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(MethodDeclaration md, List<String> collector) {
-			super.visit(md,collector);
-			collector.add(md.getNameAsString());
-		}
-	}
-
-	private static class NamePackage extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(PackageDeclaration md, List<String> collector) {
-			super.visit(md,collector);
-			collector.add(md.getNameAsString());
-		}
-	}
-	private static class NameConstructor extends VoidVisitorAdapter<List<String>> {
-
-		@Override
-		public void visit(ConstructorDeclaration md, List<String> collector) {
-			super.visit(md,collector);
-			collector.add(md.getDeclarationAsString());
-		}
-	}
+	
+	
 	private static class NameMethod extends VoidVisitorAdapter<List<String>> {
 
 		@Override
 		public void visit(MethodDeclaration md, List<String> collector) {
+			super.visit(md,collector);
+			collector.add(md.getDeclarationAsString());
+		}
+	}
+	
+	private static class NameConstructor extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(ConstructorDeclaration md, List<String> collector) {
 			super.visit(md,collector);
 			collector.add(md.getDeclarationAsString());
 		}
@@ -286,6 +253,16 @@ public class EscreverMétricasParaExcel {
 
 		}
 	}
+	
+	
+	private static class NamePackage extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(PackageDeclaration md, List<String> collector) {
+			super.visit(md,collector);
+			collector.add(md.getNameAsString());
+		}
+	}
 
 	public void retirarNomePackages() throws FileNotFoundException {
 		int rep =0;
@@ -302,7 +279,26 @@ public class EscreverMétricasParaExcel {
 
 		}
 	}
+	
+	
+	private static class ConstructorNameCollector extends VoidVisitorAdapter<List<String>> {
 
+		@Override
+		public void visit(ConstructorDeclaration md, List<String> collector) {
+			super.visit(md,collector);
+			collector.add(md.getNameAsString());
+		}
+	}
+
+	private static class MethodNameCollector extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(MethodDeclaration md, List<String> collector) {
+			super.visit(md,collector);
+			collector.add(md.getNameAsString());
+		}
+	}
+	
 	public void NOM_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {		
 			File ficheiroClasse = new File(caminhoClasse);	
@@ -332,6 +328,34 @@ public class EscreverMétricasParaExcel {
 	}
 	
 	
+	
+	
+//	private static class InnerClassCollector extends VoidVisitorAdapter<List<String>> {
+//
+//		@Override
+//		public void visit(LocalClassDeclarationStmt md, List<String> collector) {
+//			super.visit(md, collector);
+//			System.out.println(md.toString());
+//			collector.add(md.toString());
+//			System.out.println(collector.get(0));
+//		}
+//	}
+//	
+//	public void testar() throws FileNotFoundException {
+//		
+//		for (String caminhoClasse : this.classes) {											
+//			List<String> className = new ArrayList<>();
+//		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
+//		    VoidVisitor<List<String>> InnerClassVisitor = new InnerClassCollector();
+//		    InnerClassVisitor.visit(cu,className);
+//		    System.out.println(className);
+//	
+//		}
+//	}
+	
+	
+	
+
 	private static class ClassCollector extends VoidVisitorAdapter<List<String>> {
 
 		@Override
@@ -340,7 +364,6 @@ public class EscreverMétricasParaExcel {
 			collector.add(md.toString());
 		}
 	}
-
 
 	public void LOC_class() throws FileNotFoundException {
 		int rep =0; 
@@ -369,6 +392,26 @@ public class EscreverMétricasParaExcel {
 	}
 
 
+	private static class MethodCollector extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(MethodDeclaration md, List<String> collector) {
+			super.visit(md, collector);
+//			System.out.println(md.toString());
+			collector.add(md.toString());
+//			System.out.println(collector.get(0));
+		}
+	}
+	
+	private static class ConstructorCollector extends VoidVisitorAdapter<List<String>> {
+
+		@Override
+		public void visit(ConstructorDeclaration md, List<String> collector) {
+			super.visit(md, collector);
+			collector.add(md.toString());
+		}
+	}
+	
 	public void WMC_class() throws FileNotFoundException {
 		int rep =0;
 		for (String caminhoClasse : this.classes) {			
@@ -474,7 +517,6 @@ public class EscreverMétricasParaExcel {
 	    }
 	}
 
-
 	public void retirarNomeClasses() throws FileNotFoundException {
 		
 		int rep =0;
@@ -483,7 +525,7 @@ public class EscreverMétricasParaExcel {
 		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
 		    VoidVisitor<List<String>> classNameVisitor = new ClassNameCollector();
 		    classNameVisitor.visit(cu,className);
-		    
+//		    System.out.println(className);
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
 				String s = className.get(className.size()-1);
 				for(int j=className.size()-2; j>=0; j--) {

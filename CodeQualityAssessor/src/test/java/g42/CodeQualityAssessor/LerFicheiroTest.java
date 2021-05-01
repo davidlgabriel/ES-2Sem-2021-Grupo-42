@@ -22,7 +22,7 @@ class LerFicheiroTest {
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
 		objeto = new EscreverMétricasParaExcel(array);
-		objeto.escreverNomeDoFicheiro();
+		objeto.escreverNoFicheiro();
 		ficheiro = new Ficheiro(objeto.getProjeto_name()+".xlsx");
 		ler = new LerFicheiro(objeto.getProjeto_name()+".xlsx");
 	}
