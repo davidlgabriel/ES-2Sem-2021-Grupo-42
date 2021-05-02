@@ -176,6 +176,15 @@ public class Interface extends JDialog {
 		gbc_textField1_LM.gridx = 7;
 		gbc_textField1_LM.gridy = 0;
 		getContentPane().add(textField1_LM, gbc_textField1_LM);
+		textField1_LM.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		label1_LM = new JLabel("AND");
 		label1_LM.setHorizontalAlignment(SwingConstants.CENTER);
@@ -195,6 +204,15 @@ public class Interface extends JDialog {
 		gbc_textField2_LM.gridx = 9;
 		gbc_textField2_LM.gridy = 0;
 		getContentPane().add(textField2_LM, gbc_textField2_LM);
+		textField2_LM.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		// LM SECOND 1
 		firstOfSecond_LM = new JComboBox(new String[] { "LOC_method", "CYCLO_method" });
@@ -283,6 +301,8 @@ public class Interface extends JDialog {
 					textField3_LM.setVisible(false);
 					label5_LM.setVisible(false);
 					textField4_LM.setVisible(false);
+					textField3_LM.setText("");
+					textField4_LM.setText("");
 
 				} else {
 					firstOfSecond_LM.setVisible(true);
@@ -366,6 +386,15 @@ public class Interface extends JDialog {
 		gbc_textField3_LM.gridx = 7;
 		gbc_textField3_LM.gridy = 1;
 		getContentPane().add(textField3_LM, gbc_textField3_LM);
+		textField3_LM.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		label5_LM = new JLabel("AND");
 		label5_LM.setHorizontalAlignment(SwingConstants.CENTER);
@@ -386,6 +415,15 @@ public class Interface extends JDialog {
 		gbc_textField4_LM.gridx = 9;
 		gbc_textField4_LM.gridy = 1;
 		getContentPane().add(textField4_LM, gbc_textField4_LM);
+		textField4_LM.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		textFieldNome_LM = new JTextField();
 		textFieldNome_LM.setEnabled(false);
@@ -471,6 +509,15 @@ public class Interface extends JDialog {
 		gbc_textField1_GC.gridx = 7;
 		gbc_textField1_GC.gridy = 3;
 		getContentPane().add(textField1_GC, gbc_textField1_GC);
+		textField1_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		label1_GC = new JLabel("AND");
 		label1_GC.setHorizontalAlignment(SwingConstants.CENTER);
@@ -490,6 +537,15 @@ public class Interface extends JDialog {
 		gbc_textField2_GC.gridx = 9;
 		gbc_textField2_GC.gridy = 3;
 		getContentPane().add(textField2_GC, gbc_textField2_GC);
+		textField2_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		GC_And_Or = new JComboBox(new String[] { "", "AND", "OR" });
 		GC_And_Or.addActionListener(new ActionListener() {
@@ -501,6 +557,16 @@ public class Interface extends JDialog {
 					label5_GC.setVisible(false);
 					textField4_GC.setVisible(false);
 					second_GC_And_Or.setVisible(false);
+					firstOfThird_GC.setVisible(false);
+					secondOfThird_GC.setVisible(false);
+					textField5_GC.setVisible(false);
+					label6_GC.setVisible(false);
+					textField6_GC.setVisible(false);
+					textField6_GC.setText("");
+					textField3_GC.setText("");
+					textField4_GC.setText("");
+					textField5_GC.setText("");
+					textField6_GC.setText("");
 				} else {
 					firstOfSecond_GC.setVisible(true);
 					secondOfSecond_GC.setVisible(true);
@@ -674,6 +740,15 @@ public class Interface extends JDialog {
 		gbc_textField3_GC.gridx = 7;
 		gbc_textField3_GC.gridy = 4;
 		getContentPane().add(textField3_GC, gbc_textField3_GC);
+		textField3_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		label5_GC = new JLabel("AND");
 		label5_GC.setHorizontalAlignment(SwingConstants.CENTER);
@@ -695,6 +770,15 @@ public class Interface extends JDialog {
 		gbc_textField4_GC.gridx = 9;
 		gbc_textField4_GC.gridy = 4;
 		getContentPane().add(textField4_GC, gbc_textField4_GC);
+		textField4_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		// GC Second 3
 		second_GC_And_Or = new JComboBox(new String[] { "", "AND", "OR" });
@@ -706,6 +790,8 @@ public class Interface extends JDialog {
 					textField5_GC.setVisible(false);
 					label6_GC.setVisible(false);
 					textField6_GC.setVisible(false);
+					textField5_GC.setText("");
+					textField6_GC.setText("");
 				} else {
 					
 					firstOfThird_GC.setVisible(true);
@@ -805,6 +891,15 @@ public class Interface extends JDialog {
 		gbc_textField5_GC.gridy = 5;
 		getContentPane().add(textField5_GC, gbc_textField5_GC);
 		textField5_GC.setColumns(10);
+		textField5_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 
 		label6_GC = new JLabel("AND");
 		label6_GC.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -830,6 +925,15 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel.gridx = 3;
 		gbc_lblNewLabel.gridy = 8;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		textField6_GC.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9'))
+                        && (caracter != '\b')) {
+                    e.consume();
+                }
+            }
+        });
 		
 		JButton btnNewButton_2 = new JButton("Escolher diretório");
 		btnNewButton_2.addActionListener(new ActionListener() {
