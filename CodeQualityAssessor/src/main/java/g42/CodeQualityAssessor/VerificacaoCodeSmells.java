@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -25,16 +26,84 @@ public class VerificacaoCodeSmells {
 	private String projeto_name;
 	private Regra regra_long_method;
 	private Regra regra_god_class;
+	private int verdadeiros_positivos;
+	private int falsos_positivos;
+	private int verdadeiros_negativos;
+	private int falsos_negativos;
+	private HashMap <String,CodeSmellMetodo> codeSmellsMetodos = new HashMap<>();
 	
 	public VerificacaoCodeSmells(String projeto_name, Regra regra_long_method, Regra regra_god_class) throws EncryptedDocumentException, IOException, ScriptException {
-		super();
 		this.projeto_name = projeto_name;
 		this.regra_long_method = regra_long_method;
 		this.regra_god_class = regra_god_class;
-		percorrerFicheiro();
+		this.verdadeiros_positivos=0;
+		this.falsos_positivos=0;
+		this.verdadeiros_negativos=0;
+		this.falsos_negativos=0;
+		verificarCodeSmells();
+		verificarIndicadores();
+		System.out.println(verdadeiros_positivos);
+		System.out.println(falsos_positivos);
+		System.out.println(verdadeiros_negativos);
+		System.out.println(falsos_negativos);
 	}
 	
-	private void percorrerFicheiro() throws EncryptedDocumentException, IOException, ScriptException{
+	private void verificarIndicadores() throws EncryptedDocumentException, IOException {
+		percorrerFicheiro_CodeSmells();
+		InputStream inp = new FileInputStream(projeto_name+".xlsx");
+		Workbook wb = WorkbookFactory.create(inp);
+	    Sheet sheet = wb.getSheet(projeto_name);
+	    for(int i=1; i<= sheet.getLastRowNum(); i++){
+	    	Row row = sheet.getRow(i);
+	    	String pacote = row.getCell(1).getStringCellValue();
+	    	String classe = row.getCell(2).getStringCellValue();
+	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
+	    	CodeSmellMetodo codeSmellMetodo = codeSmellsMetodos.get(pacote+classe+metodo);
+	    	boolean is_God_Class = row.getCell(7).getBooleanCellValue();
+		    boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
+		    if(codeSmellMetodo==null)
+		    	System.out.println(i);
+		    verificarIndicador(is_God_Class,codeSmellMetodo.getIs_God_Class());
+		    verificarIndicador(is_Long_Method,codeSmellMetodo.getIs_Long_Method());
+	    }
+	}
+
+	private void verificarIndicador(boolean valorVerificacao, boolean valorCodeSmell) {
+		if(valorVerificacao) {
+			if(valorCodeSmell)
+				this.verdadeiros_positivos++;
+			else
+				this.falsos_positivos++;
+		}else{
+			if(valorCodeSmell)
+				this.falsos_negativos++;
+			else
+				this.verdadeiros_negativos++;
+		}
+	}
+
+	private void percorrerFicheiro_CodeSmells() throws EncryptedDocumentException, IOException {
+		InputStream inp = new FileInputStream("Code_Smells.xlsx");
+		Workbook wb = WorkbookFactory.create(inp);
+	    Sheet sheet = wb.getSheet("Code Smells");
+	    for(int i=1; i<= sheet.getLastRowNum(); i++){
+	    	Row row = sheet.getRow(i);
+	    	String pacote = row.getCell(1).getStringCellValue();
+	    	String classe = row.getCell(2).getStringCellValue();
+	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
+	    	if(row.getCell(7).getCellType().toString().equals("BOOLEAN") && row.getCell(10).getCellType().toString().equals("BOOLEAN")) {
+	    		boolean is_God_Class = row.getCell(7).getBooleanCellValue();
+		    	boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
+		    	
+		    	CodeSmellMetodo codeSmellMetodo = new CodeSmellMetodo(pacote+classe+metodo,is_God_Class,is_Long_Method);
+		    	System.out.println(codeSmellMetodo.getpacote_classe_metodo());
+		    	
+		    	this.codeSmellsMetodos.put(pacote+classe+metodo, codeSmellMetodo);
+	    	}
+	    }
+	}
+
+	private void verificarCodeSmells() throws EncryptedDocumentException, IOException, ScriptException{
 		InputStream inp = new FileInputStream(projeto_name + ".xlsx");
 		Workbook wb = WorkbookFactory.create(inp);
 	    Sheet sheet = wb.getSheet(projeto_name);
@@ -89,10 +158,12 @@ public class VerificacaoCodeSmells {
 		}
 	}
 	
+	
+	
 	public static void main(String[] args) throws EncryptedDocumentException, IOException, ScriptException {
 		Regra regra1 = new Regra("regra1", "LOC_method>50 && CYCLO_method>10", true, 0);
 		Regra regra2 = new Regra("regra2", "WMC_class>50 || NOM_class>10", false, 1);
-		VerificacaoCodeSmells v = new VerificacaoCodeSmells("Projeto", regra1, regra2);
+		VerificacaoCodeSmells v = new VerificacaoCodeSmells("jasml_0.10", regra1, regra2);
 		
 	}
 	
