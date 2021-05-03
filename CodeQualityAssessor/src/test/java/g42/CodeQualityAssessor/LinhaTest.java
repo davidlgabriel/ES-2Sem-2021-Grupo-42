@@ -27,22 +27,22 @@ class LinhaTest {
 
 	@Test
 	final void testGetMethodID() {
-		assertEquals(1, ler.lerTodasLinhas().get(0).getMethodID());
+		assertEquals(1, ler.lerTodasLinhas().get(0).getIdMetodo());
 	}
 	
 	@Test
 	final void testGetPackageNome() {
-		assertTrue(ler.lerTodasLinhas().get(0).getPackageNome().equals("com.jasml.classes"));
+		assertTrue(ler.lerTodasLinhas().get(0).getNomePacote().equals("com.jasml.classes"));
 	}
 	
 	@Test
 	final void testGetClassNome() {
-		assertTrue(ler.lerTodasLinhas().get(0).getClassNome().equals("Attribute"));
+		assertTrue(ler.lerTodasLinhas().get(0).getNomeClasse().equals("Attribute"));
 	}
 	
 	@Test
 	final void testGetMethodNome() {
-		assertTrue(ler.lerTodasLinhas().get(0).getMethodNome().equals("Attribute(byte attrTag, int attrLength)"));
+		assertTrue(ler.lerTodasLinhas().get(0).getNomeMetodo().equals("Attribute(byte attrTag, int attrLength)"));
 	}
 	
 	@Test
