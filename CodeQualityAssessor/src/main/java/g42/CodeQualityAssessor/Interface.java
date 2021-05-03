@@ -886,7 +886,7 @@ public class Interface extends JDialog {
 					soma+=aux;
 				lblNewLabel_8.setText(Integer.toString(soma));
 
-				DefaultTableModel defaultValues = new DefaultTableModel(getValues(), new String[] {
+				DefaultTableModel defaultValues = new DefaultTableModel(getValores(), new String[] {
 						"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
 
 				scrollPane = new JScrollPane();
@@ -929,7 +929,7 @@ public class Interface extends JDialog {
 					e1.printStackTrace();
 				}
 
-				DefaultTableModel defaultValues = new DefaultTableModel(getValues(), new String[] {
+				DefaultTableModel defaultValues = new DefaultTableModel(getValores(), new String[] {
 						"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
 
 				table = new JTable(defaultValues);
@@ -1107,16 +1107,16 @@ public class Interface extends JDialog {
 		this.selectedFile = selectedFile;
 	}
 
-	private Object[][] getValues(){
+	private Object[][] getValores(){
 		Ficheiro f = new Ficheiro(excel.getProjeto_name()+".xlsx");
-		int height = f.getLista().size();
+		int height = f.getListaLinhas().size();
 		Object[][] matrix = new Object[height][11];
 		for (int i = 0; i < height; i++){
-			Linha row = f.getLista().get(i);
-			matrix[i][0] = row.getMethodID();
-			matrix[i][1] = row.getPackageNome();
-			matrix[i][2] = row.getClassNome();
-			matrix[i][3] = row.getMethodNome();
+			Linha row = f.getListaLinhas().get(i);
+			matrix[i][0] = row.getIdMetodo();
+			matrix[i][1] = row.getNomePacote();
+			matrix[i][2] = row.getNomeClasse();
+			matrix[i][3] = row.getNomeMetodo();
 			matrix[i][4] = row.getNOM_Class();
 			matrix[i][5] = row.getLOC_Class();
 			matrix[i][6] = row.getWMC_Class();

@@ -9,7 +9,7 @@ public class Ficheiro {
 
 	private String nomeFicheiro;
 	
-	private List<Linha> lista = new ArrayList<Linha>();
+	private List<Linha> listaLinhas = new ArrayList<Linha>();
 	
 	public Ficheiro(String fileName){
 		this.nomeFicheiro = fileName;
@@ -18,15 +18,15 @@ public class Ficheiro {
 	
 	private void lerFicheiro(){
 		LerFicheiro file = new LerFicheiro(nomeFicheiro);
-		lista = file.lerTodasLinhas();
+		listaLinhas = file.lerTodasLinhas();
 	}
 	
 	public String getNomeFicheiro(){
 		return nomeFicheiro;
 	}
 	
-	public List<Linha> getLista() {
-		return lista;
+	public List<Linha> getListaLinhas() {
+		return listaLinhas;
 	}
 	
 }

@@ -3,10 +3,10 @@ package g42.CodeQualityAssessor;
 public class Linha {
 
 
-	private int methodID;
-	private String packageNome;
-	private String classNome;
-	private String methodNome;
+	private int idMetodo;
+	private String nomePacote;
+	private String nomeClasse;
+	private String nomeMetodo;
 	private int NOM_Class;
 	private int LOC_Class;
 	private int WMC_Class;
@@ -15,34 +15,37 @@ public class Linha {
 	private int Cyclo_Method; 
 	private boolean is_Long_Method;
 
-	public Linha(int methodID, String packageNome, String classNome, String methodNome, int nOM_Class, int lOC_Class,int wMC_Class, boolean is_God_Class, int lOC_Method, int cyclo_Method, boolean is_Long_Method) {
-		this.methodID = methodID;
-		this.packageNome = packageNome;
-		this.classNome = classNome;
-		this.methodNome = methodNome;
-		this.NOM_Class = nOM_Class;
-		this.LOC_Class = lOC_Class;
-		this.WMC_Class = wMC_Class;
+
+	public Linha(int idMetodo, String nomePacote, String nomeClasse, String nomeMetodo, int nOM_Class, int lOC_Class,
+			int wMC_Class, boolean is_God_Class, int lOC_Method, int cyclo_Method, boolean is_Long_Method) {
+		super();
+		this.idMetodo = idMetodo;
+		this.nomePacote = nomePacote;
+		this.nomeClasse = nomeClasse;
+		this.nomeMetodo = nomeMetodo;
+		NOM_Class = nOM_Class;
+		LOC_Class = lOC_Class;
+		WMC_Class = wMC_Class;
 		this.is_God_Class = is_God_Class;
-		this.LOC_Method = lOC_Method;
-		this.Cyclo_Method = cyclo_Method;
+		LOC_Method = lOC_Method;
+		Cyclo_Method = cyclo_Method;
 		this.is_Long_Method = is_Long_Method;
 	}
 
-	public int getMethodID() {
-		return methodID;
+	public int getIdMetodo() {
+		return idMetodo;
 	}
 
-	public String getPackageNome() {
-		return packageNome;
+	public String getNomePacote() {
+		return nomePacote;
 	}
 
-	public String getClassNome() {
-		return classNome;
+	public String getNomeClasse() {
+		return nomeClasse;
 	}
 
-	public String getMethodNome() {
-		return methodNome;
+	public String getNomeMetodo() {
+		return nomeMetodo;
 	}
 
 	public int getNOM_Class() {
@@ -73,10 +76,11 @@ public class Linha {
 		return is_Long_Method;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Linha [methodID=" + methodID + ", packageNome=" + packageNome + ", classNome=" + classNome
-				+ ", methodNome=" + methodNome + ", NOM_Class=" + NOM_Class + ", LOC_Class=" + LOC_Class
+		return "Linha [idMetodo=" + idMetodo + ", nomePacote=" + nomePacote + ", nomeClasse=" + nomeClasse
+				+ ", nomeMetodo=" + nomeMetodo + ", NOM_Class=" + NOM_Class + ", LOC_Class=" + LOC_Class
 				+ ", WMC_Class=" + WMC_Class + ", is_God_Class=" + is_God_Class + ", LOC_Method=" + LOC_Method
 				+ ", Cyclo_Method=" + Cyclo_Method + ", is_Long_Method=" + is_Long_Method + "]";
 	}

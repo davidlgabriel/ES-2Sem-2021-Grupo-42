@@ -17,7 +17,7 @@ public class LerFicheiro {
 	
 	private XSSFSheet sheet;
 	
-	private List<Linha> lista;
+	private List<Linha> listaLinhas;
 	
 	public LerFicheiro(String nomeFicheiro){
 		try {
@@ -32,10 +32,10 @@ public class LerFicheiro {
 	
 	public Linha lerLinha(int linha_a_Ler){
 		XSSFRow linha = sheet.getRow(linha_a_Ler); 
-		int methodID = (int)linha.getCell(0).getNumericCellValue();
-		String packageNome = linha.getCell(1).getStringCellValue();
-		String classNome = linha.getCell(2).getStringCellValue();
-		String methodNome = linha.getCell(3).getStringCellValue();
+		int idMetodo = (int)linha.getCell(0).getNumericCellValue();
+		String nomePacote = linha.getCell(1).getStringCellValue();
+		String nomeClasse = linha.getCell(2).getStringCellValue();
+		String nomeMetodo = linha.getCell(3).getStringCellValue();
 		int NOM_Class = (int)linha.getCell(4).getNumericCellValue();
 		int LOC_Class = (int)linha.getCell(5).getNumericCellValue();
 		int WMC_Class = (int)linha.getCell(6).getNumericCellValue();
@@ -49,18 +49,18 @@ public class LerFicheiro {
 		if (!linha.getCell(10).getCellType().toString().equals("STRING")) {
 			 is_Long_Method = linha.getCell(10).getBooleanCellValue();
 		}
-		return new Linha(methodID, packageNome, classNome, methodNome, NOM_Class, LOC_Class,WMC_Class, is_God_Class, LOC_Method, Cyclo_Method, is_Long_Method);
+		return new Linha(idMetodo, nomePacote, nomeClasse, nomeMetodo, NOM_Class, LOC_Class,WMC_Class, is_God_Class, LOC_Method, Cyclo_Method, is_Long_Method);
 	}
 
 	
 	public List<Linha> lerTodasLinhas(){
-		lista = new ArrayList<Linha>();
+		listaLinhas = new ArrayList<Linha>();
 		int ultimaLinha = sheet.getLastRowNum();
 		for(int i = 1; i<=ultimaLinha; i++){
 			Linha linha= lerLinha(i);
-			lista.add(linha);
+			listaLinhas.add(linha);
 		}
-		return lista;
+		return listaLinhas;
 	}
 
 	

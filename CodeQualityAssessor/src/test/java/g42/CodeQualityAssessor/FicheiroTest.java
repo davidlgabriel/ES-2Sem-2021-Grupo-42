@@ -37,9 +37,9 @@ class FicheiroTest {
 	
 	@Test
 	final void testGetLista() {
-		assertEquals(ler.lerTodasLinhas().size(), ficheiro.getLista().size());
+		assertEquals(ler.lerTodasLinhas().size(), ficheiro.getListaLinhas().size());
 		for(int i=0; i<ler.lerTodasLinhas().size(); i++) {
-			assertTrue(ficheiro.getLista().get(i).toString().equals(ler.lerTodasLinhas().get(i).toString()));
+			assertTrue(ficheiro.getListaLinhas().get(i).toString().equals(ler.lerTodasLinhas().get(i).toString()));
 		}
 	}
 	

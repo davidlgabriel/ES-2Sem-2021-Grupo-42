@@ -29,14 +29,14 @@ class LerFicheiroTest {
 
 	@Test
 	final void testLerLinha() {
-		assertTrue(ler.lerLinha(1).toString().equals(ficheiro.getLista().get(0).toString()));
+		assertTrue(ler.lerLinha(1).toString().equals(ficheiro.getListaLinhas().get(0).toString()));
 	}
 	
 	@Test
 	final void testLerTodasLinhas() {
-		assertEquals(ficheiro.getLista().size(), ler.lerTodasLinhas().size());
-		for(int i=0; i<ficheiro.getLista().size(); i++) {
-			assertTrue(ler.lerTodasLinhas().get(i).toString().equals(ficheiro.getLista().get(i).toString()));
+		assertEquals(ficheiro.getListaLinhas().size(), ler.lerTodasLinhas().size());
+		for(int i=0; i<ficheiro.getListaLinhas().size(); i++) {
+			assertTrue(ler.lerTodasLinhas().get(i).toString().equals(ficheiro.getListaLinhas().get(i).toString()));
 		}
 	}
 
