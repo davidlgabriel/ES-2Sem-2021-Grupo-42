@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.instrument.ClassDefinition;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -20,17 +17,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.PackageDeclaration;
-import com.github.javaparser.ast.body.AnnotationDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
-import com.github.javaparser.ast.body.TypeDeclaration;
-import com.github.javaparser.ast.expr.ClassExpr;
-import com.github.javaparser.ast.stmt.LocalClassDeclarationStmt;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.github.javaparser.symbolsolver.javaparsermodel.declarations.JavaParserClassDeclaration;
 
 public class EscreverMétricasParaExcel {
 
@@ -121,29 +112,6 @@ public class EscreverMétricasParaExcel {
 
 	public ArrayList<Integer> getNOM_class_array(){
 		return NOM_class_array;
-	}
-	private ArrayList<String> getClasses() {
-		return classes;
-	}
-
-	private int getNOM_class() {
-		return NOM_class;
-	}
-
-	private int getLOC_class() {
-		return LOC_class;
-	}
-
-	private int getWMC_class() {
-		return WMC_class;
-	}
-
-	private int getLOC_method() {
-		return LOC_method;
-	}
-
-	private int getCYCLO_method() {
-		return CYCLO_method;
 	}
 
 
@@ -323,34 +291,6 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 	
-	
-	
-	
-//	private static class InnerClassCollector extends VoidVisitorAdapter<List<String>> {
-//
-//		@Override
-//		public void visit(LocalClassDeclarationStmt md, List<String> collector) {
-//			super.visit(md, collector);
-//			System.out.println(md.toString());
-//			collector.add(md.toString());
-//			System.out.println(collector.get(0));
-//		}
-//	}
-//	
-//	public void testar() throws FileNotFoundException {
-//		
-//		for (String caminhoClasse : this.classes) {											
-//			List<String> className = new ArrayList<>();
-//		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
-//		    VoidVisitor<List<String>> InnerClassVisitor = new InnerClassCollector();
-//		    InnerClassVisitor.visit(cu,className);
-//		    System.out.println(className);
-//	
-//		}
-//	}
-	
-	
-	
 
 	private static class ColecionarClasse extends VoidVisitorAdapter<List<String>> {
 
@@ -393,9 +333,7 @@ public class EscreverMétricasParaExcel {
 		@Override
 		public void visit(MethodDeclaration md, List<String> collector) {
 			super.visit(md, collector);
-//			System.out.println(md.toString());
 			collector.add(md.toString());
-//			System.out.println(collector.get(0));
 		}
 	}
 	
@@ -521,33 +459,13 @@ public class EscreverMétricasParaExcel {
 		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
 		    VoidVisitor<List<String>> classNameVisitor = new ColecionarNomeClasse();
 		    classNameVisitor.visit(cu,className);
-//		    System.out.println(className);
 			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				String s = className.get(className.size()-1);
-				for(int j=className.size()-2; j>=0; j--) {
-					s = s + "." + className.get(j);
-				}
-				this.nomeClasses.add(s);
+				this.nomeClasses.add(className.get(className.size()-1));
 			}
 			rep++;
 		}
 		this.numeroClasses=rep;
 	}
 
-
-
-	//Testar
-
-//	public static void main(String[] args) throws IOException {
-//
-//		ArrayList<String> lista = new ArrayList<String>();
-//		String s = "ficheiro_excel";
-//		String app = "C:/Users/David Gabriel/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-//		String app = "C:/Users/dacv2/git/ES-2Sem-2021-Grupo-42/CodeQualityAssessor/src/main/java/g42/CodeQualityAssessor/App.java";
-//		lista.add(s);
-//		lista.add(app);
-//		EscreverMétricasParaExcel a = new EscreverMétricasParaExcel(lista);
-//		a.escreverNomeDoFicheiro();
-//
-//	}
+	
 }

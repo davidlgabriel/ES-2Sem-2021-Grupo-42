@@ -10,25 +10,25 @@ public class Linha {
 	private int NOM_Class;
 	private int LOC_Class;
 	private int WMC_Class;
-	private boolean is_God_Class;
+	private String is_God_Class;
 	private int LOC_Method;
 	private int Cyclo_Method; 
-	private boolean is_Long_Method;
+	private String is_Long_Method;
 
 
 	public Linha(int idMetodo, String nomePacote, String nomeClasse, String nomeMetodo, int nOM_Class, int lOC_Class,
-			int wMC_Class, boolean is_God_Class, int lOC_Method, int cyclo_Method, boolean is_Long_Method) {
+			int wMC_Class, String is_God_Class, int lOC_Method, int cyclo_Method, String is_Long_Method) {
 		super();
 		this.idMetodo = idMetodo;
 		this.nomePacote = nomePacote;
 		this.nomeClasse = nomeClasse;
 		this.nomeMetodo = nomeMetodo;
-		NOM_Class = nOM_Class;
-		LOC_Class = lOC_Class;
-		WMC_Class = wMC_Class;
+		this.NOM_Class = nOM_Class;
+		this.LOC_Class = lOC_Class;
+		this.WMC_Class = wMC_Class;
 		this.is_God_Class = is_God_Class;
-		LOC_Method = lOC_Method;
-		Cyclo_Method = cyclo_Method;
+		this.LOC_Method = lOC_Method;
+		this.Cyclo_Method = cyclo_Method;
 		this.is_Long_Method = is_Long_Method;
 	}
 
@@ -60,7 +60,7 @@ public class Linha {
 		return WMC_Class;
 	}
 
-	public boolean isIs_God_Class() {
+	public String isIs_God_Class() {
 		return is_God_Class;
 	}
 
@@ -72,7 +72,7 @@ public class Linha {
 		return Cyclo_Method;
 	}
 
-	public boolean isIs_Long_Method() {
+	public String isIs_Long_Method() {
 		return is_Long_Method;
 	}
 

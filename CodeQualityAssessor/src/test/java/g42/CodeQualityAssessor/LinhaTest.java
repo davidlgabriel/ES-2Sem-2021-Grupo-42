@@ -16,7 +16,7 @@ class LinhaTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		Interface interf = new Interface();
-		interf.setSelectedFile(new File("C:\\Users\\dacv2\\Desktop\\jasml_0.10"));
+		interf.setSelectedFile(new File("jasml_0.10"));
 		ArrayList<String> array = new ArrayList<String>();
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
@@ -62,7 +62,7 @@ class LinhaTest {
 	
 	@Test
 	final void testIsIs_God_Class() {
-		assertEquals(false, ler.lerTodasLinhas().get(0).isIs_God_Class());
+		assertEquals("", ler.lerTodasLinhas().get(0).isIs_God_Class());
 	}
 	
 	@Test
@@ -77,12 +77,12 @@ class LinhaTest {
 	
 	@Test
 	final void testIsIs_Long_Method() {
-		assertEquals(false, ler.lerTodasLinhas().get(0).isIs_Long_Method());
+		assertEquals("", ler.lerTodasLinhas().get(0).isIs_Long_Method());
 	}
 	
 	@Test
 	final void testToString() {
-		assertTrue(ler.lerTodasLinhas().get(0).toString().equals("Linha [methodID=1, packageNome=com.jasml.classes, classNome=Attribute, methodNome=Attribute(byte attrTag, int attrLength), NOM_Class=2, LOC_Class=32, WMC_Class=4, is_God_Class=false, LOC_Method=8, Cyclo_Method=2, is_Long_Method=false]"));
+		assertTrue(ler.lerTodasLinhas().get(0).toString().equals("Linha [idMetodo=1, nomePacote=com.jasml.classes, nomeClasse=Attribute, nomeMetodo=Attribute(byte attrTag, int attrLength), NOM_Class=2, LOC_Class=32, WMC_Class=4, is_God_Class=, LOC_Method=8, Cyclo_Method=2, is_Long_Method=]"));
 	}
 
 }

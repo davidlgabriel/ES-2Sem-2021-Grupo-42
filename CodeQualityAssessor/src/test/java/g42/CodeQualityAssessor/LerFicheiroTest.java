@@ -17,7 +17,7 @@ class LerFicheiroTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		Interface interf = new Interface();
-		interf.setSelectedFile(new File("C:\\Users\\dacv2\\Desktop\\jasml_0.10"));
+		interf.setSelectedFile(new File("jasml_0.10"));
 		ArrayList<String> array = new ArrayList<String>();
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();

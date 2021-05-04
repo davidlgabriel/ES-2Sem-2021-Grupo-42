@@ -39,16 +39,10 @@ public class LerFicheiro {
 		int NOM_Class = (int)linha.getCell(4).getNumericCellValue();
 		int LOC_Class = (int)linha.getCell(5).getNumericCellValue();
 		int WMC_Class = (int)linha.getCell(6).getNumericCellValue();
-		boolean is_God_Class=false;
-		if (!linha.getCell(7).getCellType().toString().equals("STRING")) {
-			is_God_Class = linha.getCell(7).getBooleanCellValue();
-		}
+		String is_God_Class = linha.getCell(7).getStringCellValue();
 		int LOC_Method = (int)linha.getCell(8).getNumericCellValue();
 		int Cyclo_Method= (int)linha.getCell(9).getNumericCellValue();
-		boolean is_Long_Method =false;
-		if (!linha.getCell(10).getCellType().toString().equals("STRING")) {
-			 is_Long_Method = linha.getCell(10).getBooleanCellValue();
-		}
+		String is_Long_Method = linha.getCell(10).getStringCellValue();
 		return new Linha(idMetodo, nomePacote, nomeClasse, nomeMetodo, NOM_Class, LOC_Class,WMC_Class, is_God_Class, LOC_Method, Cyclo_Method, is_Long_Method);
 	}
 
