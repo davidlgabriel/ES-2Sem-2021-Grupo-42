@@ -4,10 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -19,14 +15,12 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Iterator;
 import java.util.Set;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -1075,7 +1069,7 @@ public class Interface extends JDialog {
 				Regra regra1 = new Regra("regra1", "LOC_method>50 && CYCLO_method>10", true, 0);
 				Regra regra2 = new Regra("regra2", "WMC_class>50 || NOM_class>10", false, 1);
 				try {
-	//					verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), null, null);  //ESTES VALORES A NULL É PARA SE COLOCAREM AS REGRAS SELECIONADAS
+	//				verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), null, null);  //ESTES VALORES A NULL É PARA SE COLOCAREM AS REGRAS SELECIONADAS
 					verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), regra1, regra2);
 				} catch (EncryptedDocumentException | IOException | ScriptException e1) {
 					// TODO Auto-generated catch block
