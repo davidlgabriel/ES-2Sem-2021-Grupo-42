@@ -164,8 +164,8 @@ public class Interface extends JDialog {
 		setBounds(100, 100, 1386, 566);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 18, 37,
-				100, 70, 22, 80, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 30, 35, 35, 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0 };
+				100, 70 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 30, 35, 35, 0, 0, 0, 28, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
