@@ -42,10 +42,6 @@ public class VerificacaoCodeSmells {
 		this.falsos_negativos=0;
 		verificarCodeSmells();
 		verificarIndicadores();
-		System.out.println(verdadeiros_positivos);
-		System.out.println(falsos_positivos);
-		System.out.println(verdadeiros_negativos);
-		System.out.println(falsos_negativos);
 	}
 	
 	private void verificarIndicadores() throws EncryptedDocumentException, IOException {
@@ -59,17 +55,15 @@ public class VerificacaoCodeSmells {
 	    	String classe = row.getCell(2).getStringCellValue();
 	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
 	    	CodeSmellMetodo codeSmellMetodo = codeSmellsMetodos.get(pacote+classe+metodo);
-	    	boolean is_God_Class = row.getCell(7).getBooleanCellValue();
-		    boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
-		    if(codeSmellMetodo==null)
-		    	System.out.println(i);
+	    	String is_God_Class = row.getCell(7).getStringCellValue();
+		    String is_Long_Method = row.getCell(10).getStringCellValue();
 		    verificarIndicador(is_God_Class,codeSmellMetodo.getIs_God_Class());
 		    verificarIndicador(is_Long_Method,codeSmellMetodo.getIs_Long_Method());
 	    }
 	}
 
-	private void verificarIndicador(boolean valorVerificacao, boolean valorCodeSmell) {
-		if(valorVerificacao) {
+	private void verificarIndicador(String valorVerificacao, boolean valorCodeSmell) {
+		if(valorVerificacao.equals("true")) {
 			if(valorCodeSmell)
 				this.verdadeiros_positivos++;
 			else
@@ -86,21 +80,24 @@ public class VerificacaoCodeSmells {
 		InputStream inp = new FileInputStream("Code_Smells.xlsx");
 		Workbook wb = WorkbookFactory.create(inp);
 	    Sheet sheet = wb.getSheet("Code Smells");
+	    int j = 0;
 	    for(int i=1; i<= sheet.getLastRowNum(); i++){
 	    	Row row = sheet.getRow(i);
 	    	String pacote = row.getCell(1).getStringCellValue();
-	    	String classe = row.getCell(2).getStringCellValue();
+	    	String classe = row.getCell(2).getStringCellValue().split("\\.")[0];
 	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
+	    	System.out.println(pacote+classe+metodo);
 	    	if(row.getCell(7).getCellType().toString().equals("BOOLEAN") && row.getCell(10).getCellType().toString().equals("BOOLEAN")) {
+	    		j++;
 	    		boolean is_God_Class = row.getCell(7).getBooleanCellValue();
 		    	boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
 		    	
 		    	CodeSmellMetodo codeSmellMetodo = new CodeSmellMetodo(pacote+classe+metodo,is_God_Class,is_Long_Method);
-		    	System.out.println(codeSmellMetodo.getpacote_classe_metodo());
 		    	
 		    	this.codeSmellsMetodos.put(pacote+classe+metodo, codeSmellMetodo);
 	    	}
 	    }
+	    System.out.println(j);
 	}
 
 	private void verificarCodeSmells() throws EncryptedDocumentException, IOException, ScriptException{
@@ -116,8 +113,8 @@ public class VerificacaoCodeSmells {
 	    	int valor_LOC_method = (int) row.getCell(8).getNumericCellValue();
 	    	int valor_CYCLO_method = (int) row.getCell(9).getNumericCellValue();
 	    	
-	    	boolean valor_long_method = VerificarLongMethod(valor_LOC_method, valor_CYCLO_method);
-	    	boolean valor_god_class = VerificarGodClass(valor_NOM_class, valor_LOC_class, valor_WMC_class);
+	    	String valor_long_method = VerificarLongMethod(valor_LOC_method, valor_CYCLO_method);
+	    	String valor_god_class = VerificarGodClass(valor_NOM_class, valor_LOC_class, valor_WMC_class);
 	    	
 	    	row.getCell(10).setCellValue(valor_long_method);
 	    	row.getCell(7).setCellValue(valor_god_class);
@@ -127,7 +124,7 @@ public class VerificacaoCodeSmells {
 	    
 	}
 	
-	private boolean  VerificarLongMethod (int valor_LOC_method, int valor_CYCLO_method) throws ScriptException{
+	private String  VerificarLongMethod (int valor_LOC_method, int valor_CYCLO_method) throws ScriptException{
 		ScriptEngineManager sem = new ScriptEngineManager();
 		ScriptEngine se = sem.getEngineByName("nashorn");
 		se.put("LOC_method", valor_LOC_method);
@@ -136,13 +133,19 @@ public class VerificacaoCodeSmells {
 		String resultado_avaliacao = se.eval(regra_long_method.getExpressao()).toString();
 		
 		if(resultado_avaliacao.equals("true")){
-			return regra_long_method.getValorCodeSmell();
+			if(regra_long_method.getValorCodeSmell())
+				return "true";
+			else
+				return "false";
 		} else {
-			return !regra_long_method.getValorCodeSmell();
+			if(regra_long_method.getValorCodeSmell())
+				return "false";
+			else
+				return "true";
 		}
 	}
 	
-	private boolean  VerificarGodClass (int valor_NOM_class, int valor_LOC_class, int valor_WMC_class) throws ScriptException{
+	private String  VerificarGodClass (int valor_NOM_class, int valor_LOC_class, int valor_WMC_class) throws ScriptException{
 		ScriptEngineManager sem = new ScriptEngineManager();
 		ScriptEngine se = sem.getEngineByName("nashorn");
 		se.put("NOM_class", valor_NOM_class);
@@ -152,9 +155,15 @@ public class VerificacaoCodeSmells {
 		String resultado_avaliacao = se.eval(regra_god_class.getExpressao()).toString();
 		
 		if(resultado_avaliacao.equals("true")){
-			return regra_god_class.getValorCodeSmell();
+			if(regra_god_class.getValorCodeSmell())
+				return "true";
+			else
+				return "false";
 		} else {
-			return !regra_god_class.getValorCodeSmell();
+			if(regra_god_class.getValorCodeSmell())
+				return "false";
+			else
+				return "true";
 		}
 	}
 	
@@ -164,7 +173,6 @@ public class VerificacaoCodeSmells {
 		Regra regra1 = new Regra("regra1", "LOC_method>50 && CYCLO_method>10", true, 0);
 		Regra regra2 = new Regra("regra2", "WMC_class>50 || NOM_class>10", false, 1);
 		VerificacaoCodeSmells v = new VerificacaoCodeSmells("jasml_0.10", regra1, regra2);
-		
 	}
 	
 }
