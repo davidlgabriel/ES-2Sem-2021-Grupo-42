@@ -42,6 +42,10 @@ public class VerificacaoCodeSmells {
 		this.falsos_negativos=0;
 		verificarCodeSmells();
 		verificarIndicadores();
+		System.out.println(this.verdadeiros_positivos);
+		System.out.println(this.falsos_positivos);
+		System.out.println(this.verdadeiros_negativos);
+		System.out.println(this.falsos_negativos);
 	}
 	
 	private void verificarIndicadores() throws EncryptedDocumentException, IOException {
@@ -53,7 +57,7 @@ public class VerificacaoCodeSmells {
 	    	Row row = sheet.getRow(i);
 	    	String pacote = row.getCell(1).getStringCellValue();
 	    	String classe = row.getCell(2).getStringCellValue();
-	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
+	    	String metodo = row.getCell(3).getStringCellValue();
 	    	CodeSmellMetodo codeSmellMetodo = codeSmellsMetodos.get(pacote+classe+metodo);
 	    	String is_God_Class = row.getCell(7).getStringCellValue();
 		    String is_Long_Method = row.getCell(10).getStringCellValue();
@@ -80,15 +84,13 @@ public class VerificacaoCodeSmells {
 		InputStream inp = new FileInputStream("Code_Smells.xlsx");
 		Workbook wb = WorkbookFactory.create(inp);
 	    Sheet sheet = wb.getSheet("Code Smells");
-	    int j = 0;
 	    for(int i=1; i<= sheet.getLastRowNum(); i++){
 	    	Row row = sheet.getRow(i);
 	    	String pacote = row.getCell(1).getStringCellValue();
 	    	String classe = row.getCell(2).getStringCellValue().split("\\.")[0];
-	    	String metodo = row.getCell(3).getStringCellValue().split("\\(")[0];
-	    	System.out.println(pacote+classe+metodo);
+	    	String metodo = row.getCell(3).getStringCellValue();
+
 	    	if(row.getCell(7).getCellType().toString().equals("BOOLEAN") && row.getCell(10).getCellType().toString().equals("BOOLEAN")) {
-	    		j++;
 	    		boolean is_God_Class = row.getCell(7).getBooleanCellValue();
 		    	boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
 		    	
@@ -97,7 +99,6 @@ public class VerificacaoCodeSmells {
 		    	this.codeSmellsMetodos.put(pacote+classe+metodo, codeSmellMetodo);
 	    	}
 	    }
-	    System.out.println(j);
 	}
 
 	private void verificarCodeSmells() throws EncryptedDocumentException, IOException, ScriptException{
@@ -166,13 +167,4 @@ public class VerificacaoCodeSmells {
 				return "true";
 		}
 	}
-	
-	
-	
-	public static void main(String[] args) throws EncryptedDocumentException, IOException, ScriptException {
-		Regra regra1 = new Regra("regra1", "LOC_method>50 && CYCLO_method>10", true, 0);
-		Regra regra2 = new Regra("regra2", "WMC_class>50 || NOM_class>10", false, 1);
-		VerificacaoCodeSmells v = new VerificacaoCodeSmells("jasml_0.10", regra1, regra2);
-	}
-	
 }
