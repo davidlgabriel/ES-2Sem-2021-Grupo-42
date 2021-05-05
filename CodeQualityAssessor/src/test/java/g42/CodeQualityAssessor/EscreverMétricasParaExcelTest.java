@@ -27,7 +27,7 @@ class EscreverMétricasParaExcelTest {
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
 		objeto = new EscreverMétricasParaExcel(array);
-		objeto.escreverNomeDoFicheiro();
+		objeto.escreverNoFicheiro();;
 	}
 
 	
