@@ -1296,8 +1296,37 @@ public class Interface extends JDialog {
 						if (expressao[15].equals("&&")) {
 							secondOfSecond_GC.setSelectedItem("IS BETWEEN");
 							textField4_GC.setText(expressao[18]);
+							if (expressao.length > 22) {
+								if (expressao[21].equals("&&"))
+									second_GC_And_Or.setSelectedItem("AND");
+								else
+									second_GC_And_Or.setSelectedItem("OR");
+								firstOfThird_GC.setSelectedItem(expressao[23]);
+								textField5_GC.setText(expressao[25]);
+								if (expressao[26].equals("&&")) {
+									secondOfThird_GC.setSelectedItem("IS BETWEEN");
+									textField6_GC.setText(expressao[29]);
+								} else {
+									secondOfThird_GC.setSelectedItem(expressao[24]);
+								}
+
+							}
 						} else {
 							secondOfSecond_GC.setSelectedItem(expressao[13]);
+							if (expressao.length > 16) {
+								if (expressao[17].equals("&&"))
+									second_GC_And_Or.setSelectedItem("AND");
+								else
+									second_GC_And_Or.setSelectedItem("OR");
+								firstOfThird_GC.setSelectedItem(expressao[19]);
+								textField5_GC.setText(expressao[21]);
+								if (expressao[22].equals("&&")) {
+									secondOfThird_GC.setSelectedItem("IS BETWEEN");
+									textField6_GC.setText(expressao[25]);
+								} else {
+									secondOfThird_GC.setSelectedItem(expressao[20]);
+								}
+							}
 						}
 					}
 				} else {
@@ -1313,8 +1342,36 @@ public class Interface extends JDialog {
 						if (expressao[11].equals("&&")) {
 							secondOfSecond_GC.setSelectedItem("IS BETWEEN");
 							textField4_GC.setText(expressao[14]);
+							if (expressao.length > 17) {
+								if (expressao[17].equals("&&"))
+									second_GC_And_Or.setSelectedItem("AND");
+								else
+									second_GC_And_Or.setSelectedItem("OR");
+								firstOfThird_GC.setSelectedItem(expressao[19]);
+								textField5_GC.setText(expressao[21]);
+								if (expressao[22].equals("&&")) {
+									secondOfThird_GC.setSelectedItem("IS BETWEEN");
+									textField6_GC.setText(expressao[25]);
+								} else {
+									secondOfThird_GC.setSelectedItem(expressao[20]);
+								}
+							}
 						} else {
 							secondOfSecond_GC.setSelectedItem(expressao[9]);
+							if (expressao.length > 13) {
+								if (expressao[13].equals("&&"))
+									second_GC_And_Or.setSelectedItem("AND");
+								else
+									second_GC_And_Or.setSelectedItem("OR");
+								firstOfThird_GC.setSelectedItem(expressao[15]);
+								textField5_GC.setText(expressao[17]);
+								if (expressao[18].equals("&&")) {
+									secondOfThird_GC.setSelectedItem("IS BETWEEN");
+									textField6_GC.setText(expressao[21]);
+								} else {
+									secondOfThird_GC.setSelectedItem(expressao[16]);
+								}
+							}
 						}
 					}
 				}
