@@ -21,11 +21,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Iterator;
 import java.util.Set;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -39,7 +42,6 @@ public class Interface extends JDialog {
 	public static void main(String[] args) {
 		try {
 			Interface dialog = new Interface();
-			dialog.criarExcel("regras_excel");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -102,6 +104,50 @@ public class Interface extends JDialog {
 	private HashMap<String, Regra> regrasLongMethod = new HashMap<>();
 
 	public Interface() {
+        this.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				guardarRegras();
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
 		setBounds(100, 100, 1386, 566);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 19, 20, 20, 110, 25, 4, 30, 50, 40, 50, 30, 75, 30, 32, 30, 11, 18, 37,
@@ -438,7 +484,7 @@ public class Interface extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				regraLMAlterar = (String) comboBox.getSelectedItem();
-				if (regraLMAlterar.equals(""))
+				if (regraLMAlterar==null || regraLMAlterar.equals(""))
 					resetCamposLM();
 				else
 					alterarRegraLM();
@@ -829,13 +875,14 @@ public class Interface extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				regraGCAlterar = (String) comboBox2.getSelectedItem();
 
-				if (regraGCAlterar.equals(""))
+				if (regraGCAlterar==null || regraGCAlterar.equals(""))
 					resetCamposGC();
 				else
 					alterarRegraGC();
 			}
 		});
 		getContentPane().add(comboBox2, gbc_comboBox2);
+		
 		GridBagConstraints gbc_firstOfThird_GC = new GridBagConstraints();
 		gbc_firstOfThird_GC.insets = new Insets(0, 0, 5, 5);
 		gbc_firstOfThird_GC.fill = GridBagConstraints.HORIZONTAL;
@@ -1019,10 +1066,12 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel_7.gridx = 3;
 		gbc_lblNewLabel_7.gridy = 12;
 		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		carregarRegras();
 	}
 
 	private void criarRegraLM() {
-		if (!regraLMAlterar.equals(""))
+		if (regraLMAlterar!= null && !regraLMAlterar.equals(""))
 			this.regrasLongMethod.remove(regraLMAlterar);
 		else {
 			for (String s : regrasLongMethod.keySet())
@@ -1049,7 +1098,7 @@ public class Interface extends JDialog {
 			valorRegra = true;
 		else
 			valorRegra = false;
-		Regra regra = new Regra(this.textFieldNome_LM.getText(), expressao, valorRegra, 1);
+		Regra regra = new Regra(this.textFieldNome_LM.getText(), expressao, valorRegra, 0);
 		this.regrasLongMethod.put(regra.getNome(), regra);
 		System.out.println(expressao);
 		resetCamposLM();
@@ -1064,7 +1113,7 @@ public class Interface extends JDialog {
 	}
 
 	private void criarRegraGC() {
-		if (!regraGCAlterar.equals(""))
+		if (regraGCAlterar!=null && !regraGCAlterar.equals(""))
 			this.regrasGodClass.remove(regraGCAlterar);
 		else {
 			for (String s : regrasGodClass.keySet())
@@ -1171,6 +1220,56 @@ public class Interface extends JDialog {
 		makeEnableGC(true);
 	}
 
+    private void carregarRegras() {
+		comboBox.addItem("");
+		comboBox2.addItem("");
+		File myObj = new File("regras.txt");
+		if(myObj.canRead()) {
+		    Scanner myReader;
+			try {
+				myReader = new Scanner(myObj);
+				while (myReader.hasNextLine()) {
+			        String nome = myReader.nextLine();
+			        String expressao = myReader.nextLine();
+			        String s = myReader.nextLine();
+			        String [] aux = s.split(" ");
+			        Regra regra = new Regra(nome,expressao,Boolean.parseBoolean(aux[0]),Integer.parseInt(aux[1]));
+			        if(Integer.parseInt(aux[1])==0) {
+			        	regrasLongMethod.put(nome, regra);
+			        	comboBox.addItem(nome);
+			        }
+			        else {
+			        	regrasGodClass.put(nome, regra);
+			        	comboBox2.addItem(nome);
+			        }
+				}
+				myReader.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+    private void guardarRegras() {
+		try {
+		      FileWriter myWriter = new FileWriter("regras.txt");
+		      for(Regra r : regrasLongMethod.values()) {
+		    	  myWriter.write(r.getNome() + "\n");
+		    	  myWriter.write(r.getExpressao() + "\n");
+		    	  myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
+		      }
+		      for(Regra r : regrasGodClass.values()) {
+		    	  myWriter.write(r.getNome() + "\n");
+		    	  myWriter.write(r.getExpressao() + "\n");
+		    	  myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
+		      }
+		      myWriter.close();
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
+	}
+    
 	private void makeVisibleLM() {
 		SaveButton_LM.setEnabled(false);
 		textFieldNome_LM.setEnabled(true);
@@ -1377,50 +1476,6 @@ public class Interface extends JDialog {
 				}
 			}
 		}
-	}
-
-	public void createDirectory(String botao, String nomeRegra, String b) {
-		try {
-			File myObj = new File("Regras.txt");
-			if (myObj.createNewFile()) {
-				System.out.println("File created: " + myObj.getName());
-			} else {
-				System.out.println("File already created: " + myObj.getName());
-			}
-			try {
-				FileWriter myWriter = new FileWriter("Regras.txt");
-				myWriter.write(nomeRegra);
-				myWriter.write("\r\n");
-				if (botao == "CreateButton_LM") {
-					myWriter.write("Expressão");
-					myWriter.write("\r\n");
-					myWriter.write(b + " 0");
-					myWriter.write("\r\n");
-				} else {
-					myWriter.write("Expressão");
-					myWriter.write("\r\n");
-					myWriter.write(b + " 1");
-					myWriter.write("\r\n");
-
-				}
-				myWriter.write("\r\n");
-				myWriter.close();
-				System.out.println("Successfully wrote to the file.");
-			} catch (IOException e) {
-				System.out.println("An error occurred.");
-				e.printStackTrace();
-			}
-		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
-		}
-	}
-
-	private void criarExcel(String nome) throws FileNotFoundException, IOException {
-		Workbook xlsxWorkbook = new XSSFWorkbook();
-		Sheet sheet1 = xlsxWorkbook.createSheet(nome);
-		CellStyle style = xlsxWorkbook.createCellStyle();
-		xlsxWorkbook.write(new FileOutputStream(nome + ".xlsx"));
 	}
 
 	public void percorrer() {
