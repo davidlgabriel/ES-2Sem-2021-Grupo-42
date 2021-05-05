@@ -204,17 +204,27 @@ public class EscreverMétricasParaExcel {
 			for (String string : MethodName) {
 				ConstructorName.add(string);
 			}
-
 			for (String string : ConstructorName) {
 				String [] vetor = string.split("\\(");
 				String parametrosMethod = vetor[1];
 				String firstMethod = vetor[0];
 				String [] nameMethod = firstMethod.split(" ");
 				String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
-
-				this.nomeMetodos.add(Method);
+//				System.out.println(Method);
+				String [] auxSplit = Method.split(" throws ");
+				String [] splitMetodo = auxSplit[0].split(" ");
+				String Metodo=splitMetodo[0];
+				for(int i=1; i!=splitMetodo.length; i++) {
+					if(i%2==0) {
+						Metodo=Metodo+","+splitMetodo[i];
+					}
+				}
+				if(!Metodo.endsWith(")")) {
+					Metodo=Metodo+")";
+				}
+				System.out.println(Metodo);
+				this.nomeMetodos.add(Metodo);
 			}
-
 		}
 	}
 	
