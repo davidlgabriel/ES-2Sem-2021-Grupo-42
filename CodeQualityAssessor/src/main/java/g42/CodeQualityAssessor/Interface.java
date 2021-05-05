@@ -46,7 +46,7 @@ public class Interface extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private EscreverMétricasParaExcel excel = null;
 	private File selectedFile = null;
 	private ArrayList<String> caminhoFicheiros = new ArrayList<>();
@@ -94,13 +94,13 @@ public class Interface extends JDialog {
 	private JComboBox comboBox2;
 	private JLabel lblNewLabel_6;
 	private JLabel lblNewLabel_8;
-	
-	private String regraLMAlterar="";
-	private String regraGCAlterar="";
-	
-	private HashMap <String,Regra> regrasGodClass = new HashMap<>();
-	private HashMap <String,Regra> regrasLongMethod = new HashMap<>();
-	
+
+	private String regraLMAlterar = "";
+	private String regraGCAlterar = "";
+
+	private HashMap<String, Regra> regrasGodClass = new HashMap<>();
+	private HashMap<String, Regra> regrasLongMethod = new HashMap<>();
+
 	public Interface() {
 		setBounds(100, 100, 1386, 566);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -164,7 +164,7 @@ public class Interface extends JDialog {
 		gbc_textField1_LM.gridx = 7;
 		gbc_textField1_LM.gridy = 0;
 		getContentPane().add(textField1_LM, gbc_textField1_LM);
-        textField1_LM.addKeyListener(new KeyAdapter() {
+		textField1_LM.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -191,7 +191,7 @@ public class Interface extends JDialog {
 		gbc_textField2_LM.gridx = 9;
 		gbc_textField2_LM.gridy = 0;
 		getContentPane().add(textField2_LM, gbc_textField2_LM);
-        textField2_LM.addKeyListener(new KeyAdapter() {
+		textField2_LM.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if ((((caracter < '0') || (caracter > '9')) && (caracter != '\b'))) {
@@ -219,12 +219,15 @@ public class Interface extends JDialog {
 		SaveButton_LM = new JButton("Confirm");
 		SaveButton_LM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if ((secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN") && ( Integer.parseInt(textField1_LM.getText()) < Integer.parseInt(textField2_LM.getText()) ) && !textField1_LM.getText().equals("")
-						&& !textField2_LM.getText().equals(""))
+				if ((secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN")
+						&& (Integer.parseInt(textField1_LM.getText()) < Integer.parseInt(textField2_LM.getText()))
+						&& !textField1_LM.getText().equals("") && !textField2_LM.getText().equals(""))
 						|| (!secondOfFirst_LM.getSelectedItem().equals("IS BETWEEN")
 								&& !textField1_LM.getText().equals(""))) {
 					if (LM_And_Or.getSelectedItem().equals("AND") || LM_And_Or.getSelectedItem().equals("OR")) {
-						if ((secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN") && (Integer.parseInt(textField3_LM.getText()) < Integer.parseInt(textField4_LM.getText()))
+						if ((secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN")
+								&& (Integer.parseInt(textField3_LM.getText()) < Integer
+										.parseInt(textField4_LM.getText()))
 								&& !textField3_LM.getText().equals("") && !textField4_LM.getText().equals(""))
 								|| (!secondOfSecond_LM.getSelectedItem().equals("IS BETWEEN")
 										&& !textField3_LM.getText().equals(""))) {
@@ -244,7 +247,7 @@ public class Interface extends JDialog {
 		gbc_SaveButton_LM.gridy = 0;
 		getContentPane().add(SaveButton_LM, gbc_SaveButton_LM);
 
-		CreateButton_LM = new JButton("Create New Rule");
+		CreateButton_LM = new JButton("Create Rule");
 		CreateButton_LM.setEnabled(false);
 		CreateButton_LM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -274,7 +277,7 @@ public class Interface extends JDialog {
 					textField3_LM.setVisible(false);
 					label5_LM.setVisible(false);
 					textField4_LM.setVisible(false);
-                    textField3_LM.setText("");
+					textField3_LM.setText("");
 					textField4_LM.setText("");
 
 				} else {
@@ -359,7 +362,7 @@ public class Interface extends JDialog {
 		gbc_textField3_LM.gridx = 7;
 		gbc_textField3_LM.gridy = 1;
 		getContentPane().add(textField3_LM, gbc_textField3_LM);
-        textField3_LM.addKeyListener(new KeyAdapter() {
+		textField3_LM.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -387,7 +390,7 @@ public class Interface extends JDialog {
 		gbc_textField4_LM.gridx = 9;
 		gbc_textField4_LM.gridy = 1;
 		getContentPane().add(textField4_LM, gbc_textField4_LM);
-        textField4_LM.addKeyListener(new KeyAdapter() {
+		textField4_LM.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -431,25 +434,14 @@ public class Interface extends JDialog {
 		gbc_comboBox.gridx = 21;
 		gbc_comboBox.gridy = 1;
 		comboBox.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				regraLMAlterar = (String) comboBox.getSelectedItem();
-				
-				for (HashMap.Entry<String, Regra> entry : regrasLongMethod.entrySet()) {
-				    String key = entry.getKey();
-				    Regra regra = entry.getValue();
-				    
-				    if(key == regraLMAlterar) {
-				    	System.out.println(regra.getValorCodeSmell());
-				    	if(regra.getValorCodeSmell()) {
-				    		isTrueFalse_LM.setSelectedItem("TRUE");
-				    	} else {
-				    		isTrueFalse_LM.setSelectedItem("FALSE");
-				    	}
-				    }
-				}
-				
+				if (regraLMAlterar.equals(""))
+					resetCamposLM();
+				else
+					alterarRegraLM();
 			}
 		});
 		getContentPane().add(comboBox, gbc_comboBox);
@@ -502,7 +494,7 @@ public class Interface extends JDialog {
 		gbc_textField1_GC.gridx = 7;
 		gbc_textField1_GC.gridy = 3;
 		getContentPane().add(textField1_GC, gbc_textField1_GC);
-        textField1_GC.addKeyListener(new KeyAdapter() {
+		textField1_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -529,7 +521,7 @@ public class Interface extends JDialog {
 		gbc_textField2_GC.gridx = 9;
 		gbc_textField2_GC.gridy = 3;
 		getContentPane().add(textField2_GC, gbc_textField2_GC);
-        textField2_GC.addKeyListener(new KeyAdapter() {
+		textField2_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -548,7 +540,7 @@ public class Interface extends JDialog {
 					label5_GC.setVisible(false);
 					textField4_GC.setVisible(false);
 					second_GC_And_Or.setVisible(false);
-                    firstOfThird_GC.setVisible(false);
+					firstOfThird_GC.setVisible(false);
 					secondOfThird_GC.setVisible(false);
 					textField5_GC.setVisible(false);
 					label6_GC.setVisible(false);
@@ -622,18 +614,23 @@ public class Interface extends JDialog {
 		SaveButton_GC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if ((secondOfFirst_GC.getSelectedItem().equals("IS BETWEEN") && !textField1_GC.getText().equals("")
-						&& !textField2_GC.getText().equals("") && ( Integer.parseInt(textField1_GC.getText()) < Integer.parseInt(textField2_GC.getText()) ))
+						&& !textField2_GC.getText().equals("")
+						&& (Integer.parseInt(textField1_GC.getText()) < Integer.parseInt(textField2_GC.getText())))
 						|| (!secondOfFirst_GC.getSelectedItem().equals("IS BETWEEN")
 								&& !textField1_GC.getText().equals(""))) {
 					if (GC_And_Or.getSelectedItem().equals("AND") || GC_And_Or.getSelectedItem().equals("OR")) {
 						if ((secondOfSecond_GC.getSelectedItem().equals("IS BETWEEN")
-								&& !textField3_GC.getText().equals("") && !textField4_GC.getText().equals("") && ( Integer.parseInt(textField3_GC.getText()) < Integer.parseInt(textField4_GC.getText()) ))
+								&& !textField3_GC.getText().equals("") && !textField4_GC.getText().equals("")
+								&& (Integer.parseInt(textField3_GC.getText()) < Integer
+										.parseInt(textField4_GC.getText())))
 								|| (!secondOfSecond_GC.getSelectedItem().equals("IS BETWEEN")
 										&& !textField3_GC.getText().equals(""))) {
 							if (second_GC_And_Or.getSelectedItem().equals("AND")
 									|| second_GC_And_Or.getSelectedItem().equals("OR")) {
 								if ((secondOfThird_GC.getSelectedItem().equals("IS BETWEEN")
-										&& !textField5_GC.getText().equals("") && !textField6_GC.getText().equals("") && ( Integer.parseInt(textField5_GC.getText()) < Integer.parseInt(textField6_GC.getText()) ))
+										&& !textField5_GC.getText().equals("") && !textField6_GC.getText().equals("")
+										&& (Integer.parseInt(textField5_GC.getText()) < Integer
+												.parseInt(textField6_GC.getText())))
 										|| (!secondOfThird_GC.getSelectedItem().equals("IS BETWEEN")
 												&& !textField5_GC.getText().equals(""))) {
 									makeVisibleGC();
@@ -664,7 +661,7 @@ public class Interface extends JDialog {
 		firstOfSecond_GC.setBackground(Color.WHITE);
 		firstOfSecond_GC.setVisible(false);
 
-		CreateButton_GC = new JButton("Create New Rule");
+		CreateButton_GC = new JButton("Create Rule");
 		CreateButton_GC.setEnabled(false);
 		CreateButton_GC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -715,7 +712,7 @@ public class Interface extends JDialog {
 		gbc_textField3_GC.gridx = 7;
 		gbc_textField3_GC.gridy = 4;
 		getContentPane().add(textField3_GC, gbc_textField3_GC);
-        textField3_GC.addKeyListener(new KeyAdapter() {
+		textField3_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -744,7 +741,7 @@ public class Interface extends JDialog {
 		gbc_textField4_GC.gridx = 9;
 		gbc_textField4_GC.gridy = 4;
 		getContentPane().add(textField4_GC, gbc_textField4_GC);
-        textField4_GC.addKeyListener(new KeyAdapter() {
+		textField4_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -755,6 +752,7 @@ public class Interface extends JDialog {
 
 		// GC Second 3
 		second_GC_And_Or = new JComboBox(new String[] { "", "AND", "OR" });
+		second_GC_And_Or.setModel(new DefaultComboBoxModel(new String[] { "", "AND", "OR" }));
 		second_GC_And_Or.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (second_GC_And_Or.getSelectedItem().equals("")) {
@@ -763,10 +761,10 @@ public class Interface extends JDialog {
 					textField5_GC.setVisible(false);
 					label6_GC.setVisible(false);
 					textField6_GC.setVisible(false);
-                    textField5_GC.setText("");
+					textField5_GC.setText("");
 					textField6_GC.setText("");
 				} else {
-					
+
 					firstOfThird_GC.setVisible(true);
 					secondOfThird_GC.setVisible(true);
 					textField5_GC.setVisible(true);
@@ -826,10 +824,15 @@ public class Interface extends JDialog {
 		gbc_comboBox2.gridx = 21;
 		gbc_comboBox2.gridy = 4;
 		comboBox2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				regraGCAlterar = (String) comboBox2.getSelectedItem();
+
+				if (regraGCAlterar.equals(""))
+					resetCamposGC();
+				else
+					alterarRegraGC();
 			}
 		});
 		getContentPane().add(comboBox2, gbc_comboBox2);
@@ -871,7 +874,7 @@ public class Interface extends JDialog {
 		gbc_textField5_GC.gridy = 5;
 		getContentPane().add(textField5_GC, gbc_textField5_GC);
 		textField5_GC.setColumns(10);
-        textField5_GC.addKeyListener(new KeyAdapter() {
+		textField5_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -898,14 +901,14 @@ public class Interface extends JDialog {
 		gbc_textField6_GC.gridy = 5;
 		getContentPane().add(textField6_GC, gbc_textField6_GC);
 		textField6_GC.setColumns(10);
-		
+
 		JLabel lblNewLabel = new JLabel("Diretório");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 3;
 		gbc_lblNewLabel.gridy = 8;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
-        textField6_GC.addKeyListener(new KeyAdapter() {
+		textField6_GC.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char caracter = e.getKeyChar();
 				if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
@@ -913,13 +916,13 @@ public class Interface extends JDialog {
 				}
 			}
 		});
-		
+
 		JButton btnNewButton_2 = new JButton("Escolher diretório");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser diretorio = new JFileChooser();
 				diretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				
+
 				int returnValue = diretorio.showOpenDialog(null);
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
 					selectedFile = diretorio.getSelectedFile();
@@ -932,7 +935,7 @@ public class Interface extends JDialog {
 		gbc_btnNewButton_2.gridx = 7;
 		gbc_btnNewButton_2.gridy = 8;
 		getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
-		
+
 		JButton btnNewButton_3 = new JButton("Criar Excel");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -943,73 +946,73 @@ public class Interface extends JDialog {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				Set <String> packages = new HashSet<>(excel.getnomePackages());
+				Set<String> packages = new HashSet<>(excel.getnomePackages());
 				lblNewLabel_2.setText(Integer.toString(packages.size()));
 				lblNewLabel_4.setText(Integer.toString(excel.getNumberClasses()));
 				ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
 				lblNewLabel_6.setText(Integer.toString(LOC_métodos.size()));
 				int soma = 0;
-				for(int aux: LOC_métodos)
-					soma+=aux;
+				for (int aux : LOC_métodos)
+					soma += aux;
 				lblNewLabel_8.setText(Integer.toString(soma));
 			}
 		});
-		
+
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_3.gridx = 9;
 		gbc_btnNewButton_3.gridy = 8;
 		getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
-		
+
 		lblNewLabel_2 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 5;
 		gbc_lblNewLabel_2.gridy = 9;
 		getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Número de Packages:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 3;
 		gbc_lblNewLabel_1.gridy = 9;
 		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		lblNewLabel_4 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 5;
 		gbc_lblNewLabel_4.gridy = 10;
 		getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Número de classes:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 3;
 		gbc_lblNewLabel_3.gridy = 10;
 		getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
+
 		lblNewLabel_6 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 5;
 		gbc_lblNewLabel_6.gridy = 11;
 		getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Número de métodos:");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 3;
 		gbc_lblNewLabel_5.gridy = 11;
 		getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
-		
+
 		lblNewLabel_8 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
 		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_8.gridx = 5;
 		gbc_lblNewLabel_8.gridy = 12;
 		getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Número de linhas de código:");
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
@@ -1017,110 +1020,125 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel_7.gridy = 12;
 		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
 	}
-	
+
 	private void criarRegraLM() {
-		if(!regraLMAlterar.equals(""))
+		if (!regraLMAlterar.equals(""))
 			this.regrasLongMethod.remove(regraLMAlterar);
 		else {
-			for(String s : regrasLongMethod.keySet())
-				if(s.equals(textFieldNome_LM.getText()))
+			for (String s : regrasLongMethod.keySet())
+				if (s.equals(textFieldNome_LM.getText()))
 					return;
 		}
 		String expressao = "";
-		String condicao1 = criarCondicao(this.firstOfFirst_LM,this.secondOfFirst_LM,this.textField1_LM,this.textField2_LM);
-		if(!this.LM_And_Or.getSelectedItem().equals("")) {
-			String condicao2 = criarCondicao(this.firstOfSecond_LM,this.secondOfSecond_LM,this.textField3_LM,this.textField4_LM);
+		String condicao1 = criarCondicao(this.firstOfFirst_LM, this.secondOfFirst_LM, this.textField1_LM,
+				this.textField2_LM);
+		if (!this.LM_And_Or.getSelectedItem().equals("")) {
+			String condicao2 = criarCondicao(this.firstOfSecond_LM, this.secondOfSecond_LM, this.textField3_LM,
+					this.textField4_LM);
 
-				if(this.LM_And_Or.getSelectedItem().equals("AND"))
-					expressao = condicao1 + " && " + condicao2;
-				else
-					expressao = condicao1 + " || " + condicao2;
+			if (this.LM_And_Or.getSelectedItem().equals("AND"))
+				expressao = condicao1 + " && " + condicao2;
+			else
+				expressao = condicao1 + " || " + condicao2;
 
-		}else {
+		} else {
 			expressao = condicao1;
 		}
 		boolean valorRegra;
-		if(this.isTrueFalse_LM.getSelectedItem().equals("TRUE"))
+		if (this.isTrueFalse_LM.getSelectedItem().equals("TRUE"))
 			valorRegra = true;
 		else
 			valorRegra = false;
-		Regra regra = new Regra(this.textFieldNome_LM.getText(),expressao,valorRegra,1);
+		Regra regra = new Regra(this.textFieldNome_LM.getText(), expressao, valorRegra, 1);
 		this.regrasLongMethod.put(regra.getNome(), regra);
 		System.out.println(expressao);
 		resetCamposLM();
 		comboBox.removeAllItems();
 		comboBox.addItem("");
-		for(String s : regrasLongMethod.keySet())
-			comboBox.addItem(s);
+
+		for (HashMap.Entry<String, Regra> entry : regrasLongMethod.entrySet()) {
+			String key = entry.getKey();
+			System.out.println(key);
+			comboBox.addItem(key);
+		}
 	}
-	
+
 	private void criarRegraGC() {
-		if(!regraGCAlterar.equals(""))
+		if (!regraGCAlterar.equals(""))
 			this.regrasGodClass.remove(regraGCAlterar);
 		else {
-			for(String s : regrasGodClass.keySet())
-				if(s.equals(textFieldNome2.getText()))
+			for (String s : regrasGodClass.keySet())
+				if (s.equals(textFieldNome2.getText()))
 					return;
 		}
 		String expressao = "";
-		String condicao1 = criarCondicao(this.firstOfFirst_GC,this.secondOfFirst_GC,this.textField1_GC,this.textField2_GC);
-		if(!this.GC_And_Or.getSelectedItem().equals("")) {
-			String condicao2 = criarCondicao(this.firstOfSecond_GC,this.secondOfSecond_GC,this.textField3_GC,this.textField4_GC);
-			
-			if(!this.second_GC_And_Or.equals("")) {
-				String condicao3 = criarCondicao(this.firstOfThird_GC,this.secondOfThird_GC,this.textField5_GC,this.textField6_GC);
-				if(this.GC_And_Or.getSelectedItem().equals("AND"))
+		String condicao1 = criarCondicao(this.firstOfFirst_GC, this.secondOfFirst_GC, this.textField1_GC,
+				this.textField2_GC);
+		if (!this.GC_And_Or.getSelectedItem().equals("")) {
+			String condicao2 = criarCondicao(this.firstOfSecond_GC, this.secondOfSecond_GC, this.textField3_GC,
+					this.textField4_GC);
+
+			if (!this.second_GC_And_Or.getSelectedItem().equals("")) {
+				String condicao3 = criarCondicao(this.firstOfThird_GC, this.secondOfThird_GC, this.textField5_GC,
+						this.textField6_GC);
+				if (this.GC_And_Or.getSelectedItem().equals("AND"))
 					expressao = "( " + condicao1 + " && " + condicao2 + " )";
 				else
 					expressao = "( " + condicao1 + " || " + condicao2 + " )";
-				if(this.second_GC_And_Or.getSelectedItem().equals("AND"))
+				if (this.second_GC_And_Or.getSelectedItem().equals("AND"))
 					expressao = expressao + " && " + condicao3;
 				else
 					expressao = expressao + " || " + condicao3;
-			}else{
-				if(this.GC_And_Or.getSelectedItem().equals("AND"))
-					expressao = condicao1 + " && " + condicao2;
+			} else {
+				if (this.GC_And_Or.getSelectedItem().equals("AND"))
+					expressao = "( " + condicao1 + " && " + condicao2 + " )";
 				else
-					expressao = condicao1 + " || " + condicao2;
+					expressao = "( " + condicao1 + " || " + condicao2 + " )";
 			}
-		}else {
-			expressao = condicao1;
+		} else {
+			expressao = "( " + condicao1 + " )";
 		}
 		boolean valorRegra;
-		if(this.isTrueFalse_GC.getSelectedItem().equals("TRUE"))
+		if (this.isTrueFalse_GC.getSelectedItem().equals("TRUE"))
 			valorRegra = true;
 		else
 			valorRegra = false;
-		Regra regra = new Regra(this.textFieldNome2.getText(),expressao,valorRegra,1);
+		Regra regra = new Regra(this.textFieldNome2.getText(), expressao, valorRegra, 1);
 		this.regrasGodClass.put(regra.getNome(), regra);
 		System.out.println(expressao);
 		resetCamposGC();
 		comboBox2.removeAllItems();
 		comboBox2.addItem("");
-		for(String s : regrasGodClass.keySet())
-			comboBox2.addItem(s);
+
+		for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
+			String key = entry.getKey();
+			System.out.println(key);
+			comboBox2.addItem(key);
+		}
 	}
-	
+
 	private String criarCondicao(JComboBox jcb1, JComboBox jcb2, JTextField jtf1, JTextField jtf2) {
 		String aux = "";
-		if(jcb2.getSelectedItem().equals("IS BETWEEN")) {
-			aux = "( " + jcb1.getSelectedItem() + " >= " + jtf1.getText() + " && " + jcb1.getSelectedItem() + " <= " + jtf2.getText() + " )";
-		}else{
-			if(jcb2.getSelectedItem().equals("=")) {
-				aux = jcb1.getSelectedItem() + " == " + jtf1.getText();
-			}else {
-				aux = jcb1.getSelectedItem() + " " + jcb2.getSelectedItem() + " " + jtf1.getText();
+		if (jcb2.getSelectedItem().equals("IS BETWEEN")) {
+			aux = "( " + jcb1.getSelectedItem() + " >= " + jtf1.getText() + " && " + jcb1.getSelectedItem() + " <= "
+					+ jtf2.getText() + " )";
+		} else {
+			if (jcb2.getSelectedItem().equals("=")) {
+				aux = "( " + jcb1.getSelectedItem() + " == " + jtf1.getText() + " )";
+			} else {
+				aux = "( " + jcb1.getSelectedItem() + " " + jcb2.getSelectedItem() + " " + jtf1.getText() + " )";
 			}
 		}
-		
 		return aux;
 	}
-	
+
 	private void resetCamposLM() {
 		textFieldNome_LM.setText("");
 		SaveButton_LM.setEnabled(true);
 		CreateButton_LM.setEnabled(false);
 		textFieldNome_LM.setEnabled(false);
+		firstOfFirst_LM.setSelectedItem("LOC_method");
+		secondOfFirst_LM.setSelectedItem("LOC_method");
 		secondOfFirst_LM.setSelectedItem("IS BETWEEN");
 		secondOfSecond_LM.setSelectedItem("IS BETWEEN");
 		isTrueFalse_LM.setSelectedItem("TRUE");
@@ -1129,9 +1147,10 @@ public class Interface extends JDialog {
 		textField2_LM.setText("");
 		textField3_LM.setText("");
 		textField4_LM.setText("");
+		CreateButton_LM.setText("Create Rule");
 		makeEnableLM(true);
 	}
-	
+
 	private void resetCamposGC() {
 		textFieldNome2.setText("");
 		SaveButton_GC.setEnabled(true);
@@ -1151,7 +1170,7 @@ public class Interface extends JDialog {
 		textField6_GC.setText("");
 		makeEnableGC(true);
 	}
-	
+
 	private void makeVisibleLM() {
 		SaveButton_LM.setEnabled(false);
 		textFieldNome_LM.setEnabled(true);
@@ -1192,49 +1211,161 @@ public class Interface extends JDialog {
 		second_GC_And_Or.setEnabled(b);
 		isTrueFalse_GC.setEnabled(b);
 	}
+
+	private void alterarRegraLM() {
+		CreateButton_LM.setText("Change Rule");
+		for (HashMap.Entry<String, Regra> entry : regrasLongMethod.entrySet()) {
+			String key = entry.getKey();
+			Regra regra = entry.getValue();
+
+			if (key == regraLMAlterar) {
+				System.out.println(regra.getValorCodeSmell());
+				if (regra.getValorCodeSmell()) {
+					isTrueFalse_LM.setSelectedItem("TRUE");
+				} else {
+					isTrueFalse_LM.setSelectedItem("FALSE");
+				}
+				String[] expressao = regra.getExpressao().split(" ");
+				firstOfFirst_LM.setSelectedItem(expressao[1]);
+				textField1_LM.setText(expressao[3]);
+				if (expressao[4].equals("&&")) {
+					secondOfFirst_LM.setSelectedItem("IS BETWEEN");
+					textField2_LM.setText(expressao[7]);
+					if (expressao.length > 9) {
+						if (expressao[9].equals("&&"))
+							LM_And_Or.setSelectedItem("AND");
+						else
+							LM_And_Or.setSelectedItem("OR");
+						firstOfSecond_LM.setSelectedItem(expressao[11]);
+						textField3_LM.setText(expressao[13]);
+						if (expressao[14].equals("&&")) {
+							secondOfSecond_LM.setSelectedItem("IS BETWEEN");
+							textField4_LM.setText(expressao[17]);
+						} else {
+							secondOfSecond_LM.setSelectedItem(expressao[12]);
+						}
+					}
+				} else {
+					secondOfFirst_LM.setSelectedItem(expressao[2]);
+					if (expressao.length > 5) {
+						if (expressao[5].equals("&&")) {
+							LM_And_Or.setSelectedItem("AND");
+						} else {
+							LM_And_Or.setSelectedItem("OR");
+						}
+						firstOfSecond_LM.setSelectedItem(expressao[7]);
+						textField3_LM.setText(expressao[9]);
+						if (expressao[10].equals("&&")) {
+							secondOfSecond_LM.setSelectedItem("IS BETWEEN");
+							textField4_LM.setText(expressao[13]);
+						} else {
+							secondOfSecond_LM.setSelectedItem(expressao[8]);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void alterarRegraGC() {
+		CreateButton_GC.setText("Change Rule");
+		for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
+			String key = entry.getKey();
+			Regra regra = entry.getValue();
+
+			if (key == regraGCAlterar) {
+				System.out.println(regra.getValorCodeSmell());
+				if (regra.getValorCodeSmell()) {
+					isTrueFalse_GC.setSelectedItem("TRUE");
+				} else {
+					isTrueFalse_GC.setSelectedItem("FALSE");
+				}
+				String[] expressao = regra.getExpressao().split(" ");
+				firstOfFirst_GC.setSelectedItem(expressao[2]);
+				textField1_GC.setText(expressao[4]);
+				if (expressao[5].equals("&&")) {
+					secondOfFirst_GC.setSelectedItem("IS BETWEEN");
+					textField2_GC.setText(expressao[8]);
+					if (expressao.length > 10) {
+						if (expressao[10].equals("&&"))
+							GC_And_Or.setSelectedItem("AND");
+						else
+							GC_And_Or.setSelectedItem("OR");
+						firstOfSecond_GC.setSelectedItem(expressao[12]);
+						textField3_GC.setText(expressao[14]);
+						if (expressao[15].equals("&&")) {
+							secondOfSecond_GC.setSelectedItem("IS BETWEEN");
+							textField4_GC.setText(expressao[18]);
+						} else {
+							secondOfSecond_GC.setSelectedItem(expressao[13]);
+						}
+					}
+				} else {
+					secondOfFirst_GC.setSelectedItem(expressao[3]);
+					if (expressao.length > 6) {
+						if (expressao[6].equals("&&")) {
+							GC_And_Or.setSelectedItem("AND");
+						} else {
+							GC_And_Or.setSelectedItem("OR");
+						}
+						firstOfSecond_GC.setSelectedItem(expressao[8]);
+						textField3_GC.setText(expressao[10]);
+						if (expressao[11].equals("&&")) {
+							secondOfSecond_GC.setSelectedItem("IS BETWEEN");
+							textField4_GC.setText(expressao[14]);
+						} else {
+							secondOfSecond_GC.setSelectedItem(expressao[9]);
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public void createDirectory(String botao, String nomeRegra, String b) {
-	    try {
-	      File myObj = new File("Regras.txt");
-	      if (myObj.createNewFile()) {
-	        System.out.println("File created: " + myObj.getName());
-	      } else {
-	    	  System.out.println("File already created: " + myObj.getName());
-	      } 
-	      try {
-	          FileWriter myWriter = new FileWriter("Regras.txt");
-	          myWriter.write(nomeRegra);
-	          myWriter.write("\r\n");
-	          if(botao == "CreateButton_LM") {
-	        	  myWriter.write("Expressão");
-	        	  myWriter.write("\r\n");
-	        	  myWriter.write(b + " 0" );
-	        	  myWriter.write("\r\n");
-	          } else {
-	        	  myWriter.write("Expressão");
-	        	  myWriter.write("\r\n");
-	        	  myWriter.write(b + " 1");
-	        	  myWriter.write("\r\n");
-	        	  
-	          }
-	          myWriter.write("\r\n");
-	          myWriter.close();
-	          System.out.println("Successfully wrote to the file.");
-	        } catch (IOException e) {
-	          System.out.println("An error occurred.");
-	          e.printStackTrace();
-	        }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
-	  }
+		try {
+			File myObj = new File("Regras.txt");
+			if (myObj.createNewFile()) {
+				System.out.println("File created: " + myObj.getName());
+			} else {
+				System.out.println("File already created: " + myObj.getName());
+			}
+			try {
+				FileWriter myWriter = new FileWriter("Regras.txt");
+				myWriter.write(nomeRegra);
+				myWriter.write("\r\n");
+				if (botao == "CreateButton_LM") {
+					myWriter.write("Expressão");
+					myWriter.write("\r\n");
+					myWriter.write(b + " 0");
+					myWriter.write("\r\n");
+				} else {
+					myWriter.write("Expressão");
+					myWriter.write("\r\n");
+					myWriter.write(b + " 1");
+					myWriter.write("\r\n");
+
+				}
+				myWriter.write("\r\n");
+				myWriter.close();
+				System.out.println("Successfully wrote to the file.");
+			} catch (IOException e) {
+				System.out.println("An error occurred.");
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+	}
+
 	private void criarExcel(String nome) throws FileNotFoundException, IOException {
 		Workbook xlsxWorkbook = new XSSFWorkbook();
 		Sheet sheet1 = xlsxWorkbook.createSheet(nome);
 		CellStyle style = xlsxWorkbook.createCellStyle();
 		xlsxWorkbook.write(new FileOutputStream(nome + ".xlsx"));
 	}
-	
+
 	public void percorrer() {
 		caminhoFicheiros = new ArrayList<String>();
 		String[] aux = selectedFile.getAbsolutePath().replace("\\", "/").split("/");
@@ -1247,7 +1378,7 @@ public class Interface extends JDialog {
 			}
 		}
 	}
-	
+
 	private void percorrerDiretorio(File f) {
 		for (File ficheiro : f.listFiles()) {
 			String s = f.getAbsolutePath().replace("\\", "/");
@@ -1263,7 +1394,7 @@ public class Interface extends JDialog {
 			}
 		}
 	}
-	
+
 	private void percorrerFicheiro(File f) {
 		if (f.getAbsolutePath().endsWith(".java")) {
 			caminhoFicheiros.add(f.getAbsolutePath());
@@ -1281,5 +1412,4 @@ public class Interface extends JDialog {
 	public void setSelectedFile(File selectedFile) {
 		this.selectedFile = selectedFile;
 	}
-	
 }
