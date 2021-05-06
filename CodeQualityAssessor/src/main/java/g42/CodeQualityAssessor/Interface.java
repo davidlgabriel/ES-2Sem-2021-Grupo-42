@@ -1105,21 +1105,7 @@ public class Interface extends JDialog {
 				if (s.equals(NomeRegraLM.getText()))
 					return;
 		}
-		String expressao = "";
-		String condicao1 = criarCondicao(this.ListaMetricasC1LM, this.ListaOpcoesC1LM, this.LMC1valorM1,
-				this.LMC1valorM2);
-		if (!this.LM_And_Or.getSelectedItem().equals("")) {
-			String condicao2 = criarCondicao(this.ListaMetricasC2LM, this.ListaOpcoesC2LM, this.LMC2valorM1,
-					this.LMC2valorM2);
-
-			if (this.LM_And_Or.getSelectedItem().equals("AND"))
-				expressao = condicao1 + " && " + condicao2;
-			else
-				expressao = condicao1 + " || " + condicao2;
-
-		} else {
-			expressao = condicao1;
-		}
+		String expressao = criarExpressaoLM();
 		boolean valorRegra;
 		if (this.isTrueFalse_LM.getSelectedItem().equals("TRUE"))
 			valorRegra = true;
@@ -1140,6 +1126,25 @@ public class Interface extends JDialog {
 		}
 	}
 
+	private String criarExpressaoLM() {
+		String expressao = "";
+		String condicao1 = criarCondicao(this.ListaMetricasC1LM, this.ListaOpcoesC1LM, this.LMC1valorM1,
+				this.LMC1valorM2);
+		if (!this.LM_And_Or.getSelectedItem().equals("")) {
+			String condicao2 = criarCondicao(this.ListaMetricasC2LM, this.ListaOpcoesC2LM, this.LMC2valorM1,
+					this.LMC2valorM2);
+
+			if (this.LM_And_Or.getSelectedItem().equals("AND"))
+				expressao = condicao1 + " && " + condicao2;
+			else
+				expressao = condicao1 + " || " + condicao2;
+
+		} else {
+			expressao = condicao1;
+		}
+		return expressao;
+	}
+
 	private void criarRegraGC() {
 		if (regraGCAlterar!=null && !regraGCAlterar.equals(""))
 			this.regrasGodClass.remove(regraGCAlterar);
@@ -1148,6 +1153,28 @@ public class Interface extends JDialog {
 				if (s.equals(NomeRegraGC.getText()))
 					return;
 		}
+		String expressao = criarExpressaoGC();
+		boolean valorRegra;
+		if (this.isTrueFalse_GC.getSelectedItem().equals("TRUE"))
+			valorRegra = true;
+		else
+			valorRegra = false;
+		Regra regra = new Regra(this.NomeRegraGC.getText(), expressao, valorRegra, 1);
+		this.regrasGodClass.put(regra.getNome(), regra);
+		resetCamposGC();
+		ListaRegrasGCAlterar.removeAllItems();
+		ListaRegrasGCAplicar.removeAllItems();
+		ListaRegrasGCAlterar.addItem("");
+		ListaRegrasGCAplicar.addItem("");
+
+		for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
+			String key = entry.getKey();
+			ListaRegrasGCAlterar.addItem(key);
+			ListaRegrasGCAplicar.addItem(key);
+		}
+	}
+
+	private String criarExpressaoGC() {
 		String expressao = "";
 		String condicao1 = criarCondicao(this.ListaMetricasC1GC, this.ListaOpcoesC1GC, this.GCC1valorM1,
 				this.GCC1valorM2);
@@ -1175,24 +1202,7 @@ public class Interface extends JDialog {
 		} else {
 			expressao = "( " + condicao1 + " )";
 		}
-		boolean valorRegra;
-		if (this.isTrueFalse_GC.getSelectedItem().equals("TRUE"))
-			valorRegra = true;
-		else
-			valorRegra = false;
-		Regra regra = new Regra(this.NomeRegraGC.getText(), expressao, valorRegra, 1);
-		this.regrasGodClass.put(regra.getNome(), regra);
-		resetCamposGC();
-		ListaRegrasGCAlterar.removeAllItems();
-		ListaRegrasGCAplicar.removeAllItems();
-		ListaRegrasGCAlterar.addItem("");
-		ListaRegrasGCAplicar.addItem("");
-
-		for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
-			String key = entry.getKey();
-			ListaRegrasGCAlterar.addItem(key);
-			ListaRegrasGCAplicar.addItem(key);
-		}
+		return expressao;
 	}
 
 	private String criarCondicao(JComboBox jcb1, JComboBox jcb2, JTextField jtf1, JTextField jtf2) {

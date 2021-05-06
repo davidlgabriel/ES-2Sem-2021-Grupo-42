@@ -202,26 +202,38 @@ public class EscreverMétricasParaExcel {
 			for (String string : MethodName) {
 				ConstructorName.add(string);
 			}
-			for (String string : ConstructorName) {
-				String [] vetor = string.split("\\(");
-				String parametrosMethod = vetor[1];
-				String firstMethod = vetor[0];
-				String [] nameMethod = firstMethod.split(" ");
-				String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
-				String [] auxSplit = Method.split(" throws ");
-				String [] splitMetodo = auxSplit[0].split(" ");
-				String Metodo=splitMetodo[0];
-				for(int i=1; i!=splitMetodo.length; i++) {
-					if(i%2==0) {
-						Metodo=Metodo+","+splitMetodo[i];
-					}
-				}
-				if(!Metodo.endsWith(")")) {
-					Metodo=Metodo+")";
-				}
-				this.nomeMetodos.add(Metodo);
+			
+			colocarMetodosArray(ConstructorName);
+		}
+	}
+
+
+	private void colocarMetodosArray(List<String> ConstructorName) {
+		for (String string : ConstructorName) {
+			String [] vetor = string.split("\\(");
+			String parametrosMethod = vetor[1];
+			String firstMethod = vetor[0];
+			String [] nameMethod = firstMethod.split(" ");
+			String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
+			String [] auxSplit = Method.split(" throws ");
+			String [] splitMetodo = auxSplit[0].split(" ");
+			String Metodo=splitMetodo[0];
+			Metodo = juntarNomeMetodo(splitMetodo, Metodo);
+			this.nomeMetodos.add(Metodo);
+		}
+	}
+
+
+	private String juntarNomeMetodo(String[] splitMetodo, String Metodo) {
+		for(int i=1; i!=splitMetodo.length; i++) {
+			if(i%2==0) {
+				Metodo=Metodo+","+splitMetodo[i];
 			}
 		}
+		if(!Metodo.endsWith(")")) {
+			Metodo=Metodo+")";
+		}
+		return Metodo;
 	}
 	
 	
@@ -316,21 +328,26 @@ public class EscreverMétricasParaExcel {
 			VoidVisitor<List<String>> ClassCollector = new ColecionarClasse();
 			ClassCollector.visit(f, classCollector);
 			
-			for (String string : classCollector) {
-				String [] vectorS =null;
-				vectorS = string.split("\n");
-				this.LOC_class = vectorS.length;
-				
-			}
-
-			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.LOC_class_array.add(this.LOC_class);
-			}
+			contagemLinhasPorClasse(rep, classCollector);
 
 			this.LOC_class=1;
 			rep++;
 		}
 
+	}
+
+
+	private void contagemLinhasPorClasse(int rep, List<String> classCollector) {
+		for (String string : classCollector) {
+			String [] vectorS =null;
+			vectorS = string.split("\n");
+			this.LOC_class = vectorS.length;
+			
+		}
+
+		for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
+			this.LOC_class_array.add(this.LOC_class);
+		}
 	}
 
 
