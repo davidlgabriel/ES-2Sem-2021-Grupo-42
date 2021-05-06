@@ -35,7 +35,7 @@ na última chaveta desse mesmo método. Entre estes dois "delimitadores" serão 
 
 ## Outras Notas/Considerações
 
-- Fizemos algumas alterações ao excel fornecido pelos professores uma vez que detetámos alguns erros de escrita nomeadamente na coluna com o nome dos métodos.
+- Fizemos algumas alterações ao excel fornecido pelos professores, CodeSmells.xlsx, uma vez que detetámos alguns erros de escrita nomeadamente na coluna com o nome dos métodos.
 Estas alterações forma feitas com vista a conseguirmos testar o nosso painel de acerto.
 
 - A classe Linha serve para representar um objeto onde cada um dos seus atributos representa uma coluna das presentes no ficheiro excel. Asiim conseguimos
@@ -53,3 +53,22 @@ encarregue de criar um ficheiro excel que será nomeado com o nome do projeto, e
 dessas mesmas classes escrevendo depois toda essa informação no excel. Existem métodos que extraiem a informação a ser colocada em cada coluna do excel, guardando
 essa informação em ArrayLists. Ou seja, teremos um ArrayList para colecionar a informação a colocar em cada coluna do ficheiro. Estes ArrayList serão depois
 percorridos, posição a posição, conforme formos escrevendo em cada linha do excel.
+
+- A classe Regra serve para representar, em objeto, uma regra. Os atributos representam as características de uma regra criada pelo utilizador. O nome, a expressão com as métricas e valores, o valor boolean que estará visível caso se verifique a expressão da regra e o tipo da regra que indica se é para o code smell Long Method ou God Class.
+
+- A classe CodeSmellMetodo representa uma linha do ficheiro CodeSmells.xlsx, que contém o pacote, classe e metodo numa string e os valores boolean que se encontram nas colunas is_Long_Method e is_God_Class para comparação com os valores nas mesmas colunas do ficheiro excel criado a partir do projeto escolhido.
+
+- A classe VerificacaoCodeSmells serve para que, após criado o excel com as métricas para um determinado projeto escolhido, possamos fazer a verificação dos code smells ,Long Method e God Class, para cada método existente e colocar nas colunas is_Long_Method e is_God_Class o valor true ou false conforme se verifique ou não a existência do mesmo. Serve também esta classe para verificar os verdadeiros positivos, falsos positivos, verdadeiros negativos e falsos negativos em comparação com o ficheiro CodeSmells.xlsx.
+
+- A classe Interface contém a GUI com todos os elementos necessários para:
+  - a criação das regras e alteração das mesmas, tanto para o code smell Long Method como God Class;
+  - a opção para escolher o diretório onde se encontra o projeto;
+  - criar e visualizar o ficheiro excel com os valores das métricas;
+  - escolher as regras para cada code smell e aplicá-las ao ficheiro, com a visualização do efeito das mesmas;
+  - painel com as estatísticas sobre os pacotes, classes, métodos e linhas de código do projeto;
+  - painel com os verdadeiros positivos, falsos positivos, verdadeiros negativos e falsos negativos.
+  
+  - Esta classe contém também:
+    - a funcionalidade de carregar as regras que se encontrem no ficheiro se este já existir;
+    - quando a janela é fechada as regras são todas guardadas num ficheiro .txt;
+    - tem métodos que servem para auxiliar nas funcionalidades especificadas acima.
