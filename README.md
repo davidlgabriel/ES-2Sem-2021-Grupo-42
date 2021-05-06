@@ -37,3 +37,19 @@ na última chaveta desse mesmo método. Entre estes dois "delimitadores" serão 
 
 - Fizemos algumas alterações ao excel fornecido pelos professores uma vez que detetámos alguns erros de escrita nomeadamente na coluna com o nome dos métodos.
 Estas alterações forma feitas com vista a conseguirmos testar o nosso painel de acerto.
+
+- A classe Linha serve para representar um objeto onde cada um dos seus atributos representa uma coluna das presentes no ficheiro excel. Asiim conseguimos
+trabalhar qualquer linha do ficheiro excel como sendo um objeto, sendo mais facil aceder a cada um dos campos da mesma.
+
+- A classe Ficheiro serve para representar, em objeto, um ficheiro excel. Este tem como atributos uma String com indicação do nome do ficheiro
+(esse nome tem de ter já incluída a extensão do ficheiro), e ainda uma Lista de objetos Linha que contém informação sobre todas as linhas do respetivo ficheiro excel.
+
+- A classe LerFicheiro é utilizada pela classe Ficheiro e serve para que, baseados no nome do ficheiro excel, consigamos extrair para um Lista de objetos
+Linha, toda a informação de linhas do ficheiro excel em questão.
+
+- A classe EscreverMétricasParaExcel recebe um ArrayList que contém na sua primeira posição o nome do projeto sobre o qual queremos aplicar a extração de métricas
+e contém, nas seguintes posições do ArrayList, Strings para o caminho de cada um dos ficheiros .java (classes) do projeto em questão. Esta classe estará assim
+encarregue de criar um ficheiro excel que será nomeado com o nome do projeto, e está ainda encarregue de extrair as métricas das classes do projeto e dos métodos
+dessas mesmas classes escrevendo depois toda essa informação no excel. Existem métodos que extraiem a informação a ser colocada em cada coluna do excel, guardando
+essa informação em ArrayLists. Ou seja, teremos um ArrayList para colecionar a informação a colocar em cada coluna do ficheiro. Estes ArrayList serão depois
+percorridos, posição a posição, conforme formos escrevendo em cada linha do excel.
