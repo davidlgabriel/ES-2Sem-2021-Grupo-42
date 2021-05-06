@@ -37,27 +37,27 @@ class LinhaTest {
 	
 	@Test
 	final void testGetClassNome() {
-		assertTrue(ler.lerTodasLinhas().get(0).getNomeClasse().equals("Attribute"));
+		assertTrue(ler.lerTodasLinhas().get(0).getNomeClasse().equals("Attribute_Synthetic"));
 	}
 	
 	@Test
 	final void testGetMethodNome() {
-		assertTrue(ler.lerTodasLinhas().get(0).getNomeMetodo().equals("Attribute(byte attrTag, int attrLength)"));
+		assertTrue(ler.lerTodasLinhas().get(0).getNomeMetodo().equals("Attribute_Synthetic()"));
 	}
 	
 	@Test
 	final void testGetNOM_Class() {
-		assertEquals(2, ler.lerTodasLinhas().get(0).getNOM_Class());
+		assertEquals(1, ler.lerTodasLinhas().get(0).getNOM_Class());
 	}
 	
 	@Test
 	final void testGetLOC_Class() {
-		assertEquals(32, ler.lerTodasLinhas().get(0).getLOC_Class());
+		assertEquals(6, ler.lerTodasLinhas().get(0).getLOC_Class());
 	}
 	
 	@Test
 	final void testGetWMC_Class() {
-		assertEquals(4, ler.lerTodasLinhas().get(0).getWMC_Class());
+		assertEquals(1, ler.lerTodasLinhas().get(0).getWMC_Class());
 	}
 	
 	@Test
@@ -67,12 +67,12 @@ class LinhaTest {
 	
 	@Test
 	final void testGetLOC_Method() {
-		assertEquals(8, ler.lerTodasLinhas().get(0).getLOC_Method());
+		assertEquals(3, ler.lerTodasLinhas().get(0).getLOC_Method());
 	}
 	
 	@Test
 	final void testGetCyclo_Method() {
-		assertEquals(2, ler.lerTodasLinhas().get(0).getCyclo_Method());
+		assertEquals(1, ler.lerTodasLinhas().get(0).getCyclo_Method());
 	}
 	
 	@Test
@@ -82,7 +82,7 @@ class LinhaTest {
 	
 	@Test
 	final void testToString() {
-		assertTrue(ler.lerTodasLinhas().get(0).toString().equals("Linha [idMetodo=1, nomePacote=com.jasml.classes, nomeClasse=Attribute, nomeMetodo=Attribute(byte attrTag, int attrLength), NOM_Class=2, LOC_Class=32, WMC_Class=4, is_God_Class=, LOC_Method=8, Cyclo_Method=2, is_Long_Method=]"));
+		assertTrue(ler.lerTodasLinhas().get(0).toString().equals("Linha [idMetodo=1, nomePacote=com.jasml.classes, nomeClasse=Attribute_Synthetic, nomeMetodo=Attribute_Synthetic(), NOM_Class=1, LOC_Class=6, WMC_Class=1, is_God_Class=, LOC_Method=3, Cyclo_Method=1, is_Long_Method=]"));
 	}
 
 }
