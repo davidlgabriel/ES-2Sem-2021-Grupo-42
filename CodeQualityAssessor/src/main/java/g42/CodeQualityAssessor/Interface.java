@@ -1297,20 +1297,28 @@ public class Interface extends JDialog {
 	private void guardarRegras() {
 		try {
 			FileWriter myWriter = new FileWriter("regras.txt");
-			for(Regra r : regrasLongMethod.values()) {
-				myWriter.write(r.getNome() + "\n");
-				myWriter.write(r.getExpressao() + "\n");
-				myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
-			}
-			for(Regra r : regrasGodClass.values()) {
-				myWriter.write(r.getNome() + "\n");
-				myWriter.write(r.getExpressao() + "\n");
-				myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
-			}
+			guardarRegrasLM(myWriter);
+			guardarRegrasGC(myWriter);
 			myWriter.close();
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
+		}
+	}
+
+	private void guardarRegrasGC(FileWriter myWriter) throws IOException {
+		for(Regra r : regrasGodClass.values()) {
+			myWriter.write(r.getNome() + "\n");
+			myWriter.write(r.getExpressao() + "\n");
+			myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
+		}
+	}
+
+	private void guardarRegrasLM(FileWriter myWriter) throws IOException {
+		for(Regra r : regrasLongMethod.values()) {
+			myWriter.write(r.getNome() + "\n");
+			myWriter.write(r.getExpressao() + "\n");
+			myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
 		}
 	}
 
@@ -1603,6 +1611,11 @@ public class Interface extends JDialog {
 		for (int aux : LOC_métodos)
 			soma += aux;
 		LabelCountLinhasCodigo.setText(Integer.toString(soma));
+		
+		mostrarExcel();
+	}
+
+	private void mostrarExcel() {
 		DefaultTableModel defaultValues = new DefaultTableModel(getValores(), new String[] {
 				"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
 
@@ -1694,15 +1707,19 @@ public class Interface extends JDialog {
 		for (File ficheiro : f.listFiles()) {
 			String s = f.getAbsolutePath().replace("\\", "/");
 			String[] v = s.split("/");
-			if (v[v.length - 1].equals("src")) {
-				if (ficheiro.isDirectory())
-					percorrerDiretorio(ficheiro);
-			} else {
-				if (ficheiro.isDirectory())
-					percorrerDiretorio(ficheiro);
-				else
-					percorrerFicheiro(ficheiro);
-			}
+			verificacaoDiretorioOuFicheiro(ficheiro, v);
+		}
+	}
+
+	private void verificacaoDiretorioOuFicheiro(File ficheiro, String[] v) {
+		if (v[v.length - 1].equals("src")) {
+			if (ficheiro.isDirectory())
+				percorrerDiretorio(ficheiro);
+		} else {
+			if (ficheiro.isDirectory())
+				percorrerDiretorio(ficheiro);
+			else
+				percorrerFicheiro(ficheiro);
 		}
 	}
 
