@@ -23,6 +23,7 @@ na última chaveta desse mesmo método. Entre estes dois "delimitadores" serão 
 
 - Para o NOM_Class serão contabilizados todos os métodos de uma classe incluindo os seus contrutores.
 
+- Segundo a nossa implemetação, se existirem classes internas, estas irão assumir como nome o nome da classe mãe.
 
 ## Considerações relativamente à utilização da Interface
 
@@ -30,3 +31,9 @@ na última chaveta desse mesmo método. Entre estes dois "delimitadores" serão 
 - Nestes campos referidos anteriormente não podem ser inseridas letras nem espaços.
 - Não pode ser criada uma nova regra com um nome igual a uma regra já existente.
 - Ao ser selecionada uma regra da lista, poderão ser alterados os parâmetros da mesma.
+
+
+## Outras Notas/Considerações
+
+- Fizemos algumas alterações ao excel fornecido pelos professores uma vez que detetámos alguns erros de escrita nomeadamente na coluna com o nome dos métodos.
+Estas alterações forma feitas com vista a conseguirmos testar o nosso painel de acerto.
