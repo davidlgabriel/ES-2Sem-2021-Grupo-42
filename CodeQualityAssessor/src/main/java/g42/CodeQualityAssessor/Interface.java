@@ -1756,7 +1756,7 @@ public class Interface extends JDialog {
 		}
 	}
 
-	public ArrayList<String> getCaminhoFicheiros() {
+	public ArrayList<String> getCaminhoFicheiros() { 
 		return caminhoFicheiros;
 	}
 
