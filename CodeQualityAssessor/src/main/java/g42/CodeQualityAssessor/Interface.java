@@ -1746,7 +1746,7 @@ public class Interface extends JDialog {
 			if (ficheiro.isDirectory())
 				percorrerDiretorio(ficheiro);
 			else
-				percorrerFicheiro(ficheiro);
+				percorrerFicheiro(ficheiro); 
 		}
 	}
 
