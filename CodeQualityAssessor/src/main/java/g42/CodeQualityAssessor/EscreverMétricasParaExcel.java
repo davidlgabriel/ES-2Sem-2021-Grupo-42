@@ -162,9 +162,7 @@ public class EscreverMétricasParaExcel {
 		}
 
 		xlsxWorkbook.write(new FileOutputStream( this.nomeProjeto + ".xlsx" ));
-		xlsxWorkbook.close();
-		System.out.println("Excel criado com sucesso!!");
-		
+		xlsxWorkbook.close();		
 	}
 	
 
@@ -210,7 +208,6 @@ public class EscreverMétricasParaExcel {
 				String firstMethod = vetor[0];
 				String [] nameMethod = firstMethod.split(" ");
 				String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
-//				System.out.println(Method);
 				String [] auxSplit = Method.split(" throws ");
 				String [] splitMetodo = auxSplit[0].split(" ");
 				String Metodo=splitMetodo[0];
@@ -222,7 +219,6 @@ public class EscreverMétricasParaExcel {
 				if(!Metodo.endsWith(")")) {
 					Metodo=Metodo+")";
 				}
-				System.out.println(Metodo);
 				this.nomeMetodos.add(Metodo);
 			}
 		}

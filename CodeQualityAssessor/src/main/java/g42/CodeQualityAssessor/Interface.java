@@ -448,7 +448,7 @@ public class Interface extends JDialog {
 		NomeRegraLM.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (!NomeRegraLM.getText().equals("") && e.getKeyCode() != 32) {
+				if ((e.getKeyCode()!=8 && !(NomeRegraLM.getText()+e.getKeyChar()).equals("") || (NomeRegraLM.getText()).length()>=2) && e.getKeyCode() != 32) {
 					BotaoCriarRegraLM.setEnabled(true);
 				} else {
 					BotaoCriarRegraLM.setEnabled(false);
@@ -813,7 +813,7 @@ public class Interface extends JDialog {
 		NomeRegraGC.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (!NomeRegraGC.getText().equals("") && e.getKeyCode() != 32) {
+				if ((e.getKeyCode()!=8 && !(NomeRegraGC.getText()+e.getKeyChar()).equals("") || (NomeRegraGC.getText()).length()>=2) && e.getKeyCode() != 32) {
 					BotaoCriarRegraGC.setEnabled(true);
 				} else {
 					BotaoCriarRegraGC.setEnabled(false);
@@ -1127,7 +1127,6 @@ public class Interface extends JDialog {
 			valorRegra = false;
 		Regra regra = new Regra(this.NomeRegraLM.getText(), expressao, valorRegra, 0);
 		this.regrasLongMethod.put(regra.getNome(), regra);
-		System.out.println(expressao);
 		resetCamposLM();
 		ListaRegrasLMAlterar.removeAllItems();
 		ListaRegrasLMAplicar.removeAllItems();
@@ -1183,7 +1182,6 @@ public class Interface extends JDialog {
 			valorRegra = false;
 		Regra regra = new Regra(this.NomeRegraGC.getText(), expressao, valorRegra, 1);
 		this.regrasGodClass.put(regra.getNome(), regra);
-		System.out.println(expressao);
 		resetCamposGC();
 		ListaRegrasGCAlterar.removeAllItems();
 		ListaRegrasGCAplicar.removeAllItems();
@@ -1359,7 +1357,6 @@ public class Interface extends JDialog {
 
 			if (key == regraLMAlterar) {
 				NomeRegraLM.setText(regra.getNome());
-				System.out.println(regra.getValorCodeSmell());
 				if (regra.getValorCodeSmell()) {
 					isTrueFalse_LM.setSelectedItem("TRUE");
 				} else {
@@ -1415,7 +1412,6 @@ public class Interface extends JDialog {
 
 			if (key == regraGCAlterar) {
 				NomeRegraGC.setText(regra.getNome());
-				System.out.println(regra.getValorCodeSmell());
 				if (regra.getValorCodeSmell()) {
 					isTrueFalse_GC.setSelectedItem("TRUE");
 				} else {
