@@ -1217,6 +1217,7 @@ public class Interface extends JDialog {
 		textField4_GC.setText("");
 		textField5_GC.setText("");
 		textField6_GC.setText("");
+		CreateButton_GC.setText("Create Rule");
 		makeEnableGC(true);
 	}
 
@@ -1385,7 +1386,7 @@ public class Interface extends JDialog {
 				if (expressao[5].equals("&&")) {
 					secondOfFirst_GC.setSelectedItem("IS BETWEEN");
 					textField2_GC.setText(expressao[8]);
-					if (expressao.length > 10) {
+					if (expressao.length > 12) {
 						if (expressao[10].equals("&&"))
 							GC_And_Or.setSelectedItem("AND");
 						else
@@ -1412,7 +1413,7 @@ public class Interface extends JDialog {
 							}
 						} else {
 							secondOfSecond_GC.setSelectedItem(expressao[13]);
-							if (expressao.length > 16) {
+							if (expressao.length > 18) {
 								if (expressao[17].equals("&&"))
 									second_GC_And_Or.setSelectedItem("AND");
 								else
@@ -1430,7 +1431,7 @@ public class Interface extends JDialog {
 					}
 				} else {
 					secondOfFirst_GC.setSelectedItem(expressao[3]);
-					if (expressao.length > 6) {
+					if (expressao.length > 8) {
 						if (expressao[6].equals("&&")) {
 							GC_And_Or.setSelectedItem("AND");
 						} else {
