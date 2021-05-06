@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"g42.CodeQualityAssessor"}];updateSearchResults();
