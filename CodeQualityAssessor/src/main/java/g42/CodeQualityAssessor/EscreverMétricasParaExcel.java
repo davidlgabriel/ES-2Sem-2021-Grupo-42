@@ -210,9 +210,14 @@ public class EscreverMétricasParaExcel {
 
 	private void colocarMetodosArray(List<String> ConstructorName) {
 		for (String string : ConstructorName) {
-			String Metodo = extrairNomeMetodo(string);
-			this.nomeMetodos.add(Metodo);
+			adicinarAoNomeMetodos(string);
 		}
+	}
+
+
+	private void adicinarAoNomeMetodos(String string) {
+		String Metodo = extrairNomeMetodo(string);
+		this.nomeMetodos.add(Metodo);
 	}
 
 
@@ -260,11 +265,16 @@ public class EscreverMétricasParaExcel {
 			List<String> PackageName = new ArrayList<>();
 			VoidVisitor<List<String>> PackageNameVisitor = new NomePacote();
 			PackageNameVisitor.visit(f, PackageName);
-			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.nomePacotes.add(PackageName.get(0));
-			}
+			adicionarAoNomePacotes(rep, PackageName);
 			rep++;
 
+		}
+	}
+
+
+	private void adicionarAoNomePacotes(int rep, List<String> PackageName) {
+		for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
+			this.nomePacotes.add(PackageName.get(0));
 		}
 	}
 	
@@ -357,6 +367,11 @@ public class EscreverMétricasParaExcel {
 			
 		}
 
+		adicionarAoLOC_class_array(rep);
+	}
+
+
+	private void adicionarAoLOC_class_array(int rep) {
 		for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
 			this.LOC_class_array.add(this.LOC_class);
 		}
@@ -433,14 +448,18 @@ public class EscreverMétricasParaExcel {
 			}
 
 			for (String string : constructors) {
-				String [] vectorS =null;
-				vectorS = string.split("\n");
-				this.LOC_method = vectorS.length;
-				this.LOC_method_array.add(this.LOC_method);
-
+				adicionarAoLOC_method_array(string);
 				this.LOC_method =0;
 			}
 		}
+	}
+
+
+	private void adicionarAoLOC_method_array(String string) {
+		String[] vectorS = null;
+		vectorS = string.split("\n");
+		this.LOC_method = vectorS.length;
+		this.LOC_method_array.add(this.LOC_method);
 	}
 
 
@@ -475,11 +494,16 @@ public class EscreverMétricasParaExcel {
 			}
 
 			for (String string : constructors) {
-				this.CYCLO_method=contarComplexidadeDeMetodo(string);
-				this.CYCLO_method_array.add(this.CYCLO_method);
+				adicionarAoCYCLO_method_array(string);
 				this.CYCLO_method=0;
 			}
 		}
+	}
+
+
+	private void adicionarAoCYCLO_method_array(String string) {
+		this.CYCLO_method = contarComplexidadeDeMetodo(string);
+		this.CYCLO_method_array.add(this.CYCLO_method);
 	}
 
 
@@ -499,12 +523,17 @@ public class EscreverMétricasParaExcel {
 		    CompilationUnit cu = StaticJavaParser.parse(new File(caminhoClasse));
 		    VoidVisitor<List<String>> classNameVisitor = new ColecionarNomeClasse();
 		    classNameVisitor.visit(cu,className);
-			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.nomeClasses.add(className.get(className.size()-1));
-			}
+			adicionarAoNomeClasses(rep, className);
 			rep++;
 		}
 		this.numeroClasses=rep;
+	}
+
+
+	private void adicionarAoNomeClasses(int rep, List<String> className) {
+		for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
+			this.nomeClasses.add(className.get(className.size()-1));
+		}
 	}
 
 	

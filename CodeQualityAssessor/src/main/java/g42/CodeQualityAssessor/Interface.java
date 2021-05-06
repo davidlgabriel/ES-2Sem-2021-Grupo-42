@@ -1603,13 +1603,26 @@ public class Interface extends JDialog {
 	}
 
 	private void colocarEstatisticas() {
-		Set<String> packages = new HashSet<>(excel.getnomePackages());
-		LabelCountPackages.setText(Integer.toString(packages.size()));
+		colocarEstatisticasPackages();
 		LabelCountClasses.setText(Integer.toString(excel.getNumberClasses()));
-		ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
-		LabelCountMetodos.setText(Integer.toString(LOC_métodos.size()));
+		ArrayList<Integer> LOC_métodos = colocarEstatisticasMetodos();
+		colocarEstatisticasLinhasCodigo(LOC_métodos);
+	}
+
+	private void colocarEstatisticasLinhasCodigo(ArrayList<Integer> LOC_métodos) {
 		int soma = 0;
 		LabelCountLinhasCodigo.setText(Integer.toString(somarLinhasCodigo(LOC_métodos, soma)));
+	}
+
+	private ArrayList<Integer> colocarEstatisticasMetodos() {
+		ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
+		LabelCountMetodos.setText(Integer.toString(LOC_métodos.size()));
+		return LOC_métodos;
+	}
+
+	private void colocarEstatisticasPackages() {
+		Set<String> packages = new HashSet<>(excel.getnomePackages());
+		LabelCountPackages.setText(Integer.toString(packages.size()));
 	}
 
 	private int somarLinhasCodigo(ArrayList<Integer> LOC_métodos, int soma) {

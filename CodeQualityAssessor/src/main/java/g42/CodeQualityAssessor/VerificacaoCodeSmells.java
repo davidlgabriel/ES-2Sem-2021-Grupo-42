@@ -81,20 +81,24 @@ public class VerificacaoCodeSmells {
 		Workbook wb = WorkbookFactory.create(inp);
 	    Sheet sheet = wb.getSheet("Code Smells");
 	    for(int i=1; i<= sheet.getLastRowNum(); i++){
-	    	Row row = sheet.getRow(i);
-	    	String pacote = row.getCell(1).getStringCellValue();
-	    	String classe = row.getCell(2).getStringCellValue().split("\\.")[0];
-	    	String metodo = row.getCell(3).getStringCellValue();
-
-	    	if(row.getCell(7).getCellType().toString().equals("BOOLEAN") && row.getCell(10).getCellType().toString().equals("BOOLEAN")) {
-	    		boolean is_God_Class = row.getCell(7).getBooleanCellValue();
-		    	boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
-		    	
-		    	CodeSmellMetodo codeSmellMetodo = new CodeSmellMetodo(pacote+classe+metodo,is_God_Class,is_Long_Method);
-		    	
-		    	this.codeSmellsMetodos.put(pacote+classe+metodo, codeSmellMetodo);
-	    	}
+	    	retirarCodeSmellMetodo(sheet, i);
 	    }
+	}
+
+	private void retirarCodeSmellMetodo(Sheet sheet, int i) {
+		Row row = sheet.getRow(i);
+		String pacote = row.getCell(1).getStringCellValue();
+		String classe = row.getCell(2).getStringCellValue().split("\\.")[0];
+		String metodo = row.getCell(3).getStringCellValue();
+
+		if(row.getCell(7).getCellType().toString().equals("BOOLEAN") && row.getCell(10).getCellType().toString().equals("BOOLEAN")) {
+			boolean is_God_Class = row.getCell(7).getBooleanCellValue();
+			boolean is_Long_Method = row.getCell(10).getBooleanCellValue();
+			
+			CodeSmellMetodo codeSmellMetodo = new CodeSmellMetodo(pacote+classe+metodo,is_God_Class,is_Long_Method);
+			
+			this.codeSmellsMetodos.put(pacote+classe+metodo, codeSmellMetodo);
+		}
 	}
 
 	public int getFalsos_negativos() {
