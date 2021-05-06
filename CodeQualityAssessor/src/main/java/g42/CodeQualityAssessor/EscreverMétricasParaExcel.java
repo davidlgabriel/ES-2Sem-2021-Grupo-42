@@ -210,17 +210,23 @@ public class EscreverMétricasParaExcel {
 
 	private void colocarMetodosArray(List<String> ConstructorName) {
 		for (String string : ConstructorName) {
-			String [] vetor = string.split("\\(");
-			String parametrosMethod = vetor[1];
-			String firstMethod = vetor[0];
-			String [] nameMethod = firstMethod.split(" ");
-			String Method = nameMethod[nameMethod.length-1].concat("("+parametrosMethod);
-			String [] auxSplit = Method.split(" throws ");
-			String [] splitMetodo = auxSplit[0].split(" ");
-			String Metodo=splitMetodo[0];
-			Metodo = juntarNomeMetodo(splitMetodo, Metodo);
+			String Metodo = extrairNomeMetodo(string);
 			this.nomeMetodos.add(Metodo);
 		}
+	}
+
+
+	private String extrairNomeMetodo(String string) {
+		String[] vetor = string.split("\\(");
+		String parametrosMethod = vetor[1];
+		String firstMethod = vetor[0];
+		String[] nameMethod = firstMethod.split(" ");
+		String Method = nameMethod[nameMethod.length - 1].concat("(" + parametrosMethod);
+		String[] auxSplit = Method.split(" throws ");
+		String[] splitMetodo = auxSplit[0].split(" ");
+		String Metodo = splitMetodo[0];
+		Metodo = juntarNomeMetodo(splitMetodo, Metodo);
+		return Metodo;
 	}
 
 
@@ -388,19 +394,24 @@ public class EscreverMétricasParaExcel {
 			VoidVisitor<List<String>> constructorCollector = new ColecionarConstrutor();
 			constructorCollector.visit(f, constructors);
 
-			for (String string : methods) {
-				constructors.add(string);
-			}
-
-			for (String string : constructors) {
-				this.WMC_class = this.WMC_class + contarComplexidadeDeMetodo(string);
-			}
-			for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
-				this.WMC_class_array.add(this.WMC_class);
-			}
+			adicionarAoWMC_class_array(rep, methods, constructors);
 
 			rep++;
 			this.WMC_class=0;
+		}
+	}
+
+
+	private void adicionarAoWMC_class_array(int rep, List<String> methods, List<String> constructors) {
+		for (String string : methods) {
+			constructors.add(string);
+		}
+
+		for (String string : constructors) {
+			this.WMC_class = this.WMC_class + contarComplexidadeDeMetodo(string);
+		}
+		for (int i = 0; i < this.repeticoes_NOM.get(rep); i++) {
+			this.WMC_class_array.add(this.WMC_class);
 		}
 	}
 
