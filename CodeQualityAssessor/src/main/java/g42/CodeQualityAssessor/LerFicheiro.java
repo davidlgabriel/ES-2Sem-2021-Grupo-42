@@ -22,10 +22,8 @@ public class LerFicheiro {
 	public LerFicheiro(String nomeFicheiro){
 		try {
 			workbook = new XSSFWorkbook(new FileInputStream(nomeFicheiro));
-		} catch (FileNotFoundException e) {
-			System.out.println("File Not Found.");
 		} catch (IOException e) {
-			System.out.println("Error reading file.");
+			System.out.println("File error.");
 		}
 		sheet = workbook.getSheetAt(0);
 	}

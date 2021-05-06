@@ -20,7 +20,7 @@ class FicheiroTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		Interface interf = new Interface();
-		interf.setSelectedFile(new File("jasml_0.10"));
+		interf.setdiretorioEscolhido(new File("jasml_0.10"));
 		ArrayList<String> array = new ArrayList<String>();
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();

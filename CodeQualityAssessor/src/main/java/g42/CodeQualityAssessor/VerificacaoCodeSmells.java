@@ -42,10 +42,10 @@ public class VerificacaoCodeSmells {
 		this.falsos_negativos=0;
 		verificarCodeSmells();
 		verificarIndicadores();
-		System.out.println(this.verdadeiros_positivos);
-		System.out.println(this.falsos_positivos);
-		System.out.println(this.verdadeiros_negativos);
-		System.out.println(this.falsos_negativos);
+		System.out.println(this.getVerdadeiros_positivos());
+		System.out.println(this.getFalsos_positivos());
+		System.out.println(this.getVerdadeiros_negativos());
+		System.out.println(this.getFalsos_negativos());
 	}
 	
 	private void verificarIndicadores() throws EncryptedDocumentException, IOException {
@@ -103,10 +103,6 @@ public class VerificacaoCodeSmells {
 
 	public int getFalsos_negativos() {
 		return falsos_negativos;
-	}
-
-	public void setFalsos_negativos(int falsos_negativos) {
-		this.falsos_negativos = falsos_negativos;
 	}
 
 	public int getVerdadeiros_positivos() {

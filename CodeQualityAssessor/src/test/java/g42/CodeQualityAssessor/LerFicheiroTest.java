@@ -3,10 +3,14 @@ package g42.CodeQualityAssessor;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 class LerFicheiroTest {
 
@@ -17,7 +21,7 @@ class LerFicheiroTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		Interface interf = new Interface();
-		interf.setSelectedFile(new File("jasml_0.10"));
+		interf.setdiretorioEscolhido(new File("jasml_0.10"));
 		ArrayList<String> array = new ArrayList<String>();
 		interf.percorrer();
 		array = interf.getCaminhoFicheiros();
@@ -39,5 +43,4 @@ class LerFicheiroTest {
 			assertTrue(ler.lerTodasLinhas().get(i).toString().equals(ficheiro.getListaLinhas().get(i).toString()));
 		}
 	}
-
 }
