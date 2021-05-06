@@ -101,6 +101,26 @@ public class VerificacaoCodeSmells {
 	    }
 	}
 
+	public int getFalsos_negativos() {
+		return falsos_negativos;
+	}
+
+	public void setFalsos_negativos(int falsos_negativos) {
+		this.falsos_negativos = falsos_negativos;
+	}
+
+	public int getVerdadeiros_positivos() {
+		return verdadeiros_positivos;
+	}
+
+	public int getFalsos_positivos() {
+		return falsos_positivos;
+	}
+
+	public int getVerdadeiros_negativos() {
+		return verdadeiros_negativos;
+	}
+
 	private void verificarCodeSmells() throws EncryptedDocumentException, IOException, ScriptException{
 		InputStream inp = new FileInputStream(projeto_name + ".xlsx");
 		Workbook wb = WorkbookFactory.create(inp);

@@ -111,6 +111,14 @@ public class Interface extends JDialog {
 	private HashMap<String, Regra> regrasLongMethod = new HashMap<>();
 	private JComboBox comboBox_escolherRegraLM;
 	private JComboBox comboBox_escolherRegraGC;
+	private JLabel LabelTextoVP;
+	private JLabel LabelTextoFP;
+	private JLabel LabelTextVN;
+	private JLabel LabelTextoFN;
+	private JLabel LabelCountVP;
+	private JLabel LabelCountFP;
+	private JLabel LabelCountVN;
+	private JLabel LabelCountFN;
 
 	public Interface() {
 		this.addWindowListener(new WindowListener() {
@@ -1057,6 +1065,20 @@ public class Interface extends JDialog {
 		gbc_comboBox_escolherRegraLM.gridx = 8;
 		gbc_comboBox_escolherRegraLM.gridy = 6;
 		getContentPane().add(comboBox_escolherRegraLM, gbc_comboBox_escolherRegraLM);
+		
+		LabelTextoVP = new JLabel("Verdadeiros positivos");
+		GridBagConstraints gbc_LabelTextoVP = new GridBagConstraints();
+		gbc_LabelTextoVP.insets = new Insets(0, 0, 5, 5);
+		gbc_LabelTextoVP.gridx = 11;
+		gbc_LabelTextoVP.gridy = 6;
+		getContentPane().add(LabelTextoVP, gbc_LabelTextoVP);
+		
+		LabelCountVP = new JLabel("0");
+		GridBagConstraints gbc_LabelCountVP = new GridBagConstraints();
+		gbc_LabelCountVP.insets = new Insets(0, 0, 5, 0);
+		gbc_LabelCountVP.gridx = 12;
+		gbc_LabelCountVP.gridy = 6;
+		getContentPane().add(LabelCountVP, gbc_LabelCountVP);
 
 		JLabel lblNewLabel_3 = new JLabel("Número de classes:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -1079,6 +1101,20 @@ public class Interface extends JDialog {
 		gbc_comboBox_escolherRegraGC.gridx = 8;
 		gbc_comboBox_escolherRegraGC.gridy = 7;
 		getContentPane().add(comboBox_escolherRegraGC, gbc_comboBox_escolherRegraGC);
+		
+		LabelTextoFP = new JLabel("Falsos positivos");
+		GridBagConstraints gbc_LabelTextoFP = new GridBagConstraints();
+		gbc_LabelTextoFP.insets = new Insets(0, 0, 5, 5);
+		gbc_LabelTextoFP.gridx = 11;
+		gbc_LabelTextoFP.gridy = 7;
+		getContentPane().add(LabelTextoFP, gbc_LabelTextoFP);
+		
+		LabelCountFP = new JLabel("0");
+		GridBagConstraints gbc_LabelCountFP = new GridBagConstraints();
+		gbc_LabelCountFP.insets = new Insets(0, 0, 5, 0);
+		gbc_LabelCountFP.gridx = 12;
+		gbc_LabelCountFP.gridy = 7;
+		getContentPane().add(LabelCountFP, gbc_LabelCountFP);
 
 		lblNewLabel_6 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
@@ -1112,6 +1148,11 @@ public class Interface extends JDialog {
 					}
 					try {
 						verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), regraLM, regraGC);
+						LabelCountVP.setText(Integer.toString(verificarCS.getVerdadeiros_positivos()));
+						LabelCountFP.setText(Integer.toString(verificarCS.getFalsos_positivos()));
+						LabelCountVN.setText(Integer.toString(verificarCS.getVerdadeiros_negativos()));
+						LabelCountFN.setText(Integer.toString(verificarCS.getFalsos_negativos()));
+						
 					} catch (EncryptedDocumentException | IOException | ScriptException e1) {
 						e1.printStackTrace();
 					}
@@ -1133,6 +1174,20 @@ public class Interface extends JDialog {
 		gbc_btnNewButton.gridx = 8;
 		gbc_btnNewButton.gridy = 8;
 		getContentPane().add(btnNewButton, gbc_btnNewButton);
+		
+		LabelTextVN = new JLabel("Verdadeiros negativos");
+		GridBagConstraints gbc_LabelTextVN = new GridBagConstraints();
+		gbc_LabelTextVN.insets = new Insets(0, 0, 5, 5);
+		gbc_LabelTextVN.gridx = 11;
+		gbc_LabelTextVN.gridy = 8;
+		getContentPane().add(LabelTextVN, gbc_LabelTextVN);
+		
+		LabelCountVN = new JLabel("0");
+		GridBagConstraints gbc_LabelCountVN = new GridBagConstraints();
+		gbc_LabelCountVN.insets = new Insets(0, 0, 5, 0);
+		gbc_LabelCountVN.gridx = 12;
+		gbc_LabelCountVN.gridy = 8;
+		getContentPane().add(LabelCountVN, gbc_LabelCountVN);
 
 		lblNewLabel_8 = new JLabel("0");
 		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
@@ -1147,6 +1202,20 @@ public class Interface extends JDialog {
 		gbc_lblNewLabel_7.gridx = 1;
 		gbc_lblNewLabel_7.gridy = 9;
 		getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		LabelTextoFN = new JLabel("Falsos negativos");
+		GridBagConstraints gbc_LabelTextoFN = new GridBagConstraints();
+		gbc_LabelTextoFN.insets = new Insets(0, 0, 5, 5);
+		gbc_LabelTextoFN.gridx = 11;
+		gbc_LabelTextoFN.gridy = 9;
+		getContentPane().add(LabelTextoFN, gbc_LabelTextoFN);
+		
+		LabelCountFN = new JLabel("0");
+		GridBagConstraints gbc_LabelCountFN = new GridBagConstraints();
+		gbc_LabelCountFN.insets = new Insets(0, 0, 5, 0);
+		gbc_LabelCountFN.gridx = 12;
+		gbc_LabelCountFN.gridy = 9;
+		getContentPane().add(LabelCountFN, gbc_LabelCountFN);
 
 		carregarRegras();
 	}
