@@ -1106,11 +1106,7 @@ public class Interface extends JDialog {
 					return;
 		}
 		String expressao = criarExpressaoLM();
-		boolean valorRegra;
-		if (this.isTrueFalse_LM.getSelectedItem().equals("TRUE"))
-			valorRegra = true;
-		else
-			valorRegra = false;
+		boolean valorRegra = retirarValorBooleanRegra(this.isTrueFalse_LM);
 		Regra regra = new Regra(this.NomeRegraLM.getText(), expressao, valorRegra, 0);
 		this.regrasLongMethod.put(regra.getNome(), regra);
 		resetCamposLM();
@@ -1144,6 +1140,13 @@ public class Interface extends JDialog {
 		}
 		return expressao;
 	}
+	
+	private boolean retirarValorBooleanRegra(JComboBox valorRegra) {
+		if (valorRegra.getSelectedItem().equals("TRUE"))
+			return true;
+		else
+			return false;
+	}
 
 	private void criarRegraGC() {
 		if (regraGCAlterar!=null && !regraGCAlterar.equals(""))
@@ -1154,11 +1157,7 @@ public class Interface extends JDialog {
 					return;
 		}
 		String expressao = criarExpressaoGC();
-		boolean valorRegra;
-		if (this.isTrueFalse_GC.getSelectedItem().equals("TRUE"))
-			valorRegra = true;
-		else
-			valorRegra = false;
+		boolean valorRegra = retirarValorBooleanRegra(this.isTrueFalse_GC);
 		Regra regra = new Regra(this.NomeRegraGC.getText(), expressao, valorRegra, 1);
 		this.regrasGodClass.put(regra.getNome(), regra);
 		resetCamposGC();
@@ -1297,8 +1296,8 @@ public class Interface extends JDialog {
 	private void guardarRegras() {
 		try {
 			FileWriter myWriter = new FileWriter("regras.txt");
-			guardarRegrasLM(myWriter);
-			guardarRegrasGC(myWriter);
+			guardarRegrasLista(myWriter,regrasLongMethod);
+			guardarRegrasLista(myWriter,regrasGodClass);
 			myWriter.close();
 		} catch (IOException e) {
 			System.out.println("An error occurred.");
@@ -1306,20 +1305,16 @@ public class Interface extends JDialog {
 		}
 	}
 
-	private void guardarRegrasGC(FileWriter myWriter) throws IOException {
-		for(Regra r : regrasGodClass.values()) {
-			myWriter.write(r.getNome() + "\n");
-			myWriter.write(r.getExpressao() + "\n");
-			myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
+	private void guardarRegrasLista(FileWriter myWriter, HashMap<String,Regra> listaRegras) throws IOException {
+		for(Regra r : listaRegras.values()) {
+			escreverRegra(myWriter, r);
 		}
 	}
 
-	private void guardarRegrasLM(FileWriter myWriter) throws IOException {
-		for(Regra r : regrasLongMethod.values()) {
-			myWriter.write(r.getNome() + "\n");
-			myWriter.write(r.getExpressao() + "\n");
-			myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
-		}
+	private void escreverRegra(FileWriter myWriter, Regra r) throws IOException {
+		myWriter.write(r.getNome() + "\n");
+		myWriter.write(r.getExpressao() + "\n");
+		myWriter.write(r.getValorCodeSmell()+ " " + r.getTipoCodeSmell() + "\n");
 	}
 
 	private void makeVisibleLM() {
@@ -1375,11 +1370,7 @@ public class Interface extends JDialog {
 
 			if (key == regraLMAlterar) {
 				NomeRegraLM.setText(regra.getNome());
-				if (regra.getValorCodeSmell()) {
-					isTrueFalse_LM.setSelectedItem("TRUE");
-				} else {
-					isTrueFalse_LM.setSelectedItem("FALSE");
-				}
+				colocarValorBooleanRegra(regra,isTrueFalse_LM);
 				String[] expressao = regra.getExpressao().split(" ");
 				ListaMetricasC1LM.setSelectedItem(expressao[1]);
 				LMC1valorM1.setText(expressao[3]);
@@ -1421,6 +1412,14 @@ public class Interface extends JDialog {
 			}
 		}
 	}
+	
+	private void colocarValorBooleanRegra(Regra regra, JComboBox isTrueFalse) {
+		if (regra.getValorCodeSmell()) {
+			isTrueFalse.setSelectedItem("TRUE");
+		} else {
+			isTrueFalse.setSelectedItem("FALSE");
+		}
+	}
 
 	private void alterarRegraGC() {
 		BotaoCriarRegraGC.setText("Change Rule");
@@ -1430,11 +1429,7 @@ public class Interface extends JDialog {
 
 			if (key == regraGCAlterar) {
 				NomeRegraGC.setText(regra.getNome());
-				if (regra.getValorCodeSmell()) {
-					isTrueFalse_GC.setSelectedItem("TRUE");
-				} else {
-					isTrueFalse_GC.setSelectedItem("FALSE");
-				}
+				colocarValorBooleanRegra(regra,isTrueFalse_GC);
 				String[] expressao = regra.getExpressao().split(" ");
 				ListaMetricasC1GC.setSelectedItem(expressao[2]);
 				GCC1valorM1.setText(expressao[4]);
@@ -1602,17 +1597,25 @@ public class Interface extends JDialog {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		colocarEstatisticas();
+		
+		mostrarExcel();
+	}
+
+	private void colocarEstatisticas() {
 		Set<String> packages = new HashSet<>(excel.getnomePackages());
 		LabelCountPackages.setText(Integer.toString(packages.size()));
 		LabelCountClasses.setText(Integer.toString(excel.getNumberClasses()));
 		ArrayList<Integer> LOC_métodos = excel.getLOC_method_array();
 		LabelCountMetodos.setText(Integer.toString(LOC_métodos.size()));
 		int soma = 0;
+		LabelCountLinhasCodigo.setText(Integer.toString(somarLinhasCodigo(LOC_métodos, soma)));
+	}
+
+	private int somarLinhasCodigo(ArrayList<Integer> LOC_métodos, int soma) {
 		for (int aux : LOC_métodos)
 			soma += aux;
-		LabelCountLinhasCodigo.setText(Integer.toString(soma));
-		
-		mostrarExcel();
+		return soma;
 	}
 
 	private void mostrarExcel() {
@@ -1637,38 +1640,45 @@ public class Interface extends JDialog {
 	
 	private void acaoAplicarRegras() {
 		if(excel!=null && ListaRegrasLMAplicar.getSelectedItem()!=null && ListaRegrasGCAplicar.getSelectedItem()!=null && !ListaRegrasLMAplicar.getSelectedItem().equals("") && !ListaRegrasGCAplicar.getSelectedItem().equals("")) {
-			Regra regraLM = null;
-			for (HashMap.Entry<String, Regra> entry : regrasLongMethod.entrySet()) {
-				String key = entry.getKey();
-				if(key.equals(ListaRegrasLMAplicar.getSelectedItem()))
-					regraLM = entry.getValue();
-			}
-			Regra regraGC = null;
-			for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
-				String key = entry.getKey();
-				if(key.equals(ListaRegrasGCAplicar.getSelectedItem()))
-					regraGC = entry.getValue();
-			}
+			Regra regraLM = buscarRegraSelecionada(regrasLongMethod, ListaRegrasLMAplicar);
+			Regra regraGC = buscarRegraSelecionada(regrasGodClass, ListaRegrasGCAplicar);
 			try {
 				verificarCS = new VerificacaoCodeSmells(excel.getProjeto_name(), regraLM, regraGC);
-				LabelCountVP.setText(Integer.toString(verificarCS.getVerdadeiros_positivos()));
-				LabelCountFP.setText(Integer.toString(verificarCS.getFalsos_positivos()));
-				LabelCountVN.setText(Integer.toString(verificarCS.getVerdadeiros_negativos()));
-				LabelCountFN.setText(Integer.toString(verificarCS.getFalsos_negativos()));
+				colocarValoresPainelAcerto();
 				
 			} catch (EncryptedDocumentException | IOException | ScriptException e1) {
 				e1.printStackTrace();
 			}
 
-			DefaultTableModel defaultValues = new DefaultTableModel(getValores(), new String[] {
-					"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
-
-			tableExcel = new JTable(defaultValues);
-			JTableHeader header = tableExcel.getTableHeader();
-			header.setReorderingAllowed(false);
-			header.setBackground(Color.LIGHT_GRAY);
-			scrollPaneExcel.setViewportView(tableExcel);
+			mostrarExcelComCodeSmells();
 		}
+	}
+
+	private void colocarValoresPainelAcerto() {
+		LabelCountVP.setText(Integer.toString(verificarCS.getVerdadeiros_positivos()));
+		LabelCountFP.setText(Integer.toString(verificarCS.getFalsos_positivos()));
+		LabelCountVN.setText(Integer.toString(verificarCS.getVerdadeiros_negativos()));
+		LabelCountFN.setText(Integer.toString(verificarCS.getFalsos_negativos()));
+	}
+	
+	private Regra buscarRegraSelecionada(HashMap<String,Regra> listaRegras, JComboBox NomesRegras) {
+		for (HashMap.Entry<String, Regra> entry : listaRegras.entrySet()) {
+			String key = entry.getKey();
+			if(key.equals(NomesRegras.getSelectedItem()))
+				return entry.getValue();
+		}
+		return null;
+	}
+
+	private void mostrarExcelComCodeSmells() {
+		DefaultTableModel defaultValues = new DefaultTableModel(getValores(), new String[] {
+				"MethodID","package","class", "method", "NOM_class", "LOC_class", "WMC_class", "is_God_Class", "LOC_method","CYCLO_method", "is_Long_Method"});
+
+		tableExcel = new JTable(defaultValues);
+		JTableHeader header = tableExcel.getTableHeader();
+		header.setReorderingAllowed(false);
+		header.setBackground(Color.LIGHT_GRAY);
+		scrollPaneExcel.setViewportView(tableExcel);
 	}
 	
 	private void acaoEscolherDiretorio() {
@@ -1695,11 +1705,15 @@ public class Interface extends JDialog {
 		String[] aux = diretorioEscolhido.getAbsolutePath().replace("\\", "/").split("/");
 		caminhoFicheiros.add(aux[aux.length - 1]);
 		for (File f : diretorioEscolhido.listFiles()) {
-			String s = f.getAbsolutePath().replace("\\", "/");
-			String[] v = s.split("/");
-			if (f.isDirectory() && v[v.length - 1].equals("src")) {
-				percorrerDiretorio(f);
-			}
+			verificacaoPastaSRC(f);
+		}
+	}
+
+	private void verificacaoPastaSRC(File f) {
+		String s = f.getAbsolutePath().replace("\\", "/");
+		String[] v = s.split("/");
+		if (f.isDirectory() && v[v.length - 1].equals("src")) {
+			percorrerDiretorio(f);
 		}
 	}
 

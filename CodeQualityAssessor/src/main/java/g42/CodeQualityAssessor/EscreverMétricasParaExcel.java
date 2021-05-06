@@ -292,23 +292,29 @@ public class EscreverMétricasParaExcel {
 			List<String> constructorNames = new ArrayList<>();
 			VoidVisitor<List<String>> constructorNameCollector = new ColecionarNomeConstrutor();
 			constructorNameCollector.visit(f, constructorNames);
-			for (String string : methodNames) {
-				constructorNames.add(string);
-			}
-
-			for (String string : constructorNames) {
-				this.NOM_class++;
-			}
-			
-			this.repeticoes_NOM.add(this.NOM_class);
-			for (int i = 0; i < this.NOM_class; i++) {
-				this.NOM_class_array.add(this.NOM_class);
-			}
+			adicionarAoRepeticoes_NOM(methodNames, constructorNames);
+			adicionarAoNOM_class_array();
 
 			this.NOM_class=0;
 		}
 	}
-	
+
+	private void adicionarAoRepeticoes_NOM(List<String> methodNames, List<String> constructorNames) {
+		for (String string : methodNames) {
+			constructorNames.add(string);
+		}
+		for (String string : constructorNames) {
+			this.NOM_class++;
+		}
+		this.repeticoes_NOM.add(this.NOM_class);
+	}
+
+
+	private void adicionarAoNOM_class_array() {
+		for (int i = 0; i < this.NOM_class; i++) {
+			this.NOM_class_array.add(this.NOM_class);
+		}
+	}
 
 	private static class ColecionarClasse extends VoidVisitorAdapter<List<String>> {
 
