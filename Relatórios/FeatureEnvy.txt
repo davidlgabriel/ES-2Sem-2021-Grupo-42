@@ -1,5 +1,0 @@
-Refactoring Type	Source Entity	Target Class	Source/Target accessed members	Rate it!
-Move Method	g42.CodeQualityAssessor.Interface::escreverRegra(java.io.FileWriter, g42.CodeQualityAssessor.Regra):void	g42.CodeQualityAssessor.Regra	0/4	
-Move Method	g42.CodeQualityAssessor.Interface::colocarValorBooleanRegra(g42.CodeQualityAssessor.Regra, javax.swing.JComboBox):void	g42.CodeQualityAssessor.Regra	0/1	
-Move Method	g42.CodeQualityAssessor.VerificacaoCodeSmells::VerificarLongMethod(int, int):java.lang.String	g42.CodeQualityAssessor.Regra	1/2	
-Move Method	g42.CodeQualityAssessor.VerificacaoCodeSmells::VerificarGodClass(int, int, int):java.lang.String	g42.CodeQualityAssessor.Regra	1/2	
