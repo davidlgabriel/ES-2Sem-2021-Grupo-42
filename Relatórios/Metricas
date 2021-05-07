@@ -27,54 +27,54 @@
    </MetricDescriptions>
    <PackageRoot name = "java" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/">
       <Metrics>
-         <Metric id ="VG" avg ="2,748" stddev ="4,727" points ="127" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
-         <Metric id ="PAR" avg ="0,764" stddev ="1,337" points ="127" max ="11" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha~Linha~I~QString;~QString;~QString;~I~I~I~QString;~I~I~QString;"/>
-         <Metric id ="NBD" avg ="1,638" stddev ="1,077" points ="127" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+         <Metric id ="VG" avg ="2,729" stddev ="4,624" points ="133" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+         <Metric id ="PAR" avg ="0,774" stddev ="1,313" points ="133" max ="11" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha~Linha~I~QString;~QString;~QString;~I~I~I~QString;~I~I~QString;"/>
+         <Metric id ="NBD" avg ="1,654" stddev ="1,069" points ="133" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
          <Metric id ="CA" avg ="0" stddev ="0" points ="1" max ="0" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="CE" avg ="4" stddev ="0" points ="1" max ="4" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="RMI" avg ="1" stddev ="0" points ="1" max ="1" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="RMA" avg ="0" stddev ="0" points ="1" max ="0" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="RMD" avg ="0" stddev ="0" points ="1" max ="0" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="DIT" avg ="1,824" stddev ="1,15" points ="17" max ="6" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-         <Metric id ="WMC" value ="349" avg ="20,529" stddev ="51,232" points ="17" max ="215" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-         <Metric id ="NSC" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Ficheiro.java[Ficheiro"/>
+         <Metric id ="WMC" value ="363" avg ="21,353" stddev ="54,368" points ="17" max ="229" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+         <Metric id ="NSC" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
          <Metric id ="NORM" value ="1" avg ="0,059" stddev ="0,235" points ="17" max ="1" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha"/>
-         <Metric id ="LCOM" avg ="0,356" stddev ="0,388" points ="17" max ="0,912" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+         <Metric id ="LCOM" avg ="0,356" stddev ="0,388" points ="17" max ="0,922" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
          <Metric id ="NOF" value ="114" avg ="6,706" stddev ="15,537" points ="17" max ="66" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-         <Metric id ="NSF" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Ficheiro.java[Ficheiro"/>
-         <Metric id ="NOM" value ="126" avg ="7,412" stddev ="11,862" points ="17" max ="43" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+         <Metric id ="NSF" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+         <Metric id ="NOM" value ="132" avg ="7,765" stddev ="12,955" points ="17" max ="49" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
          <Metric id ="NSM" value ="1" avg ="0,059" stddev ="0,235" points ="17" max ="1" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
          <Metric id ="SIX" avg ="0,005" stddev ="0,018" points ="17" max ="0,077" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha"/>
          <Metric id ="NOC" value ="17" avg ="17" stddev ="0" points ="1" max ="17" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="NOI" value ="0" avg ="0" stddev ="0" points ="1" max ="0" per ="packageFragment" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor"/>
          <Metric id ="NOP" value ="1"/>
-         <Metric id ="TLOC" value ="2365"/>
-         <Metric id ="MLOC" value ="1863" avg ="14,669" stddev ="76,91" points ="127" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
+         <Metric id ="TLOC" value ="2422"/>
+         <Metric id ="MLOC" value ="1908" avg ="14,346" stddev ="75,175" points ="133" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
       </Metrics>
       <Package name = "g42.CodeQualityAssessor" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor">
          <Metrics>
-            <Metric id ="VG" avg ="2,748" stddev ="4,727" points ="127" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
-            <Metric id ="PAR" avg ="0,764" stddev ="1,337" points ="127" max ="11" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha~Linha~I~QString;~QString;~QString;~I~I~I~QString;~I~I~QString;"/>
-            <Metric id ="NBD" avg ="1,638" stddev ="1,077" points ="127" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+            <Metric id ="VG" avg ="2,729" stddev ="4,624" points ="133" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+            <Metric id ="PAR" avg ="0,774" stddev ="1,313" points ="133" max ="11" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha~Linha~I~QString;~QString;~QString;~I~I~I~QString;~I~I~QString;"/>
+            <Metric id ="NBD" avg ="1,654" stddev ="1,069" points ="133" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
             <Metric id ="CA" value ="0"/>
             <Metric id ="CE" value ="4"/>
             <Metric id ="RMI" value ="1"/>
             <Metric id ="RMA" value ="0"/>
             <Metric id ="RMD" value ="0"/>
             <Metric id ="DIT" avg ="1,824" stddev ="1,15" points ="17" max ="6" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-            <Metric id ="WMC" value ="349" avg ="20,529" stddev ="51,232" points ="17" max ="215" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-            <Metric id ="NSC" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Ficheiro.java[Ficheiro"/>
+            <Metric id ="WMC" value ="363" avg ="21,353" stddev ="54,368" points ="17" max ="229" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+            <Metric id ="NSC" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
             <Metric id ="NORM" value ="1" avg ="0,059" stddev ="0,235" points ="17" max ="1" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha"/>
-            <Metric id ="LCOM" avg ="0,356" stddev ="0,388" points ="17" max ="0,912" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+            <Metric id ="LCOM" avg ="0,356" stddev ="0,388" points ="17" max ="0,922" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
             <Metric id ="NOF" value ="114" avg ="6,706" stddev ="15,537" points ="17" max ="66" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-            <Metric id ="NSF" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Ficheiro.java[Ficheiro"/>
-            <Metric id ="NOM" value ="126" avg ="7,412" stddev ="11,862" points ="17" max ="43" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+            <Metric id ="NSF" value ="0" avg ="0" stddev ="0" points ="17" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+            <Metric id ="NOM" value ="132" avg ="7,765" stddev ="12,955" points ="17" max ="49" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
             <Metric id ="NSM" value ="1" avg ="0,059" stddev ="0,235" points ="17" max ="1" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
             <Metric id ="SIX" avg ="0,005" stddev ="0,018" points ="17" max ="0,077" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Linha.java[Linha"/>
             <Metric id ="NOC" value ="17"/>
             <Metric id ="NOI" value ="0"/>
-            <Metric id ="TLOC" value ="2365"/>
-            <Metric id ="MLOC" value ="1863" avg ="14,669" stddev ="76,91" points ="127" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
+            <Metric id ="TLOC" value ="2422"/>
+            <Metric id ="MLOC" value ="1908" avg ="14,346" stddev ="75,175" points ="133" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
          </Metrics>
          <CompilationUnit name = "VerificacaoCodeSmells.java" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{VerificacaoCodeSmells.java">
             <Metrics>
@@ -965,23 +965,23 @@
          </CompilationUnit>
          <CompilationUnit name = "Interface.java" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java">
             <Metrics>
-               <Metric id ="VG" avg ="4,886" stddev ="7,432" points ="44" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
-               <Metric id ="PAR" avg ="0,568" stddev ="0,889" points ="44" max ="4" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~criarCondicao~QJComboBox;~QJComboBox;~QJTextField;~QJTextField;"/>
-               <Metric id ="NBD" avg ="2,091" stddev ="1,535" points ="44" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+               <Metric id ="VG" avg ="4,58" stddev ="7,029" points ="50" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+               <Metric id ="PAR" avg ="0,62" stddev ="0,869" points ="50" max ="4" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~criarCondicao~QJComboBox;~QJComboBox;~QJTextField;~QJTextField;"/>
+               <Metric id ="NBD" avg ="2,08" stddev ="1,468" points ="50" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
                <Metric id ="DIT" avg ="6" stddev ="0" points ="1" max ="6" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-               <Metric id ="WMC" value ="215" avg ="215" stddev ="0" points ="1" max ="215" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+               <Metric id ="WMC" value ="229" avg ="229" stddev ="0" points ="1" max ="229" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NSC" value ="0" avg ="0" stddev ="0" points ="1" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NORM" value ="0" avg ="0" stddev ="0" points ="1" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-               <Metric id ="LCOM" avg ="0,912" stddev ="0" points ="1" max ="0,912" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+               <Metric id ="LCOM" avg ="0,922" stddev ="0" points ="1" max ="0,922" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NOF" value ="66" avg ="66" stddev ="0" points ="1" max ="66" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NSF" value ="0" avg ="0" stddev ="0" points ="1" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
-               <Metric id ="NOM" value ="43" avg ="43" stddev ="0" points ="1" max ="43" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
+               <Metric id ="NOM" value ="49" avg ="49" stddev ="0" points ="1" max ="49" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NSM" value ="1" avg ="1" stddev ="0" points ="1" max ="1" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="SIX" avg ="0" stddev ="0" points ="1" max ="0" per ="type" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface"/>
                <Metric id ="NOC" value ="1"/>
                <Metric id ="NOI" value ="0"/>
-               <Metric id ="TLOC" value ="1616"/>
-               <Metric id ="MLOC" value ="1425" avg ="32,386" stddev ="128,533" points ="44" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
+               <Metric id ="TLOC" value ="1673"/>
+               <Metric id ="MLOC" value ="1470" avg ="29,4" stddev ="120,856" points ="50" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
             </Metrics>
             <Type name = "anonymous" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface[!20">
                <Metrics>
@@ -1271,20 +1271,20 @@
             </Type>
             <Type name = "Interface" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface">
                <Metrics>
-                  <Metric id ="VG" avg ="4,886" stddev ="7,432" points ="44" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
-                  <Metric id ="PAR" avg ="0,568" stddev ="0,889" points ="44" max ="4" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~criarCondicao~QJComboBox;~QJComboBox;~QJTextField;~QJTextField;"/>
-                  <Metric id ="NBD" avg ="2,091" stddev ="1,535" points ="44" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+                  <Metric id ="VG" avg ="4,58" stddev ="7,029" points ="50" max ="35" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
+                  <Metric id ="PAR" avg ="0,62" stddev ="0,869" points ="50" max ="4" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~criarCondicao~QJComboBox;~QJComboBox;~QJTextField;~QJTextField;"/>
+                  <Metric id ="NBD" avg ="2,08" stddev ="1,468" points ="50" max ="8" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~alterarRegraGC"/>
                   <Metric id ="DIT" value ="6"/>
-                  <Metric id ="WMC" value ="215"/>
+                  <Metric id ="WMC" value ="229"/>
                   <Metric id ="NSC" value ="0"/>
                   <Metric id ="NORM" value ="0"/>
-                  <Metric id ="LCOM" value ="0,912"/>
+                  <Metric id ="LCOM" value ="0,922"/>
                   <Metric id ="NOF" value ="66"/>
                   <Metric id ="NSF" value ="0"/>
-                  <Metric id ="NOM" value ="43"/>
+                  <Metric id ="NOM" value ="49"/>
                   <Metric id ="NSM" value ="1"/>
                   <Metric id ="SIX" value ="0"/>
-                  <Metric id ="MLOC" value ="1425" avg ="32,386" stddev ="128,533" points ="44" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
+                  <Metric id ="MLOC" value ="1470" avg ="29,4" stddev ="120,856" points ="50" max ="868" per ="method" maxhandle ="=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface"/>
                </Metrics>
                <Method name = "criarCondicao" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~criarCondicao~QJComboBox;~QJComboBox;~QJTextField;~QJTextField;">
                   <Metrics>
@@ -1558,6 +1558,14 @@
                      <Metric id ="MLOC" value ="4"/>
                   </Metrics>
                </Method>
+               <Method name = "getRegraGC" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~getRegraGC~QString;">
+                  <Metrics>
+                     <Metric id ="VG" value ="3"/>
+                     <Metric id ="PAR" value ="1"/>
+                     <Metric id ="NBD" value ="2"/>
+                     <Metric id ="MLOC" value ="8"/>
+                  </Metrics>
+               </Method>
                <Method name = "keyTyped" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface[!3~keyTyped~QKeyEvent;">
                   <Metrics>
                      <Metric id ="VG" value ="4"/>
@@ -1588,6 +1596,22 @@
                      <Metric id ="PAR" value ="0"/>
                      <Metric id ="NBD" value ="1"/>
                      <Metric id ="MLOC" value ="1"/>
+                  </Metrics>
+               </Method>
+               <Method name = "getVerificacaoCodeSmells" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~getVerificacaoCodeSmells">
+                  <Metrics>
+                     <Metric id ="VG" value ="1"/>
+                     <Metric id ="PAR" value ="0"/>
+                     <Metric id ="NBD" value ="1"/>
+                     <Metric id ="MLOC" value ="1"/>
+                  </Metrics>
+               </Method>
+               <Method name = "getRegraLM" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~getRegraLM~QString;">
+                  <Metrics>
+                     <Metric id ="VG" value ="3"/>
+                     <Metric id ="PAR" value ="1"/>
+                     <Metric id ="NBD" value ="2"/>
+                     <Metric id ="MLOC" value ="8"/>
                   </Metrics>
                </Method>
                <Method name = "keyTyped" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface[!26~keyTyped~QKeyEvent;">
@@ -1700,6 +1724,14 @@
                      <Metric id ="PAR" value ="0"/>
                      <Metric id ="NBD" value ="2"/>
                      <Metric id ="MLOC" value ="21"/>
+                  </Metrics>
+               </Method>
+               <Method name = "testarInterface" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~testarInterface~QString;~QString;">
+                  <Metrics>
+                     <Metric id ="VG" value ="1"/>
+                     <Metric id ="PAR" value ="2"/>
+                     <Metric id ="NBD" value ="1"/>
+                     <Metric id ="MLOC" value ="16"/>
                   </Metrics>
                </Method>
                <Method name = "resetCamposLM" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~resetCamposLM">
@@ -1846,6 +1878,14 @@
                      <Metric id ="MLOC" value ="5"/>
                   </Metrics>
                </Method>
+               <Method name = "selecionarRegraLM" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~selecionarRegraLM~QString;">
+                  <Metrics>
+                     <Metric id ="VG" value ="3"/>
+                     <Metric id ="PAR" value ="1"/>
+                     <Metric id ="NBD" value ="3"/>
+                     <Metric id ="MLOC" value ="6"/>
+                  </Metrics>
+               </Method>
                <Method name = "actionPerformed" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~Interface[!28~actionPerformed~QActionEvent;">
                   <Metrics>
                      <Metric id ="VG" value ="1"/>
@@ -1876,6 +1916,14 @@
                      <Metric id ="PAR" value ="1"/>
                      <Metric id ="NBD" value ="1"/>
                      <Metric id ="MLOC" value ="1"/>
+                  </Metrics>
+               </Method>
+               <Method name = "selecionarRegraGC" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~selecionarRegraGC~QString;">
+                  <Metrics>
+                     <Metric id ="VG" value ="3"/>
+                     <Metric id ="PAR" value ="1"/>
+                     <Metric id ="NBD" value ="3"/>
+                     <Metric id ="MLOC" value ="6"/>
                   </Metrics>
                </Method>
                <Method name = "getValores" handle = "=CodeQualityAssessor/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;g42.CodeQualityAssessor{Interface.java[Interface~getValores">

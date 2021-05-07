@@ -1,8 +1,8 @@
 g42.CodeQualityAssessor.Interface	private void mostrarExcel() 	gbc_scrollPane	B1	0/6
 g42.CodeQualityAssessor.Interface	private void mostrarExcel() 	header	B1	0/5
 g42.CodeQualityAssessor.Interface	private void mostrarExcelComCodeSmells() 	header	B1	0/5
+g42.CodeQualityAssessor.Interface	private void acaoCriarExcel() 	excel	B1	0/4
 g42.CodeQualityAssessor.Interface	private void mostrarExcel() 	scrollPaneExcel	B1	0/4
-g42.CodeQualityAssessor.Interface	public void acaoCriarExcel() 	excel	B1	0/4
 g42.CodeQualityAssessor.VerificacaoCodeSmells	private void retirarCodeSmellMetodo(org.apache.poi.ss.usermodel.Sheet, int) 	codeSmellsMetodos	B2	0/4
 g42.CodeQualityAssessor.EscreverMétricasParaExcel	private void adicionarAoWMC_class_array(int, List<java.lang.String>, List<java.lang.String>) 	WMC_class_array	B3	0/4
 g42.CodeQualityAssessor.EscreverMétricasParaExcel	private void adicionarAoWMC_class_array(int, List<java.lang.String>, List<java.lang.String>) 	WMC_class_array	B5	0/2
@@ -32,6 +32,8 @@ g42.CodeQualityAssessor.Interface	private void alterarRegraLM() 	LM_And_Or	B3	7/
 g42.CodeQualityAssessor.Interface	private void alterarRegraLM() 	LM_And_Or	B4	4/10
 g42.CodeQualityAssessor.Interface	private void alterarRegraGC() 	second_GC_And_Or	B3	13/25
 g42.CodeQualityAssessor.Interface	private void alterarRegraGC() 	second_GC_And_Or	B4	10/22
+g42.CodeQualityAssessor.Interface	private void selecionarRegraGC(java.lang.String) 	ListaRegrasGCAplicar	B2	1/2
+g42.CodeQualityAssessor.Interface	private void selecionarRegraLM(java.lang.String) 	ListaRegrasLMAplicar	B2	1/2
 g42.CodeQualityAssessor.Interface	private void criarRegraGC() 	regra	B6	2/4
 g42.CodeQualityAssessor.Interface	private void criarRegraLM() 	regra	B6	2/4
 g42.CodeQualityAssessor.Interface	private void alterarRegraGC() 	ListaOpcoesC1GC	B3	5/7
