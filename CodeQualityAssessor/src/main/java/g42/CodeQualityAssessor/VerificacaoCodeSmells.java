@@ -48,7 +48,7 @@ public class VerificacaoCodeSmells {
 		this.falsos_negativos=0;
 		verificarCodeSmells();
 		verificarIndicadores();
-	}
+	} 
 	
 	private void verificarIndicadores() throws EncryptedDocumentException, IOException {
 		percorrerFicheiro_CodeSmells();
