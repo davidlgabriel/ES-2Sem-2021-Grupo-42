@@ -1,0 +1,6 @@
+regra1
+( LOC_method >= 5 && LOC_method <= 10 )
+true 0
+regra1
+( ( NOM_class >= 5 && NOM_class <= 10 ) )
+true 1

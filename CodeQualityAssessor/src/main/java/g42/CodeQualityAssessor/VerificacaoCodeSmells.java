@@ -32,6 +32,12 @@ public class VerificacaoCodeSmells {
 	private int falsos_negativos;
 	private HashMap <String,CodeSmellMetodo> codeSmellsMetodos = new HashMap<>();
 	
+	/**
+     * Inicializa os atributos com os valores passados
+     * @param projeto_name - nome do projeto
+     * @param regra_long_method - regra do code smell Long Method
+     * @param regra_god_class - regra do code smell God Class
+     */
 	public VerificacaoCodeSmells(String projeto_name, Regra regra_long_method, Regra regra_god_class) throws EncryptedDocumentException, IOException, ScriptException {
 		this.projeto_name = projeto_name;
 		this.regra_long_method = regra_long_method;
@@ -101,18 +107,34 @@ public class VerificacaoCodeSmells {
 		}
 	}
 
+	/**
+     * Devolve o número de falsos negativos
+     * @return falsos negativos
+     */
 	public int getFalsos_negativos() {
 		return falsos_negativos;
 	}
-
+	
+	/**
+     * Devolve o número de verdadeiros positivos
+     * @return verdadeiros positivos
+     */
 	public int getVerdadeiros_positivos() {
 		return verdadeiros_positivos;
 	}
-
+	
+	/**
+     * Devolve o número de falsos positivos
+     * @return falsos positivos
+     */
 	public int getFalsos_positivos() {
 		return falsos_positivos;
 	}
-
+	
+	/**
+     * Devolve o número de verdadeiros negativos
+     * @return verdadeiros negativos
+     */
 	public int getVerdadeiros_negativos() {
 		return verdadeiros_negativos;
 	}

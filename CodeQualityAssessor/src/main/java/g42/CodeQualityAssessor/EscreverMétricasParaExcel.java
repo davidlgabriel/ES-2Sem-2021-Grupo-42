@@ -50,6 +50,10 @@ public class EscreverMétricasParaExcel {
 	
 	//Construtor
 
+	/**
+     * Inicializa um objeto EscreverMetricasParaExcel
+     * @param classes - com o nome do projeto (primeira posiçao) e caminho para cada classe (restantes posiçoes)
+     */
 	public EscreverMétricasParaExcel(ArrayList<String> classes) {
 		this.classes=classes;
 		String nomeProjeto = this.classes.remove(0);
@@ -75,41 +79,74 @@ public class EscreverMétricasParaExcel {
 	//Getters
 	
 	
-
+	/**
+     * Devolve um ArrayList contendo todos os nomes dos pacotes
+     * @return getnomePackages
+     */
 	public ArrayList<String> getnomePackages() {
 		return nomePacotes;
 	}
 
+	/**
+     * Devolve o nome do projeto
+     * @return nomeProjeto
+     */
 	public String getProjeto_name() {
 		return nomeProjeto;
 	}
 
-
+	/**
+     * Devolve o numero de classes do projeto
+     * @return numeroClasses
+     */
 	public int getNumberClasses() {
 		return numeroClasses;
 	}
-
-
+	
+	/**
+     * Devolve um ArrayList contendo todos os nomes das classes
+     * @return nomeClasses
+     */
 	public ArrayList<String> getnomeClasses() {
 		return nomeClasses;
 	}
 
+	/**
+     * Devolve um ArrayList contendo o numero de linhas de cada classe
+     * @return LOC_class_array
+     */
 	public ArrayList<Integer> getLOC_class_array() {
 		return LOC_class_array;
 	}
 
+	/**
+     * Devolve um ArrayList contendo o numero referente a complexidade de cada classe
+     * @return WMC_class_array
+     */
 	public ArrayList<Integer> getWMC_class_array() {
 		return WMC_class_array;
 	}
 
+	/**
+     * Devolve um ArrayList contendo o numero de linhas de cada metodo
+     * @return LOC_method_array
+     */
 	public ArrayList<Integer> getLOC_method_array() {
 		return LOC_method_array;
 	}
-
+	
+	/**
+     * Devolve um ArrayList contendo o numero referente a complexidade ciclomatica de cada metodo
+     * @return CYCLO_method_array
+     */
 	public ArrayList<Integer> getCYCLO_method_array() {
 		return CYCLO_method_array;
 	}
-
+	
+	/**
+     * Devolve um ArrayList contendo o numero de metodos de cada classe
+     * @return NOM_class_array
+     */
 	public ArrayList<Integer> getNOM_class_array(){
 		return NOM_class_array;
 	}
@@ -117,6 +154,9 @@ public class EscreverMétricasParaExcel {
 
 	//Métodos
 
+	/**
+     * Corre a extraçao de metricas do projeto em questao, cria um ficheiro excel e escreve nele as informaçoes que obteve da extraçao das metricas
+     */
 	public void escreverNoFicheiro() throws FileNotFoundException, IOException {
 		
 //		testar();
@@ -186,6 +226,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 	
+	/**
+     * Retira o nome dos metodos de cada classe
+     */
 	public void retirarNomeMetodos() throws FileNotFoundException {
 
 		for (String caminhoClasse : this.classes) {		
@@ -257,6 +300,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 
+	/**
+     * Retira o nome do pacote de cada classe
+     */
 	public void retirarNomePacotes() throws FileNotFoundException {
 		int rep =0;
 		for (String caminhoClasse : this.classes) {		
@@ -297,6 +343,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 	
+	/**
+     * Calcula o numero de metodos de cada classe
+     */
 	public void NOM_class() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {		
 			File ficheiroClasse = new File(caminhoClasse);	
@@ -341,6 +390,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 
+	/**
+     * Calcula o numero de linhas de codigo de cada classe
+     */
 	public void LOC_class() throws FileNotFoundException {
 		int rep =0; 
 		for (String caminhoClasse : this.classes) {			
@@ -396,6 +448,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 	
+	/**
+     * Calcula a complexidade de cada classe baseando-se para isso na soma das complexidades ciclomaticas de cada metodo da classe
+     */
 	public void WMC_class() throws FileNotFoundException {
 		int rep =0;
 		for (String caminhoClasse : this.classes) {			
@@ -430,7 +485,9 @@ public class EscreverMétricasParaExcel {
 		}
 	}
 
-
+	/**
+     * Calcula o numero de linhas de codigo de cada metodo
+     */
 	public void LOC_method() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);		
@@ -476,7 +533,9 @@ public class EscreverMétricasParaExcel {
 		return result;
 	}
 
-
+	/**
+     * Calcula a complexidade ciclomatica de cada metodo
+     */
 	public void CYCLO_method() throws FileNotFoundException {
 		for (String caminhoClasse : this.classes) {			
 			File ficheiroClasse = new File(caminhoClasse);		
@@ -507,7 +566,7 @@ public class EscreverMétricasParaExcel {
 	}
 
 
-	public static class ColecionarNomeClasse extends VoidVisitorAdapter<List<String>>{
+	private static class ColecionarNomeClasse extends VoidVisitorAdapter<List<String>>{
 	    @Override
 	    public void visit(ClassOrInterfaceDeclaration n, List<String> collector) {
 	        super.visit(n, collector);
@@ -515,6 +574,9 @@ public class EscreverMétricasParaExcel {
 	    }
 	}
 
+	/**
+     * Retira o nome das classes do projeto selecionado pelo utilizador
+     */
 	public void retirarNomeClasses() throws FileNotFoundException {
 		
 		int rep =0;

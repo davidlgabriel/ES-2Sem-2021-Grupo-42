@@ -121,6 +121,9 @@ public class Interface extends JDialog {
 	private JLabel LabelCountVN;
 	private JLabel LabelCountFN;
 
+	/**
+     * Cria a janela com os componentes necessários para a utilização da mesma
+     */
 	public Interface() {
 		this.addWindowListener(new WindowListener() {
 
@@ -1589,7 +1592,7 @@ public class Interface extends JDialog {
 		}
 	}
 	
-	public void acaoCriarExcel() {
+	private void acaoCriarExcel() {
 		percorrer();
 		excel = new EscreverMétricasParaExcel(caminhoFicheiros);
 		try {
@@ -1712,7 +1715,10 @@ public class Interface extends JDialog {
 			LabelCountFN.setText("0");
 		}
 	}
-
+	
+	/**
+     * Percorre o diretório do projeto escolhido
+     */
 	public void percorrer() {
 		caminhoFicheiros = new ArrayList<String>();
 		String[] aux = diretorioEscolhido.getAbsolutePath().replace("\\", "/").split("/");
@@ -1756,16 +1762,106 @@ public class Interface extends JDialog {
 		}
 	}
 
+	/**
+     * Devolve a lista com o caminho de todos os ficheiros do projeto
+     * @return lista de caminhos
+     */
 	public ArrayList<String> getCaminhoFicheiros() { 
 		return caminhoFicheiros;
 	}
 
+	/**
+     * Devolve o File do diretorio do projeto escolhido
+     * @return diretorio escolhido
+     */
 	public File getdiretorioEscolhido() {
 		return diretorioEscolhido;
 	}
 
+	/**
+     * Faz o set do diretorio escolhido para o que é passado em argumento
+     * @param diretorioEscolhido - File do novo diretorio do projeto escolhido
+     */
 	public void setdiretorioEscolhido(File diretorioEscolhido) {
 		this.diretorioEscolhido = diretorioEscolhido;
+	}
+	
+	/**
+     * Este método é para testar os métodos da interface
+     */
+	public void testarInterface(String nomeRegra, String nomeProjeto) {
+		setdiretorioEscolhido(new File(nomeProjeto));
+		percorrer();
+		acaoCriarExcel();
+		LMC1valorM1.setText("5");
+		LMC1valorM2.setText("10");
+		NomeRegraLM.setText(nomeRegra);
+		GCC1valorM1.setText("5");
+		GCC1valorM2.setText("10");
+		NomeRegraGC.setText(nomeRegra);
+		acaoConfirmLM();
+		acaoConfirmGC();
+		criarRegraLM();
+		criarRegraGC();
+		selecionarRegraLM(nomeRegra);
+		selecionarRegraGC(nomeRegra);
+		acaoAplicarRegras();
+	}
+	
+	private void selecionarRegraLM(String nomeRegra) {
+		for(int i=0;i<ListaRegrasLMAplicar.getItemCount();i++) {
+			if(ListaRegrasLMAplicar.getItemAt(i).equals(nomeRegra)) {
+				ListaRegrasLMAplicar.setSelectedIndex(i);
+				break;
+			}
+		}
+	}
+	
+	private void selecionarRegraGC(String nomeRegra) {
+		for(int i=0;i<ListaRegrasGCAplicar.getItemCount();i++) {
+			if(ListaRegrasGCAplicar.getItemAt(i).equals(nomeRegra)) {
+				ListaRegrasGCAplicar.setSelectedIndex(i);
+				break;
+			}
+		}
+	}
+	
+	/**
+     * Devolve a regra com o nome dado
+     * @return regra
+     */
+	public Regra getRegraLM(String nomeRegra) {
+		Regra regra = null;
+		for (HashMap.Entry<String, Regra> entry : regrasLongMethod.entrySet()) {
+			String key = entry.getKey();
+			Regra regraaux = entry.getValue();
+			if(key.equals(nomeRegra))
+				regra=regraaux;
+		}
+		return regra;
+	}
+	
+	/**
+     * Devolve a regra com o nome dado
+     * @return regra
+     */
+	public Regra getRegraGC(String nomeRegra) {
+		Regra regra = null;
+		for (HashMap.Entry<String, Regra> entry : regrasGodClass.entrySet()) {
+			String key = entry.getKey();
+			Regra regraaux = entry.getValue();
+			if(key.equals(nomeRegra))
+				regra=regraaux;
+		}
+		return regra;
+	}
+	
+	/**
+     * Devolve o objeto VerificacaoCodeSmells que resulta da aplicação das regras ao projeto já escolhido
+     * @return VerificacaoCodeSmells
+     */
+	public VerificacaoCodeSmells getVerificacaoCodeSmells() {
+		return verificarCS;
 	}
 
 	private Object[][] getValores(){

@@ -19,6 +19,10 @@ public class LerFicheiro {
 	
 	private List<Linha> listaLinhas;
 	
+	/**
+     * Inicializa um objeto LerFicheiro
+     * @param nomeFicheiro - nome do ficheiro excel 
+     */
 	public LerFicheiro(String nomeFicheiro){
 		try {
 			workbook = new XSSFWorkbook(new FileInputStream(nomeFicheiro));
@@ -27,7 +31,11 @@ public class LerFicheiro {
 		}
 		sheet = workbook.getSheetAt(0);
 	}
-	
+	/**
+     * Leitura de cada linha do ficheiro excel
+     * @param linha_a_Ler - nome do ficheiro excel 
+     * @return Linha - uma linha do ficheiro excel 
+     */
 	public Linha lerLinha(int linha_a_Ler){
 		XSSFRow linha = sheet.getRow(linha_a_Ler); 
 		int idMetodo = (int)linha.getCell(0).getNumericCellValue();
@@ -44,7 +52,10 @@ public class LerFicheiro {
 		return new Linha(idMetodo, nomePacote, nomeClasse, nomeMetodo, NOM_Class, LOC_Class,WMC_Class, is_God_Class, LOC_Method, Cyclo_Method, is_Long_Method);
 	}
 
-	
+	/**
+     * Leitura de todas as linhas do excel, que guarda numa lista de linhas 
+     * @return listaLinhas - ArrayList de todas as linhas do ficheiro excel
+     */
 	public List<Linha> lerTodasLinhas(){
 		listaLinhas = new ArrayList<Linha>();
 		int ultimaLinha = sheet.getLastRowNum();
